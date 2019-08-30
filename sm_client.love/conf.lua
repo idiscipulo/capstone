@@ -1,4 +1,4 @@
 function love.conf()
-    require("sm_game")
-    require("sm_socket")
+    require("src/sm_game")
+    require("src/sm_socket")
 end
