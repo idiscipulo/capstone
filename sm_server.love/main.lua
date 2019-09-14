@@ -10,9 +10,12 @@ function love.update()
     
     sm_game:update()
 
-    timer_util:end_frame()
+    act_fps = timer_util:end_frame()
 end
 
 function love.draw()
     sm_game:draw()
+
+    -- fps (testing)
+    love.graphics.print({{1, 1, 1, 1}, math.floor(act_fps)}, 0, 0)
 end
