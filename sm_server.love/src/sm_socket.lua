@@ -8,7 +8,7 @@ function SMSocket:new()
     return sm_socket
 end
 
-function SMSocket:get_inpute()
+function SMSocket:get_input()
 end
 
 function SMSocket:send_state()

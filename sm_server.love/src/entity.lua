@@ -3,16 +3,16 @@ Entity = {}
 Entity.__index = Entity
 
 --Contructor
-function Entity.new(x, y, w, h)
-    local entity_instance = {
-        x = x,
-        y = y,
-        w = w,
-        h = h
-    }
-
+function Entity:new(x, y, w, h)
+    local entity = {}
     setmetatable(entity_instance, Entity)
-    return entity_instance
+    
+    entity.x = x
+    entity.y = y
+    entity.w = w
+    entity.h = h
+
+    return entity
 end
 
 function Entity:get_rect()
@@ -30,5 +30,3 @@ end
 function Entity:get_y()
     return self.y
 end
-
-return Entity 

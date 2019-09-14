@@ -1,19 +1,18 @@
-local Player = require 'src.player'
-local Entities = require 'src.entities'
-
 function love.load()
-    local players = {
-        player1 = Player.new(100, 100),
-        player2 = Player.new(300, 300)
-    }
-    Entities:add_many(players)
+    sm_game = SMGame:new()
 
+    timer_util = TimerUtil:new()
+    timer_util:set_fps(60)
 end
 
-function love.update(dt)
-    Entities:update(dt)
+function love.update()
+    timer_util:start_frame()
+    
+    sm_game:update()
+
+    timer_util:end_frame()
 end
 
 function love.draw()
-    Entities:draw()
+    sm_game:draw()
 end

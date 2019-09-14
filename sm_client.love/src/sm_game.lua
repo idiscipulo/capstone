@@ -11,5 +11,5 @@ end
 function SMGame:update()
 end
 
-function SMGame:render()
+function SMGame:draw()
 end

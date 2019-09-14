@@ -1,15 +1,25 @@
 -- here every active entity will be placed in a table
 -- so that they can all be easily accessed and updated
-local Entities = {
-    entityList = {} 
-}
+Entities = {}
+Entities.__index = Entities
+
+function Entities:new()
+    local entities = {}
+    setmetatable(entities, Entities)
+
+    entities.entityList = {}
+
+    return entities
+end
 
 function Entities:add(entity)
+    
     table.insert(self.entityList, entity)
 end
 
 function Entities:add_many(entities)
-    for k, entity in pairs(entities) do
+    print(#entities)
+    for i, entity in pairs(entities) do
         table.insert(self.entityList, entity)
     end
 end
@@ -38,5 +48,3 @@ function Entities:update(dt)
         e:update(dt, i)
     end
 end
-
-return Entities
