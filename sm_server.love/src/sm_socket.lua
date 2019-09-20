@@ -17,8 +17,12 @@ function SMSocket:update()
 	while true do --starts loop to listen
 		--receive data
 		local client_data = self.get_input()
-		--broadcast to clients
-		self:send_state(client_data)
+        
+        --broadcast to clients
+        self:send_state(client_data)
+        
+        -- TODO
+        -- send all state as one udp packet
 
 		--FIXME
 		--a way to close server
