@@ -19,7 +19,7 @@ function SMSocket:update()
 		local client_data = self.get_input()
         
         --broadcast to clients
-        self:send_state(client_data)
+        self:send_state(client_data[1], client_data[2])
         
         -- TODO
         -- send all state as one udp packet
@@ -30,6 +30,7 @@ function SMSocket:update()
 end --update()
 
 function SMSocket:get_input()
+	local input ={}
 	--receive data
 	local data, ip, port = udp:receivefrom()
 	if(data == nil) then
@@ -46,12 +47,14 @@ function SMSocket:get_input()
 	if not sm_socket[2][client_id] then --FIXME --is this correct way to access sm_socket? //Boice
 		sm_socket[2][client_id] = {ip = ip, port = port} --KVP
 	end--if
-	return data
+	table.insert(input, client_id)
+	table.insert(input, data)
+	return input
 end --get_input()
 
-function SMSocket:send_state(client_data)
+function SMSocket:send_state(client_id, client_data)
 	for _, c in pairs(sm_socket[2]) do
-		udp:sendto(data, c.ip, c.port)
+		udp:sendto(client_data..'-'.. client_id, c.ip, c.port)
 	end --for
 end --send_state() 
 
