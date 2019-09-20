@@ -19,3 +19,9 @@ function love.draw()
     -- fps (testing)
     love.graphics.print({{1, 1, 1, 1}, math.floor(act_fps)}, 0, 0)
 end
+
+function love.keypressed(key)
+    if key == "escape" then
+        love.event.push("quit")
+    end
+end
