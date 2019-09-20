@@ -11,7 +11,7 @@ function Player:new(x, y)
     player.x = x
     player.y = y
 
-    player.img = love.graphics.newImage("/assets/red_square.png")
+    player.img = love.graphics.newImage("/assets/mage.png")
     player.w = player.img:getWidth()
     player.h = player.img:getHeight()
 
