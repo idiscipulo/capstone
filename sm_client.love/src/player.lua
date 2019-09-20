@@ -15,7 +15,7 @@ function Player:new(x, y)
     player.w = player.img:getWidth()
     player.h = player.img:getHeight()
 
-    player.speed = 3
+    player.speed = 1.5
     player.mouse_x = nil
     player.mouse_y = nil
 
@@ -25,6 +25,14 @@ end
 function Player:update()
     if love.mouse.isDown(2) then
         self.mouse_x, self.mouse_y = love.mouse.getPosition()
+
+        -- adjust mouse coordinates if fullscreen
+        self.mouse_x = (self.mouse_x - ACTUAL_X_OFFSET) / SCALE
+        self.mouse_y = (self.mouse_y - ACTUAL_Y_OFFSET) / SCALE
+
+        -- center mouse coordinates for image
+        self.mouse_x = self.mouse_x - (self.w / 2)
+        self.mouse_y = self.mouse_y - (self.h / 4) * 3
     end
 
     self:move()
@@ -32,11 +40,14 @@ end
 
 function Player:move() 
     if self.mouse_x and self.mouse_y then
+        -- calculate movement angle
         local angle = math.atan2(self.y - self.mouse_y, self.x - self.mouse_x)
 
+        -- move
         self.x = self.x - math.cos(angle) * self.speed
         self.y = self.y - math.sin(angle) * self.speed
 
+        -- stop moving
         if math.abs(self.x - self.mouse_x) <= self.speed then
             self.x = self.mouse_x
         end
