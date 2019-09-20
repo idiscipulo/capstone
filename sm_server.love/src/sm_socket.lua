@@ -33,9 +33,7 @@ function SMSocket:get_input()
 	local input ={}
 	--receive data
 	local data, ip, port = udp:receivefrom()
-	if(data == nil) then
-		break
-	end--if
+	if (data) then
 
 	--split player movement data
 	--Needed here if we run a game on the server side.
