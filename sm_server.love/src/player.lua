@@ -46,6 +46,10 @@ function Player:move()
     end
 end
 
+function Player:to_string()
+    return math.floor(self.x + 0.5) .. '-' .. math.floor(self.y + 0.5)
+end
+
 function Player:draw()
     love.graphics.draw(self.img, self.x, self.y)
 end  

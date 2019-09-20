@@ -46,6 +46,14 @@ function Player:move()
     end
 end
 
+function Player:to_string()
+    if self.mouse_x and self.mouse_y then 
+        return math.floor(self.x + 0.5) .. '-' .. math.floor(self.y + 0.5) .. '-' .. math.floor(self.mouse_x + 0.5) .. '-' .. math.floor(self.mouse_y + 0.5)
+    else
+        return math.floor(self.x + 0.5) .. '-' .. math.floor(self.y + 0.5)
+    end
+end
+
 function Player:draw()
     love.graphics.draw(self.img, self.x, self.y)
 end  
