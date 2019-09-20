@@ -47,9 +47,10 @@ function Player:move()
 end
 
 function Player:to_string()
-    return math.floor(self.x + 0.5) .. '-' .. math.floor(self.y + 0.5)
+    return self:round(self.x) .. '-' .. self:round(self.y)
 end
 
 function Player:draw()
     love.graphics.draw(self.img, self.x, self.y)
+    love.graphics.print(self:to_string(), 0, 25)
 end  

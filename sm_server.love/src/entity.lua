@@ -30,3 +30,7 @@ end
 function Entity:get_y()
     return self.y
 end
+
+function Entity:round(num)
+    return num + 0.5 - (x + 0.5) % 1
+end
