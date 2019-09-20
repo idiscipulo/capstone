@@ -33,17 +33,18 @@ function SMSocket:get_input()
 	local input ={}
 	--receive data
 	local data, ip, port = udp:receivefrom()
+	print(data)
 	if (data) then
+		--split player movement data
+		--Needed here if we run a game on the server side.
+		--where we would then draw a square per client and match the data in p_movement to client_id in sm_socket[2]
+		local p_movement = split(data, '-') --[player_pos_x, player_pos_y, mouse_x, mouse_y]
 
-	--split player movement data
-	--Needed here if we run a game on the server side.
-	--where we would then draw a square per client and match the data in p_movement to client_id in sm_socket[2]
-	local p_movement = split(data, '-') --[player_pos_x, player_pos_y, mouse_x, mouse_y]
-
-	--manage clients
-	local client_id = ip..":"..port
-	if not sm_socket[2][client_id] then --FIXME --is this correct way to access sm_socket? //Boice
-		sm_socket[2][client_id] = {ip = ip, port = port} --KVP
+		--manage clients
+		local client_id = ip..":"..port
+		if not sm_socket[2][client_id] then --FIXME --is this correct way to access sm_socket? //Boice
+			sm_socket[2][client_id] = {ip = ip, port = port} --KVP
+		end
 	end--if
 	table.insert(input, client_id)
 	table.insert(input, data)
