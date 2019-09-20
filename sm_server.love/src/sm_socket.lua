@@ -39,7 +39,7 @@ function SMSocket:get_input()
 	--split player movement data
 	--Needed here if we run a game on the server side.
 	--where we would then draw a square per client and match the data in p_movement to client_id in sm_socket[2]
-	local p_movement = split(data, '-') --[player_pos_x, player_pos_y, mouse_x, mouse_y, client_name]
+	local p_movement = split(data, '-') --[player_pos_x, player_pos_y, mouse_x, mouse_y]
 
 	--manage clients
 	local client_id = ip..":"..port
