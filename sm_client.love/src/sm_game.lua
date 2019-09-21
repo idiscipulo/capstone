@@ -20,7 +20,7 @@ function SMGame:update(dt)
 
     -- draw game to canvas
     love.graphics.setCanvas(self.canvas)
-        love.graphics.clear()
+        -- love.graphics.clear()
         self.entities:draw()
     love.graphics.setCanvas()
 end
