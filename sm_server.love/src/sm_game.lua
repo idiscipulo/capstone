@@ -15,6 +15,7 @@ end
 
 function SMGame:update(dt)
     self.entities:update(dt)
+    self.socket:update()
 end
 
 function SMGame:draw()

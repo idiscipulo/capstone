@@ -14,19 +14,21 @@ function SMSocket:new()
 end--new()
 
 function SMSocket:update()
-	while true do --starts loop to listen
-		--receive data
-		local client_data = self.get_input()
-        
-        --broadcast to clients
-        self:send_state(client_data[1], client_data[2])
-        
-        -- TODO
-        -- send all state as one udp packet
+	--we don't need a loop here because its called on a loop in sm_game
+	--receive data
+	local client_data = self:get_input()
+	
+	--broadcast to clients
+	if client_data[1] and client_data[2] then
+		self:send_state(client_data[1], client_data[2])
+	end
+	
+	-- TODO
+	-- send all state as one udp packet
 
-		--FIXME
-		--a way to close server
-	end --while
+	--FIXME
+	--a way to close server
+
 end --update()
 
 function SMSocket:get_input()

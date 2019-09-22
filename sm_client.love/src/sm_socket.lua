@@ -15,22 +15,22 @@ function SMSocket:new(player)
 end
 
 function SMSocket:update()
-	while true do --starts loop to listen
-		--receive data
-		local server_data = self.get_input()        
-        --send to server
-		self:send_state(client_data)
-	end	
+	--we cant't have loops in here because update gets called on a loop in sm_game
+	--receive data
+	local server_data = self:get_state()      
+	--send to server
+	self:send_state()
 end
 
 
-function SMSocket:send_input()
+function SMSocket:send_state()
 	udp:send(self.player:to_string())
 end
 
 function SMSocket:get_state()
 	--receive data
-	local data, ip, port = udp:receivefrom()
+	local data = udp:receive()  --program is stalling here
+	print('data received')
 	if(data) then
 
 		local p_movement = split(data, '-') --[player_pos_x, player_pos_y, mouse_x, mouse_y]
