@@ -1,3 +1,4 @@
+--[[
 socket = require("socket") --import lua socket
 local udp = socket.udp()
 udp:settimeout(0)
@@ -63,3 +64,4 @@ function split(s, delimiter) --[player_pos_x, player_pos_y, mouse_x, mouse_y, cl
 	end --for
 	return result
 end --split
+]]

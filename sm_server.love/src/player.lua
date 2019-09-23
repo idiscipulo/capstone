@@ -32,22 +32,19 @@ end
 
 function Player:move() 
     if self.mouse_x and self.mouse_y then
-        local angle = math.atan2(self.y - self.mouse_y, self.x - self.mouse_x)
+        local center_x, center_y = self:get_center()
+        local angle = math.atan2(center_y - self.mouse_y, center_x - self.mouse_x)
 
         self.x = self.x - math.cos(angle) * self.speed
         self.y = self.y - math.sin(angle) * self.speed
 
-        if math.abs(self.x - self.mouse_x) <= self.speed then
-            self.x = self.mouse_x
+        if math.abs(center_x - self.mouse_x) <= self.speed then
+            self.x = self.mouse_x - self.w/2
         end
-        if math.abs(self.y - self.mouse_y) <= self.speed then
-            self.y = self.mouse_y
+        if math.abs(center_y - self.mouse_y) <= self.speed then
+            self.y = self.mouse_y - self.h/2
         end
     end
-end
-
-function Player:to_string()
-    return math.floor(self.x + 0.5) .. '-' .. math.floor(self.y + 0.5)
 end
 
 function Player:draw()

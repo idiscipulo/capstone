@@ -1,3 +1,4 @@
+--[[
 socket = require("socket") --import lua socket
 udp = socket.udp()
 udp:setsockname('*', 8080) --for now just one instance, will allow a host to start this later
@@ -53,3 +54,4 @@ function split(s, delimiter) --[player_pos_x, player_pos_y, mouse_x, mouse_y, cl
 	end --for
 	return result
 end --split
+]]

@@ -23,10 +23,14 @@ function Entity:get_position()
     return self.x, self.y
 end
 
-function Entity:get_x()
-    return self.x 
+function Entity:get_center()
+    return self.x + self.w/2, self.y + self.h/2
 end
 
-function Entity:get_y()
-    return self.y
+function Entity:to_string()
+    return self:round(self.x) .. '-' .. self:round(self.y)
+end
+
+function Entity:round(num)
+    return num + 0.5 - (num + 0.5) % 1
 end
