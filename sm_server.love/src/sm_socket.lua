@@ -21,9 +21,10 @@ function SMSocket:update()
 	--we don't need a loop here because its called on a loop in sm_game
 	--receive data
 	local client_data = self:get_input()
-	print (client_data[1], client_data[2])
+
 	--broadcast to clients
 	if client_data[1] and client_data[2] then
+		sm_game.entities.entityList[1]:move(split(client_data[1], '-')[1],  split(client_data[1], '-')[2])
 		self:send_state(client_data[1], client_data[2])
 	end
 	

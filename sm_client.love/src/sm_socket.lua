@@ -9,8 +9,9 @@ SMSocket.__index = SMSocket
 
 function SMSocket:new(player)
 	local sm_socket = {}
+	setmetatable(sm_socket, SMSocket)
+	
 	sm_socket.player = player
-    setmetatable(sm_socket, SMSocket)
 
     return sm_socket
 end
@@ -37,6 +38,7 @@ function SMSocket:get_state()
 		local p_movement = split(data, '-') --[player_pos_x, player_pos_y, mouse_x, mouse_y, client_id]
 
 	end--if
+	print(data)
 	return data
 end
 
