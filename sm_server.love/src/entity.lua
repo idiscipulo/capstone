@@ -28,7 +28,9 @@ function Entity:get_center()
 end
 
 function Entity:to_string()
-    return self:round(self.x) .. '-' .. self:round(self.y)
+    if self.x and self.y then 
+        return self:round(self.x) .. '-' .. self:round(self.y)
+    end
 end
 
 function Entity:get_y()

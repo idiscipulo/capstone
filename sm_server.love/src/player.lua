@@ -1,39 +1,22 @@
+--Player is an abstract class that serves as the base class for all player characters
 Player = {}
 Player.__index = Player
 
 --Inheriting from Entity
 setmetatable(Player, Entity)
 
-function Player:new(x, y)
+function Player:new()
     local player = {}
     setmetatable(player, Player)
-     
-    player.x = x
-    player.y = y
-
-    player.img = love.graphics.newImage("/assets/red_square.png")
-    player.w = player.img:getWidth()
-    player.h = player.img:getHeight()
-
-    player.speed = 3
-    player.mouse_x = nil
-    player.mouse_y = nil
 
     return player
 end
 
 function Player:update()
-    if love.mouse.isDown(2) then
-        self.mouse_x, self.mouse_y = love.mouse.getPosition()
-    end
-
-    self:move()
+    --does nothing by default
 end
 
-function Player:move(x, y) 
-    self.mouse_x = x
-    self.mouse_y = y
-    
+function Player:move() 
     if self.mouse_x and self.mouse_y then
         local center_x, center_y = self:get_center()
         local angle = math.atan2(center_y - self.mouse_y, center_x - self.mouse_x)
@@ -50,11 +33,6 @@ function Player:move(x, y)
     end
 end
 
-function Player:to_string()
-    return self:round(self.x) .. '-' .. self:round(self.y)
-end
-
 function Player:draw()
-    love.graphics.draw(self.img, self.x, self.y)
-    love.graphics.print(self:to_string(), 0, 25)
+    --does nothing by default
 end  
