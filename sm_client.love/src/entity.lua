@@ -32,5 +32,6 @@ function Entity:to_string()
 end
 
 function Entity:round(num)
-    return num + 0.5 - (num + 0.5) % 1
+    if num >= 0 then return math.floor(num + 0.5)
+    else return math.ceil(num - 0.5) end
 end
