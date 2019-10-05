@@ -30,7 +30,10 @@ function Player:update()
     self:move()
 end
 
-function Player:move() 
+function Player:move(x, y) 
+    self.mouse_x = x
+    self.mouse_y = y
+    
     if self.mouse_x and self.mouse_y then
         local center_x, center_y = self:get_center()
         local angle = math.atan2(center_y - self.mouse_y, center_x - self.mouse_x)
@@ -47,6 +50,11 @@ function Player:move()
     end
 end
 
+function Player:to_string()
+    return self:round(self.x) .. '-' .. self:round(self.y)
+end
+
 function Player:draw()
     love.graphics.draw(self.img, self.x, self.y)
+    love.graphics.print(self:to_string(), 0, 25)
 end  

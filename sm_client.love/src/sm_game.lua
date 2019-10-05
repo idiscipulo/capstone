@@ -8,12 +8,14 @@ function SMGame:new()
     sm_game.entities = Entities:new()
 
     sm_game.entities:add(Player:new(100, 100))
+    sm_game.socket = SMSocket:new(sm_game.entities.entityList[1])
 
     return sm_game
 end
 
 function SMGame:update(dt)
     self.entities:update(dt)
+    self.socket:update()
 end
 
 function SMGame:draw()

@@ -31,6 +31,10 @@ function Entity:to_string()
     return self:round(self.x) .. '-' .. self:round(self.y)
 end
 
+function Entity:get_y()
+    return self.y
+end
+
 function Entity:round(num)
     if num >= 0 then return math.floor(num + 0.5)
     else return math.ceil(num - 0.5) end
