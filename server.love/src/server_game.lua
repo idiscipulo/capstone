@@ -17,6 +17,7 @@ function ServerGame:update()
 
     for index, value in pairs(self.input) do
         if self.client_list[index] == nil then
+            print(index)
             self.client_list[index] = {}
             self.client_list[index].ip = value.ip
             self.client_list[index].port = value.port

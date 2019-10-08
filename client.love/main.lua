@@ -1,6 +1,6 @@
 function love.load()
     math.randomseed(os.time())
-    client_id = string.format('%d', math.random())
+    client_id = tostring(math.random())
 
     client_game = ClientGame:new(client_id) -- create game
     client_socket = ClientSocket:new() -- create socket
