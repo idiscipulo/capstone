@@ -36,7 +36,7 @@ end
 
 function ClientSocket:encode_packet(id, x, y)
     local packet = ''
-    packet = id..'-'..x..'-'..y..'-' -- create packet
+    packet = id..','..x..','..y..',' -- create packet
 
     return packet
 end
@@ -48,7 +48,7 @@ function ClientSocket:decode_packet(packet)
 
     for match in packet:gmatch('(.-);') do
         sub_decode = {}
-        for m in match:gmatch('(.-)-') do
+        for m in match:gmatch('(.-),') do
             sub_decode[#sub_decode + 1] = m -- split packet
         end
         id = sub_decode[1]

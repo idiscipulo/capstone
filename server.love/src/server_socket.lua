@@ -38,7 +38,7 @@ end
 
 function ServerSocket:decode_packet(packet, ip, port, input)
     local decode = {}
-    for match in packet:gmatch('(.-)-') do
+    for match in packet:gmatch('(.-),') do
         decode[#decode + 1] = match -- split packet
     end
 
@@ -54,7 +54,7 @@ function ServerSocket:encode_packet(game)
     local packet = ''
     
     for index, value in pairs(game.character_list) do
-        packet = packet..value.id..'-'..value.x..'-'..value.y..'-'..value.goal_x..'-'..value.goal_y..'-;'
+        packet = packet..value.id..','..value.x..','..value.y..','..value.goal_x..','..value.goal_y..',;'
     end
 
     return packet
