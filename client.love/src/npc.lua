@@ -1,6 +1,6 @@
 NPC = {}
 NPC.__index = NPC
-setmetatable(NPC Entity) -- inherit from entity
+setmetatable(NPC, Entity) -- inherit from entity
 
 function NPC:new(id)
     local npc = Entity:new()
