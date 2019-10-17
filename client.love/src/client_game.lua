@@ -4,7 +4,7 @@ ClientGame.__index = ClientGame
 function ClientGame:new(client_id)
     local client_game = {}
     setmetatable(client_game, ClientGame)
-
+    
     client_game.client_id = client_id
 
     client_game.mouse_x = nil -- mouse x coord

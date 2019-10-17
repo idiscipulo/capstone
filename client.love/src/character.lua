@@ -23,6 +23,9 @@ function Character:set_goal(x, y)
 end
 
 function Character:update()
+    if love.mouse.isDown(2) then -- right click
+        self:set_goal(love.mouse.getPosition())
+    end
     if self.x ~= self.goal_x or self.y ~= self.goal_y then
         self:move() -- move
     end
