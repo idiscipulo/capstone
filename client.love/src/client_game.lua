@@ -1,11 +1,12 @@
 ClientGame = {}
 ClientGame.__index = ClientGame
 
-function ClientGame:new(client_id)
+function ClientGame:new(client_id, map)
     local client_game = {}
     setmetatable(client_game, ClientGame)
     
     client_game.client_id = client_id
+    client_game.map = map
 
     client_game.mouse_x = nil -- mouse x coord
     client_game.mouse_y = nil -- mouse y coord
@@ -14,11 +15,14 @@ function ClientGame:new(client_id)
 
     client_game.character_list = {} -- list of characters 
     client_game.character_list[client_game.client_id] = CharacterDefault:new(client_game.client_id) -- index by id
+    client_game.map.layers['Sprite Layer'].sprites = client_game.character_list
 
     return client_game
 end
 
 function ClientGame:update()
+    self.map:update()
+
     if love.mouse.isDown(2) then -- right click
         self.mouse_x, self.mouse_y = love.mouse.getPosition() -- get mouse coords
     end
@@ -54,16 +58,17 @@ function ClientGame:update()
         end
     end
 
-    for index, value in pairs(self.character_list) do
+    --[[for index, value in pairs(self.character_list) do
         if self.client_id == index then
             value:update()
         end
-    end
+    end]]
 end
 
 function ClientGame:draw()
-    love.graphics.clear()
+    --[[love.graphics.clear()
     for index, value in pairs(self.character_list) do
         value:draw() -- draw characters
-    end
+    end]]
+    self.map:draw()
 end
