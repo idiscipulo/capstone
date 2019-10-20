@@ -21,8 +21,6 @@ function ClientGame:new(client_id, map)
 end
 
 function ClientGame:update()
-    self.map:update()
-
     if love.mouse.isDown(2) then -- right click
         self.mouse_x, self.mouse_y = love.mouse.getPosition() -- get mouse coords
     end
@@ -58,17 +56,14 @@ function ClientGame:update()
         end
     end
 
-    --[[for index, value in pairs(self.character_list) do
+    for index, value in pairs(self.map.layers['Sprite Layer'].sprites) do
         if self.client_id == index then
             value:update()
         end
-    end]]
+    end
 end
 
 function ClientGame:draw()
-    --[[love.graphics.clear()
-    for index, value in pairs(self.character_list) do
-        value:draw() -- draw characters
-    end]]
+    love.graphics.clear()
     self.map:draw()
 end
