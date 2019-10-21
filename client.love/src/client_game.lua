@@ -15,7 +15,7 @@ function ClientGame:new(client_id, map)
 
     client_game.character_list = {} -- list of characters 
     client_game.character_list[client_game.client_id] = CharacterDefault:new(client_game.client_id) -- index by id
-    client_game.map.layers['Sprite Layer'].sprites = client_game.character_list
+    client_game.map.layers.sprite_layer.sprites = client_game.character_list
 
     return client_game
 end
@@ -56,7 +56,7 @@ function ClientGame:update()
         end
     end
 
-    for index, value in pairs(self.map.layers['Sprite Layer'].sprites) do
+    for index, value in pairs(self.map.layers['sprite_layer'].sprites) do
         if self.client_id == index then
             value:update()
         end
@@ -64,6 +64,14 @@ function ClientGame:update()
 end
 
 function ClientGame:draw()
+    --[[
+    for i = 1, 50 do
+        for j = 1, 75 do
+            print(self.map.layers['Tile Layer 1'].data[i][j].properties.collidable)
+        end
+    end
+    ]]--
+
     love.graphics.clear()
     self.map:draw()
 end

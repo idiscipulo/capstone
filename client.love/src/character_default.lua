@@ -6,13 +6,13 @@ function CharacterDefault:new(id)
     local character_default = Character:new(id)
     setmetatable(character_default, CharacterDefault)
 
-    character_default.w = 64
-    character_default.h = 64
+    character_default.w = 16
+    character_default.h = 16
 
     character_default.img = love.graphics.newImage("/assets/mage_frames.png")
     character_default.frames = {
         love.graphics.newQuad(0, 0, character_default.w, character_default.h, character_default.img:getDimensions()),
-        love.graphics.newQuad(0, 64, character_default.w, character_default.h, character_default.img:getDimensions())
+        love.graphics.newQuad(0, 16, character_default.w, character_default.h, character_default.img:getDimensions())
     }
     character_default.cur_frame = character_default.frames[1]
 
@@ -20,6 +20,9 @@ function CharacterDefault:new(id)
 end
 
 function CharacterDefault:update()
+    self.adj_x = math.floor(0.5 + (self.x / 16))
+    self.adj_y = math.floor(0.5 + (self.y / 16))
+
     if love.mouse.isDown(2) then -- right click
         self:set_goal(love.mouse.getPosition())
     end
@@ -45,5 +48,6 @@ function CharacterDefault:animate()
 end
 
 function CharacterDefault:draw()
+    love.graphics.rectangle('fill', self.adj_x * 16, self.adj_y * 16, 16, 16)
     love.graphics.draw(self.img, self.cur_frame, self.x, self.y)
 end  

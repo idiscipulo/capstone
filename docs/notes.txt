@@ -1,0 +1,4 @@
+capstone :=
+ - race conditions (mutex, wireshark)
+ - data structures for communication
+ - is multi-threading the answer

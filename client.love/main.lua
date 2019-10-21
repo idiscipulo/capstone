@@ -5,14 +5,18 @@ function love.load()
     client_id = tostring(math.random())
 
     map = sti('assets/first_map.lua')
-    map:addCustomLayer("Sprite Layer", 3)
-	local spriteLayer = map.layers["Sprite Layer"]
+    map:addCustomLayer("sprite_layer", 3)
+	local spriteLayer = map.layers["sprite_layer"]
 	spriteLayer.sprites = {}
 	function spriteLayer:update(dt)
-		for _, sprite in pairs(self.sprites) do sprite:update() end
+        for _, sprite in pairs(self.sprites) do 
+            sprite:update() 
+        end
 	end
 	function spriteLayer:draw()
-		for _, sprite in pairs(self.sprites) do sprite:draw() end
+        for _, sprite in pairs(self.sprites) do 
+            sprite:draw() 
+        end
     end
     
     client_game = ClientGame:new(client_id, map) -- create game
