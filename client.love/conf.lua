@@ -6,6 +6,8 @@ function love.conf(t)
     require('src/client_socket')
     require('src/timer_util')
     require('src/bullet')
+    require('src/creep')
+    require('src/creep_default')
 
     t.window.title = 'C13NT'
     t.console = true

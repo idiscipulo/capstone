@@ -57,7 +57,11 @@ function ClientGame:update()
     end
 
     for index, value in pairs(self.map.layers['sprite_layer'].sprites) do
-        value:update()
+        if value.is_creep then 
+            value:update(self.character_list[self.client_id]:get_position())
+        else
+            value:update()
+        end
 
         if value.objectQueue ~= nil then 
             for _, object in pairs(value.objectQueue) do 
@@ -66,7 +70,6 @@ function ClientGame:update()
         end
     end
     for index, value in pairs(self.map.layers.sprite_layer.sprites) do 
-        --if value.despawn then table.remove(self.map.layers.sprite_layer.sprites, index) end
         if value.despawn then self.map.layers.sprite_layer.sprites[index] = nil end
     end
 end

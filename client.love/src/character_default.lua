@@ -20,6 +20,8 @@ function CharacterDefault:new(id)
     character_default.shot_timer_max = 0.25
     character_default.shot_timer = character_default.shot_timer_max
 
+    character_default.has_creep = false
+
     return character_default
 end
 
@@ -46,6 +48,11 @@ function CharacterDefault:update()
             self.shot_timer = self.shot_timer_max
             self.can_shoot = true 
         end
+    end
+
+    if love.keyboard.isDown('space') and not self.has_creep then 
+        table.insert(self.objectQueue, Creep_Default:new(self.id, self.x - 32, self.y, self.speed))
+        self.has_creep = true 
     end
 
     self:animate()
