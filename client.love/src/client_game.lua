@@ -57,21 +57,21 @@ function ClientGame:update()
     end
 
     for index, value in pairs(self.map.layers['sprite_layer'].sprites) do
-        if self.client_id == index then
-            value:update()
+        value:update()
+
+        if value.objectQueue ~= nil then 
+            for _, object in pairs(value.objectQueue) do 
+                table.insert(self.map.layers.sprite_layer.sprites, object)
+            end
         end
+    end
+    for index, value in pairs(self.map.layers.sprite_layer.sprites) do 
+        --if value.despawn then table.remove(self.map.layers.sprite_layer.sprites, index) end
+        if value.despawn then self.map.layers.sprite_layer.sprites[index] = nil end
     end
 end
 
 function ClientGame:draw()
-    --[[
-    for i = 1, 50 do
-        for j = 1, 75 do
-            print(self.map.layers['Tile Layer 1'].data[i][j].properties.collidable)
-        end
-    end
-    ]]--
-
     love.graphics.clear()
     self.map:draw()
 end

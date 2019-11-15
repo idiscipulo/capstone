@@ -16,6 +16,10 @@ function CharacterDefault:new(id)
     }
     character_default.cur_frame = character_default.frames[1]
 
+    character_default.can_shoot = true
+    character_default.shot_timer_max = 0.25
+    character_default.shot_timer = character_default.shot_timer_max
+
     return character_default
 end
 
@@ -29,6 +33,21 @@ function CharacterDefault:update()
     if self.x ~= self.goal_x or self.y ~= self.goal_y then
         self:move() -- move
     end
+
+    if love.keyboard.isDown('q') and self.can_shoot then 
+        table.insert(self.objectQueue, Bullet:new(self.x, self.y, love.mouse.getPosition()))
+        self.can_shoot = false
+    end
+
+    if not self.can_shoot then 
+        local dt = love.timer.getDelta()
+        self.shot_timer = self.shot_timer - (1 * dt)
+        if self.shot_timer < 0 then 
+            self.shot_timer = self.shot_timer_max
+            self.can_shoot = true 
+        end
+    end
+
     self:animate()
 end
 

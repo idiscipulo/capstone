@@ -9,6 +9,8 @@ function Entity:new()
     entity.y = 0 -- init y
     entity.w = 0 -- init width
     entity.h = 0 -- init height
+    entity.objectQueue = {} -- table of objects to be added to the world
+    entity.despawn = false 
 
     return entity
 end
