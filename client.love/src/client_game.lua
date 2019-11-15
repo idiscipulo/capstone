@@ -84,7 +84,7 @@ function ClientGame:update()
         local partA = self.collidable_list[i]
         for j=i+1, #self.collidable_list do
             local partB = self.collidable_list[j]
-            self:collisionDetect(partB, partA)
+            self:collisionDetect(partA, partB)
         end
     end
 end
@@ -100,13 +100,13 @@ function ClientGame:collisionDetect(charObj1, charObj2)
         local midpointX = (charObj1.x + charObj2.x)/2
         local midpointY = (charObj1.y + charObj1.y)/2
         local dist = math.sqrt((charObj1.x - charObj2.x)^2 + (charObj1.y - charObj2.y)^2)
-        if(charObj1.id ~= "wall") then
+        if(charObj1.movable) then
             charObj1.x = midpointX + (charObj1.w/2) * (charObj1.x - charObj2.x)/dist
             charObj1.goal_x = charObj1.x
             charObj1.y = midpointY + (charObj1.w/2) * (charObj1.y - charObj2.y)/dist
             charObj1.goal_y = charObj1.y
         end
-        if(charObj2.id ~= "wall") then
+        if(charObj2.movable) then
             charObj2.x = midpointX + (charObj2.w/2) * (charObj2.x - charObj1.x)/dist
             charObj2.goal_x = charObj2.x
             charObj2.y = midpointY + (charObj2.w/2) * (charObj2.y - charObj1.y)/dist

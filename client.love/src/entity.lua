@@ -11,6 +11,7 @@ function Entity:new()
     entity.h = 0 -- init height
     entity.objectQueue = {} -- table of objects to be added to the world
     entity.despawn = false 
+    entity.movable = true
 
     return entity
 end

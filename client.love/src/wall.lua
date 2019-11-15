@@ -10,7 +10,7 @@ function Wall:new(x, y, w, h)
     wall.y = y
     wall.w = w
     wall.h = h
-    wall.id = "wall" --for collidable_table --TOIMPROVE -> have this value in entity??
+    wall.movable = false --override?
 
     return wall
 end
