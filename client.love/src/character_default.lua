@@ -16,6 +16,7 @@ function CharacterDefault:new(id)
     }
     character_default.cur_frame = character_default.frames[1]
 
+
     return character_default
 end
 
@@ -24,10 +25,21 @@ function CharacterDefault:update()
     self.adj_y = math.floor(0.5 + (self.y / 16))
 
     if love.mouse.isDown(2) then -- right click
-        self:set_goal(love.mouse.getPosition())
+        self:create_path(love.mouse.getPosition())
+        self.cur_path_node = table.remove(self.list_path_nodes)
     end
-    if self.x ~= self.goal_x or self.y ~= self.goal_y then
-        self:move() -- move
+
+    if self.cur_path_node ~= nil then
+        print(self.x..','..self.cur_path_node.goal_x)
+        if self.x == self.cur_path_node.goal_x and self.y == self.cur_path_node.goal_y then
+            if #self.list_path_nodes > 0 then
+                self.cur_path_node = table.remove(self.list_path_nodes)
+            else
+                self.cur_path_node = nil
+            end
+        else
+            self:move() -- move
+        end
     end
     self:animate()
 end
@@ -48,6 +60,9 @@ function CharacterDefault:animate()
 end
 
 function CharacterDefault:draw()
-    love.graphics.rectangle('fill', self.adj_x * 16, self.adj_y * 16, 16, 16)
+    for ind, value in pairs(self.list_path_nodes) do
+        love.graphics.rectangle('fill', value.goal_x, value.goal_y, 16, 16)
+    end
+
     love.graphics.draw(self.img, self.cur_frame, self.x, self.y)
 end  

@@ -37,7 +37,7 @@ function ClientGame:update()
         local packet = client_socket:encode_packet(self.client_id, self.mouse_x, self.mouse_y) -- create packet
         client_socket:send(packet) -- send packet
 
-        self.character_list[self.client_id]:set_goal(self.mouse_x, self.mouse_y)
+        self.character_list[self.client_id]:create_path(self.mouse_x, self.mouse_y)
     end
 
     local decode = client_socket:receive() -- recieve packet
@@ -64,13 +64,14 @@ function ClientGame:update()
 end
 
 function ClientGame:draw()
-    --[[
+    
     for i = 1, 50 do
         for j = 1, 75 do
-            print(self.map.layers['Tile Layer 1'].data[i][j].properties.collidable)
+            if self.map.layers['Tile Layer 1'].data[i][j].properties.collidable == true then
+                -- print(j..','..i)
+            end
         end
     end
-    ]]--
 
     love.graphics.clear()
     self.map:draw()

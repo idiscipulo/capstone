@@ -5,6 +5,7 @@ function love.conf(t)
     require('src/client_game')
     require('src/client_socket')
     require('src/timer_util')
+    require('src/node')
 
     t.window.title = 'C13NT'
     t.console = true
