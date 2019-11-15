@@ -17,6 +17,12 @@ function ClientGame:new(client_id, map)
     client_game.character_list[client_game.client_id] = CharacterDefault:new(client_game.client_id) -- index by id
     client_game.map.layers.sprite_layer.sprites = client_game.character_list
 
+    --collision demo --temporary
+    client_game.collidable_list = {} --list of collidable objects
+    client_game.collidable_list[1] = client_game.character_list[client_game.client_id]
+    client_game.collidable_list[2] = Wall:new(526,396,20,20)
+    client_game.collidable_list[3] = Wall:new(526,356,20,20)
+
     return client_game
 end
 
@@ -72,9 +78,47 @@ function ClientGame:update()
     for index, value in pairs(self.map.layers.sprite_layer.sprites) do 
         if value.despawn then self.map.layers.sprite_layer.sprites[index] = nil end
     end
+    
+    --check circle collisions for collidable objects in self.collidable_list[]    
+    for i=1, #self.collidable_list-1 do
+        local partA = self.collidable_list[i]
+        for j=i+1, #self.collidable_list do
+            local partB = self.collidable_list[j]
+            self:collisionDetect(partB, partA)
+        end
+    end
+end
+
+function ClientGame:checkCircleDist(charObj1, charObj2)
+    local dist = (charObj1.x - charObj2.x)^2 + (charObj1.y - charObj2.y)^2
+    return dist <= ((charObj1.w/2) + (charObj2.w/2))^2
+end
+
+function ClientGame:collisionDetect(charObj1, charObj2)              
+    if(self:checkCircleDist(charObj1, charObj2)) then
+        --prevents overlap "sticky collision"  
+        local midpointX = (charObj1.x + charObj2.x)/2
+        local midpointY = (charObj1.y + charObj1.y)/2
+        local dist = math.sqrt((charObj1.x - charObj2.x)^2 + (charObj1.y - charObj2.y)^2)
+        if(charObj1.id ~= "wall") then
+            charObj1.x = midpointX + (charObj1.w/2) * (charObj1.x - charObj2.x)/dist
+            charObj1.goal_x = charObj1.x
+            charObj1.y = midpointY + (charObj1.w/2) * (charObj1.y - charObj2.y)/dist
+            charObj1.goal_y = charObj1.y
+        end
+        if(charObj2.id ~= "wall") then
+            charObj2.x = midpointX + (charObj2.w/2) * (charObj2.x - charObj1.x)/dist
+            charObj2.goal_x = charObj2.x
+            charObj2.y = midpointY + (charObj2.w/2) * (charObj2.y - charObj1.y)/dist
+            charObj2.goal_y = charObj2.y
+        end
+    end
 end
 
 function ClientGame:draw()
     love.graphics.clear()
     self.map:draw()
+    self.collidable_list[2]:draw() --temporary
+    self.collidable_list[3]:draw()  --temporary
 end
+

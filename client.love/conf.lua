@@ -8,6 +8,8 @@ function love.conf(t)
     require('src/bullet')
     require('src/creep')
     require('src/creep_default')
+    require('src/wall')
+    require('src/structure')
 
     t.window.title = 'C13NT'
     t.console = true
