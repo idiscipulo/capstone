@@ -26,14 +26,14 @@ function CharacterDefault:update()
 
     if love.mouse.isDown(2) then -- right click
         self:create_path(love.mouse.getPosition())
-        self.cur_path_node = table.remove(self.list_path_nodes)
+        self.cur_path_node = table.remove(self.list_path_nodes, 1)
     end
 
     if self.cur_path_node ~= nil then
-        print(self.x..','..self.cur_path_node.goal_x)
         if self.x == self.cur_path_node.goal_x and self.y == self.cur_path_node.goal_y then
             if #self.list_path_nodes > 0 then
-                self.cur_path_node = table.remove(self.list_path_nodes)
+                self.cur_path_node = table.remove(self.list_path_nodes, 1)
+                print(self.cur_path_node.goal_x..','..self.cur_path_node.goal_y)
             else
                 self.cur_path_node = nil
             end

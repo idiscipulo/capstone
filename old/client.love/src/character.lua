@@ -42,19 +42,35 @@ function Character:create_path(x, y)
     print('>>> START')
     while cur_node.x ~= ind_x or cur_node.y ~= ind_y do
         print('>>> LOOP')
-        cur_node.child = Node:new(cur_node.x, cur_node.y, 0, cur_node, nil)
-        cur_node.child.x = ind_x
-        cur_node.child.y = ind_y
-        cur_node = cur_node.child
+        new_node = Node:new(cur_node.x, cur_node.y, 0, cur_node, nil)
+
+        if new_node.x < ind_x then
+            new_node.x = new_node.x + 1
+        elseif new_node.x > ind_x then
+            new_node.x = new_node.x - 1
+        end
+
+        if new_node.y < ind_y then
+            new_node.y = new_node.y + 1
+        elseif new_node.y > ind_y then
+            new_node.y = new_node.y - 1
+        end
+
+        for ind, val in pairs(cur_node.path) do
+            new_node.path[#new_node.path + 1] = val
+        end
+        new_node.path[#new_node.path + 1] = new_node
+
+        cur_node = new_node
     end
 
-    head = head.child
-
     self.list_path_nodes = {}
-    local n = #self.list_path_nodes + 1
-    self.list_path_nodes[n] = {}
-    self.list_path_nodes[n].goal_x = (head.x * 16) - (self.w / 2)
-    self.list_path_nodes[n].goal_y = (head.y  * 16) - (self.h / 2)
+    for ind, val in pairs(cur_node.path) do
+        local n = #self.list_path_nodes + 1
+        self.list_path_nodes[n] = {}
+        self.list_path_nodes[n].goal_x = (val.x * 16) - (self.w / 2)
+        self.list_path_nodes[n].goal_y = (val.y  * 16) - (self.h / 2)
+    end
 
     --[[
     local node = self:get_current_node()

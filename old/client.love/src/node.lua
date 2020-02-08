@@ -8,8 +8,7 @@ function Node:new(x, y, c, parent, child)
     node.x = x
     node.y = y
     node.c = c
-    node.parent = parent
-    node.child = child
+    node.path = {}
 
     return node
 end
