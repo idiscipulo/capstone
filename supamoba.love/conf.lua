@@ -9,6 +9,9 @@ function love.conf(t)
     -- parent class for aoe effects, called "particles"
     require('src/particle')
 
+    -- basic attack
+    require('src/basicAttack')
+
     -- list particles below
     require('src/particleAbilityExampleAOEEffect')
 

@@ -104,6 +104,11 @@ function Battle:update()
         val:update()
     end
 
+    -- update client basic attacks
+    for ind, val in pairs(self.character.basicAttacks) do 
+        val:update()
+    end
+
     -- create cooldown text for abilities with cooldowns
     self.cooldowns = {}
     for ind, val in pairs(self.character.abilities) do
@@ -243,6 +248,11 @@ function Battle:draw()
 
     -- draw particles
     for ind, val in pairs(self.particles) do
+        val:draw()
+    end
+
+    --draw basic attacks
+    for ind, val in pairs(self.character.basicAttacks) do 
         val:draw()
     end
 

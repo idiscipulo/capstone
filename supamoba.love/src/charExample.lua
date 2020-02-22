@@ -15,6 +15,18 @@ function CharExample:new()
     charExample.maxHealth = 150
     charExample.curHealth = 150
 
+    -- set move speed
+    charExample.speed = 4
+
+    -- basic attack stats
+    charExample.basicSpeed = 4
+    charExample.basicName = 'charExample.sprite' 
+    charExample.basicCooldown = 1
+
+    -- basic attack cooldown
+    charExample.attackTimerMax = 1
+    charExample.attackTimer = charExample.attackTimerMax
+
     -- set sprite location, size, and name for image file
     charExample.sprite:set(500, 250, 16, 16, 'charExample')
 

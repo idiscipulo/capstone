@@ -20,11 +20,28 @@ function Character:new()
     -- death tracker
     character.deathTime = 0
 
+    -- goal x and y
+    character.goalX = nil 
+    character.goalY = nil
+
     -- dots table
     character.dots = {}
 
     -- name
     character.name = nil
+
+    -- table of all active basic attacks
+    character.basicAttacks = {}
+
+    -- basic attack stats
+    character.basicSpeed = nil 
+    character.basicName = nil 
+    character.basicCooldown = nil --time until the attack despawns
+
+    -- basic attack timer
+    character.attackTimerMax = nil --time until character can basic attack again
+    character.attackTimer = nil 
+    character.canAttack = true
 
     -- abilities table
     character.abilities = {}
@@ -38,11 +55,67 @@ function Character:update()
         val:tick()
     end
 
+    if love.mouse.isDown(1) and self.canAttack then --left click to basic attack
+        self:addBasicAttack(love.mouse.getPosition())
+        self.canAttack = false
+    end
+
+    --run basic attack cooldown timer
+    if not self.canAttack then 
+        self.attackTimer = self.attackTimer - timer.fps
+        if self.attackTimer < 0 then 
+            self.attackTimer = self.attackTimerMax
+            self.canAttack = true
+        end
+    end
+
+    if love.mouse.isDown(2) then -- right click to move
+        self:setGoal(love.mouse.getPosition())
+    end
+    --move if character is not yet at goal
+    if self.sprite.x ~= self.goalX or self.sprite.y ~= self.goalY then
+        self:move() -- move
+    end
+
     -- update sprite
     self.sprite:update()
 end
 
-function Character:draw()
+function Character:move()
+    if self.goalX ~= nil and self.goalY ~= nil then
+        local gx = self.goalX
+        local gy = self.goalY
+        local sp = self.speed
+        if self.sprite.x ~= gx and self.sprite.y ~= gy then
+            sp = math.sqrt(2 * (self.speed))
+        end
+        if gx < self.sprite.x then
+            self.sprite.x = math.max(gx, self.sprite.x - sp)
+        elseif self.sprite.x < gx then
+            self.sprite.x = math.min(gx, self.sprite.x + sp)
+        end
+        
+        if gy < self.sprite.y then
+            self.sprite.y = math.max(gy, self.sprite.y - sp)
+        elseif self.sprite.y < gy then
+            self.sprite.y = math.min(gy, self.sprite.y + sp)
+        end
+        if self.sprite.x == gx and self.sprite.y == gy then
+            self.goalX = nil
+            self.goalY = nil
+        end
+    end
+end
+
+function Character:setGoal(x, y)
+    self.goalX = x 
+    self.goalY = y
+end
+
+function Character:addBasicAttack(goalX, goalY)
+    local ind = #self.basicAttacks + 1
+    local basicAttack = BasicAttack:new(self, ind, self.sprite.x, self.sprite.y, self.basicCooldown, self.basicName, self.basicSpeed, goalX, goalY)
+    self.basicAttacks[ind] = basicAttack
 end
 
 function Character:endAbility()

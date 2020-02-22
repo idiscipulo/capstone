@@ -37,6 +37,10 @@ function Sprite:set(x, y, w, h, name)
     self.img = love.graphics.newImage('img/'..name..'.sprite.png')
 end
 
+function Sprite:getRect() --get rekt
+    return self.x, self.y, self.w, self.h
+end
+
 function Sprite:update()
     -- check if hovered
     if (self.x < mouse.x and mouse.x < self.x + self.w) and (self.y < mouse.y and mouse.y < self.y + self.h) then
