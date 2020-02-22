@@ -4,7 +4,7 @@ BasicAttack = {}
 BasicAttack.__index = BasicAttack
 --setmetatable(BasicAttack, Particle)
 
-function BasicAttack:new(char, ind, x, y, cooldown, name, speed, goalX, goalY)
+function BasicAttack:new(char, ind, x, y, cooldown, name, speed, angle)
     local basicAttack = {}
     setmetatable(basicAttack, BasicAttack)
 
@@ -16,17 +16,13 @@ function BasicAttack:new(char, ind, x, y, cooldown, name, speed, goalX, goalY)
     -- set speed
     basicAttack.speed = speed
 
-    -- goal coordinates
-    basicAttack.goalX = goalX 
-    basicAttack.goalY = goalY
-
     -- track duration
     basicAttack.sec = 0
     basicAttack.totalSec = 0
     basicAttack.cooldown = cooldown
 
-    -- angle of attck
-    basicAttack.angle = nil
+    -- angle of attack
+    basicAttack.angle = angle
 
     basicAttack.character = char
 
@@ -62,13 +58,8 @@ function BasicAttack:update()
 end
 
 function BasicAttack:move()
-    if self.goalX ~= nil and self.goalY ~= nil then
-        if self.angle == nil then  
-            self.angle = math.atan2(self.y - self.goalY, self.x - self.goalX) -- calc movement angle
-        end
-        self.x = self.x - math.cos(self.angle) * self.speed -- new x
-        self.y = self.y - math.sin(self.angle) * self.speed -- new y
-    end
+    self.x = self.x - math.cos(self.angle) * self.speed -- new x
+    self.y = self.y - math.sin(self.angle) * self.speed -- new y
 end
 
 function BasicAttack:draw()

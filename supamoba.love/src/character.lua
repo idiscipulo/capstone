@@ -56,7 +56,9 @@ function Character:update()
     end
 
     if love.mouse.isDown(1) and self.canAttack then --left click to basic attack
-        self:addBasicAttack(love.mouse.getPosition())
+        local goalX, goalY = love.mouse.getPosition()
+        local angle = math.atan2(self.sprite.y - goalY, self.sprite.x - goalX)
+        self:addBasicAttack(angle)
         self.canAttack = false
     end
 
@@ -112,9 +114,9 @@ function Character:setGoal(x, y)
     self.goalY = y
 end
 
-function Character:addBasicAttack(goalX, goalY)
+function Character:addBasicAttack(angle)
     local ind = #self.basicAttacks + 1
-    local basicAttack = BasicAttack:new(self, ind, self.sprite.x, self.sprite.y, self.basicCooldown, self.basicName, self.basicSpeed, goalX, goalY)
+    local basicAttack = BasicAttack:new(self, ind, self.sprite.x, self.sprite.y, self.basicCooldown, self.basicName, self.basicSpeed, angle)
     self.basicAttacks[ind] = basicAttack
 end
 

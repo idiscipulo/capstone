@@ -23,7 +23,7 @@ function Battle:new()
     battle.spriteHealthBack = love.graphics.newImage('img/battle.sprite.health.back.png')
 
     -- load character that this client controls
-    battle.character = CharExample:new()
+    battle.character = CharSiegeDamage:new()
 
     -- background for ability info
     battle.abilityInfo = love.graphics.newImage('img/battle.ability.info.png')

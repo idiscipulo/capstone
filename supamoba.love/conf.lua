@@ -30,6 +30,7 @@ function love.conf(t)
     require('src/abilityExampleDOTEffect')
     require('src/abilityExampleAOEEffect')
     require('src/abilityExampleDirectDamage')
+    require('src/abilityScatterShot')
 
     -- sprite class
     require('src/sprite')
@@ -39,6 +40,7 @@ function love.conf(t)
 
     -- list characters below
     require('src/charExample')
+    require('src/charSiegeDamage')
 
     -- list states below
     require('src/select')
