@@ -15,7 +15,7 @@ function ClientSocket:new()
 end
 
 function ClientSocket:connect()
-    self.address = '52.33.5.236' -- set address
+    self.address = 'localhost' -- set address
     self.port = 8080 -- set port
     self.conn:setpeername(self.address, self.port) -- create connection
     self.conn:settimeout(0) -- set timeout
