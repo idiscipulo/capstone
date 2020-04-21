@@ -30,7 +30,7 @@ function love.conf(t)
     require('src/abilityExampleDOTEffect')
     require('src/abilityExampleAOEEffect')
     require('src/abilityExampleDirectDamage')
-    require('src/abilityScatterShot')
+    
 
     -- sprite class
     require('src/sprite')
@@ -40,7 +40,15 @@ function love.conf(t)
 
     -- list characters below
     require('src/charExample')
-    require('src/charSiegeDamage')
+    
+    --Romero Kao
+    require('src/RomeroKao/RomeroKao')
+    require('src/RomeroKao/romeroScatterShot')
+    require('src/RomeroKao/romeroRapidAttack')
+    require('src/RomeroKao/romeroAOE')
+
+    --Rhogar Nemmonis
+    require('src/RhogarNemmonis/RhogarNemmonis')
 
     -- list states below
     require('src/select')

@@ -23,7 +23,7 @@ function Battle:new()
     battle.spriteHealthBack = love.graphics.newImage('img/battle.sprite.health.back.png')
 
     -- load character that this client controls
-    battle.character = CharSiegeDamage:new()
+    battle.character = RomeroKao:new()
 
     -- background for ability info
     battle.abilityInfo = love.graphics.newImage('img/battle.ability.info.png')
@@ -49,6 +49,7 @@ function Battle:new()
 
     -- initialize table for enemies
     battle.enemies = {}
+    battle.enemies[#battle.enemies + 1] = CharExample:new()
 
     -- character icon health bar and health bar back
     battle.iconHealth = love.graphics.newImage('img/battle.icon.health.png')
@@ -123,6 +124,11 @@ function Battle:update()
     -- update particles
     for ind, val in pairs(self.particles) do
         val:update()
+    end
+
+    --update enemies
+    for ind, val in pairs(self.enemies) do
+        --val:update()
     end
 
     if state.child == 'main' then

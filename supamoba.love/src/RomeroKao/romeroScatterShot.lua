@@ -1,26 +1,26 @@
 -- example of an ability that deals direct damage
 
-AbilityScatterShot = {}
-AbilityScatterShot.__index = AbilityScatterShot
-setmetatable(AbilityScatterShot, Ability)
+RomeroScatterShot = {}
+RomeroScatterShot.__index = RomeroScatterShot
+setmetatable(RomeroScatterShot, Ability)
 
-function AbilityScatterShot:new(user)
+function RomeroScatterShot:new(user)
     -- true because targetable
-    local abilityScatterShot = Ability:new(false)
-    setmetatable(abilityScatterShot, AbilityScatterShot)
+    local romeroScatterShot = Ability:new(false)
+    setmetatable(romeroScatterShot, RomeroScatterShot)
 
     -- set x, y, width, height, cooldown (in seconds), and name
-    abilityScatterShot:set(0, 0, 80, 80, 2, 'abilityExampleDirectDamage')
+    romeroScatterShot:set(0, 0, 80, 80, 2, 'abilityExampleDirectDamage')
 
     -- create description text
-    abilityScatterShot.desc = font:printToCanvas('deal 30 damage to the target.', 378, 76, 'left')
+    romeroScatterShot.desc = font:printToCanvas('shoot a wide scatter shot.', 378, 76, 'left')
 
-    abilityScatterShot.character = user
+    romeroScatterShot.character = user
 
-    return abilityScatterShot
+    return romeroScatterShot
 end
 
-function AbilityScatterShot:attach(character)
+function RomeroScatterShot:attach(character)
     Ability.attach(self, character)
 end
 
