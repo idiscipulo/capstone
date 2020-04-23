@@ -7,7 +7,7 @@ function RomeroKao:new()
     setmetatable(romeroKao, RomeroKao)
 
     -- icon image
-    romeroKao.icon = love.graphics.newImage('img/charExample.icon.png')
+    romeroKao.icon = love.graphics.newImage('img/RomeroKao.icon.png')
 
     -- max and current health
     romeroKao.maxHealth = 150
@@ -18,15 +18,15 @@ function RomeroKao:new()
 
     -- basic attack stats
     romeroKao.basicSpeed = 8
-    romeroKao.basicName = 'charExample.sprite' 
+    romeroKao.basicName = 'basic.sprite' 
     romeroKao.basicCooldown = 1
 
     -- basic attack cooldown
-    romeroKao.attackTimerMax = 1
+    romeroKao.attackTimerMax = 0.5
     romeroKao.attackTimer = romeroKao.attackTimerMax
 
     -- set sprite location, size, and name for image file
-    romeroKao.sprite:set(500, 250, 16, 16, 'charExample')
+    romeroKao.sprite:set(500, 250, 16, 16, 'RomeroKao')
 
     -- set name
     romeroKao.textName = 'Romero Kao'
@@ -39,7 +39,7 @@ function RomeroKao:new()
     romeroKao:addAbility(RomeroScatterShot:new())
     romeroKao:addAbility(RomeroRapidAttack:new())
     romeroKao:addAbility(RomeroAOE:new())
-    romeroKao:addAbility(AbilityExamplePassive:new())
+    -- romeroKao:addAbility(AbilityExamplePassive:new())
 
     -- finish adding abilities
     romeroKao:endAbility()
@@ -48,35 +48,5 @@ function RomeroKao:new()
 end
 
 function RomeroKao:update()
-    -- update dots
-    for ind, val in pairs(self.dots) do
-        val:tick()
-    end
-
-    if love.mouse.isDown(1) and self.canAttack then --left click to basic attack
-        local goalX, goalY = love.mouse.getPosition()
-        local angle = math.atan2(self.sprite.y - goalY, self.sprite.x - goalX)
-        self:addBasicAttack(angle)
-        self.canAttack = false
-    end
-
-    --run basic attack cooldown timer
-    if not self.canAttack then 
-        self.attackTimer = self.attackTimer - timer.fps
-        if self.attackTimer < 0 then 
-            self.attackTimer = self.attackTimerMax
-            self.canAttack = true
-        end
-    end
-
-    if love.mouse.isDown(2) then -- right click to move
-        self:setGoal(love.mouse.getPosition())
-    end
-    --move if character is not yet at goal
-    if self.sprite.x ~= self.goalX or self.sprite.y ~= self.goalY then
-        self:move() -- move
-    end
-
-    -- update sprite
-    self.sprite:update()
+    Character.update(self)
 end

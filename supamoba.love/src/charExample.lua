@@ -40,7 +40,7 @@ function CharExample:new()
     charExample:addAbility(AbilityExampleDirectDamage:new())
     charExample:addAbility(AbilityExampleDOTEffect:new())
     charExample:addAbility(AbilityExampleAOEEffect:new())
-    charExample:addAbility(AbilityExamplePassive:new())
+    -- charExample:addAbility(AbilityExamplePassive:new())
 
     -- finish adding abilities
     charExample:endAbility()
@@ -55,9 +55,10 @@ function CharExample:update()
     end
 
     if love.mouse.isDown(1) and self.canAttack then --left click to basic attack
-        local goalX, goalY = love.mouse.getPosition()
+        local goalX = mouse.x
+        local goalY = mouse.y
         local angle = math.atan2(self.sprite.y - goalY, self.sprite.x - goalX)
-        self:addBasicAttack(angle)
+        self:addBasicAttack(5, angle)
         self.canAttack = false
     end
 
@@ -71,7 +72,7 @@ function CharExample:update()
     end
 
     if love.mouse.isDown(2) then -- right click to move
-        self:setGoal(love.mouse.getPosition())
+        self:setGoal(mouse.x, mouse.y)
     end
     --move if character is not yet at goal
     if self.sprite.x ~= self.goalX or self.sprite.y ~= self.goalY then

@@ -20,6 +20,8 @@ function Character:new()
     -- death tracker
     character.deathTime = 0
 
+    character.type = nil
+
     -- goal x and y
     character.goalX = nil 
     character.goalY = nil
@@ -33,8 +35,12 @@ function Character:new()
     -- table of all active basic attacks
     character.basicAttacks = {}
 
+    --move speed
+    character.speed = 4
+
     -- basic attack stats
-    character.basicSpeed = nil 
+    character.basicSpeed = nil
+    character.basicRange = 120
     character.basicName = nil 
     character.basicCooldown = nil --time until the attack despawns
 
@@ -51,16 +57,92 @@ function Character:new()
     character.invulnerableTimer = nil
     character.isInvulnerable = false
 
-    -- can move
-    character.canMoveTimerMax = nil
-    character.canMoveTimer = nil
-    character.canMove = true
+    -- root a character in place
+    character.isRootedTimer = nil
+    character.isRootedTimerMax = nil
+    character.isRooted = false
+
+    -- blind a character (cannot use abilities)
+    character.isBlindedTimer = nil 
+    character.isBlinded = false
+
+    -- slow character movement
+    character.isSlowedTimer = nil
+    character.isSlowed = false
+
+    -- armor debuff (take more damage)
+    character.isDebuffedTimer = nil
+    character.isDebuffed = false
+
+    -- dash
+    character.isDashing = false
 
     return character
 end
 
+function Character:update()
+    -- update dots
+    for ind, val in pairs(self.dots) do
+        val:tick()
+    end
+
+    --run basic attack cooldown timer
+    if not self.canAttack then 
+        self.attackTimer = self.attackTimer - timer.fps
+        if self.attackTimer < 0 then 
+            self.attackTimer = self.attackTimerMax
+            self.canAttack = true
+        end
+    end
+
+    --run root timer 
+    if self.isRooted then 
+        self.isRootedTimer = self.isRootedTimer - timer.fps 
+        if self.isRootedTimer < 0 then 
+            self.isRootedTimer = self.isRootedTimerMax 
+            self.isRooted = false 
+        end
+    end
+
+    --run blind timer
+    if self.isBlinded then 
+        self.isBlindedTimer = self.isBlindedTimer - timer.fps 
+        if self.isBlindedTimer < 0 then 
+            self.isBlindedTimer = nil 
+            self.isBlinded = false 
+        end
+    end
+
+    --run slow timer
+    if self.isSlowed then 
+        self.isSlowedTimer = self.isSlowedTimer - timer.fps 
+        if self.isSlowedTimer < 0 then 
+            self.isSlowedTimer = nil 
+            self.speed = self.speed * 2
+            self.isSlowed = false 
+        end
+    end
+
+    --run debuff timer
+    if self.isDebuffed then 
+        self.isDebuffedTimer = self.isDebuffedTimer - timer.fps 
+        if self.isDebuffedTimer < 0 then 
+            self.isDebuffedTimer = nil 
+            self.isDebuffed = false 
+        end
+    end
+    
+    --move if character is not yet at goal
+    if self.sprite.x ~= self.goalX or self.sprite.y ~= self.goalY then
+        self:move() -- move
+    end
+
+    -- update sprite
+    self.sprite:update()
+end
+
 function Character:move()
-    if self.goalX ~= nil and self.goalY ~= nil and self.canMove then
+    if self.goalX ~= nil and self.goalY ~= nil and not self.isRooted then
         local gx = self.goalX
         local gy = self.goalY
         local sp = self.speed
@@ -90,9 +172,9 @@ function Character:setGoal(x, y)
     self.goalY = y
 end
 
-function Character:addBasicAttack(angle)
+function Character:addBasicAttack(damage, angle, cooldown, delay, effect, effectTimer)
     local ind = #self.basicAttacks + 1
-    local basicAttack = BasicAttack:new(self, ind, self.sprite.x, self.sprite.y, self.basicCooldown, self.basicName, self.basicSpeed, angle)
+    local basicAttack = BasicAttack:new(damage, self, ind, self.sprite.x, self.sprite.y, cooldown, self.basicName, self.basicSpeed, angle, delay, effect, effectTimer)
     self.basicAttacks[ind] = basicAttack
 end
 
@@ -111,6 +193,8 @@ function Character:addAbility(ab)
 end
 
 function Character:damage(amt)
+    if self.isDebuffed then amt = amt * 2 end 
+
     if not self.isInvulnerable then 
         -- deal damage
         self.curHealth = math.max(self.curHealth - amt, 0)
@@ -134,5 +218,25 @@ function Character:heal(amt)
 
         -- add healing number to numbers
         stateList['battle'].numbers[ind] = Number:new(ind, self, amt, 'HEAL')
+    end
+end
+
+function Character:applyEffect(effect, effectTimer)
+    if effect == 'root' then 
+        self.isRootedTimer = effectTimer
+        self.isRooted = true
+    end
+    if effect == 'blind' then 
+        self.isBlindedTimer = effectTimer
+        self.isBlinded = true
+    end
+    if effect == 'slow' then 
+        self.isSlowedTimer = effectTimer
+        self.speed = self.speed / 2
+        self.isSlowed = true 
+    end
+    if effect == 'debuff' then 
+        self.isDebuffedTimer = effectTimer
+        self.isDebuffed = true 
     end
 end

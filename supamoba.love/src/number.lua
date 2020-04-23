@@ -19,7 +19,7 @@ function Number:new(ind, character, amt, type)
     number.type = type
 
     -- create canvas
-    number.text = font:printToCanvas(''..math.floor(amt), 32, 10, 'center')
+    number.text = font:printToCanvas(''..math.ceil(amt), 32, 10, 'center')
 
     return number
 end

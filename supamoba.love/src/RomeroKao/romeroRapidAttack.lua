@@ -6,7 +6,7 @@ setmetatable(RomeroRapidAttack, Ability)
 
 function RomeroRapidAttack:new(user)
     -- true because targetable
-    local romeroRapidAttack = Ability:new(true)
+    local romeroRapidAttack = Ability:new(false)
     setmetatable(romeroRapidAttack, RomeroRapidAttack)
 
     -- set x, y, width, height, cooldown (in seconds), and name
@@ -17,6 +17,8 @@ function RomeroRapidAttack:new(user)
 
     romeroRapidAttack.character = user
 
+    romeroRapidAttack.damage = 3
+
     return romeroRapidAttack
 end
 
@@ -24,12 +26,13 @@ function RomeroRapidAttack:attach(character)
     Ability.attach(self, character)
 end
 
-function RomeroRapidAttack:use(target)
+function RomeroRapidAttack:use()
     if Ability.use(self) then
-        local goalX, goalY = target.sprite.x, target.sprite.y
+        local goalX = mouse.x
+        local goalY = mouse.y
         local angle = math.atan2(self.character.sprite.y - goalY, self.character.sprite.x - goalX)
-        self.character:addBasicAttack(angle)
-        self.character:addBasicAttack(angle)
-        self.character:addBasicAttack(angle)
+        self.character:addBasicAttack(self.damage, angle, nil, 0)
+        self.character:addBasicAttack(self.damage, angle, nil, 0.06)
+        self.character:addBasicAttack(self.damage, angle, nil, 0.12)
     end
 end

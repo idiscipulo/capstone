@@ -23,7 +23,7 @@ function Battle:new()
     battle.spriteHealthBack = love.graphics.newImage('img/battle.sprite.health.back.png')
 
     -- load character that this client controls
-    battle.character = RomeroKao:new()
+    battle.character = NissaTimbers:new()
 
     -- background for ability info
     battle.abilityInfo = love.graphics.newImage('img/battle.ability.info.png')
@@ -46,10 +46,12 @@ function Battle:new()
 
     -- add client character to allies
     battle.allies[#battle.allies + 1] = battle.character
+    battle.character.type = 1
 
     -- initialize table for enemies
     battle.enemies = {}
-    battle.enemies[#battle.enemies + 1] = RhogarNemmonis:new()
+    battle.enemies[#battle.enemies + 1] = NissaTimbers:new()
+    battle.enemies[1].type = 2
 
     -- character icon health bar and health bar back
     battle.iconHealth = love.graphics.newImage('img/battle.icon.health.png')
@@ -100,20 +102,24 @@ function Battle:update()
     -- update time canvas with new time
     self.time = font:printToCanvas(str, 38, 10, 'left')
 
-    -- update client character abilities
-    for ind, val in pairs(self.character.abilities) do
-        val:update()
-    end
+    for ind, val in pairs(self.ents) do
+        -- update client character abilities
+        for ind2, val2 in pairs(val.abilities) do
+            val2:update()
+        end
 
-    -- update client basic attacks
-    for ind, val in pairs(self.character.basicAttacks) do 
-        val:update()
-    end
+        -- update client basic attacks
+        for ind2, val2 in pairs(val.basicAttacks) do
+            val2:update()
+        end
 
-    -- create cooldown text for abilities with cooldowns
-    self.cooldowns = {}
-    for ind, val in pairs(self.character.abilities) do
-        self.cooldowns[#self.cooldowns + 1] = font:printToCanvas(''..1 + math.floor(val.maxCool - val.curCool), 40, 10, 'center')
+        if val == self.character then
+            -- create cooldown text for abilities with cooldowns
+            self.cooldowns = {}
+            for ind, val in pairs(val.abilities) do
+                self.cooldowns[#self.cooldowns + 1] = font:printToCanvas(''..1 + math.floor(val.maxCool - val.curCool), 40, 10, 'center')
+            end
+        end
     end
 
     -- update numbers
@@ -130,46 +136,64 @@ function Battle:update()
         -- update characters
         for ind, val in pairs(self.ents) do
             val:update()
-        end
+       
+            if val == self.character then
+                    if not val.isBlinded then
+                    if love.mouse.isDown(2) and not self.character.isDashing then -- right click to move
+                        val:setGoal(mouse.x, mouse.y)
+                    end
 
-        -- if q pressed
-        if love.keyboard.isDown('q') then
-            -- if ability is targetable check for target before casting
-            if self.character.abilities[1].targetable then
-                for ind, val in pairs(self.ents) do
-                    if val.sprite.isHover then
-                        self.character.abilities[1]:use(val)
+                    if love.mouse.isDown(1) and val.canAttack then --left click to basic attack
+                        local goalX = mouse.x
+                        local goalY = mouse.y
+                        local angle = math.atan2(val.sprite.y - goalY, val.sprite.x - goalX)
+                        val:addBasicAttack(3, angle)
+                        val.canAttack = false
+                    end
+
+                    -- if q pressed
+                    if love.keyboard.isDown('q') then
+                        -- if ability is targetable check for target before casting
+                        if self.character.abilities[1].targetable then
+                            for ind2, val2 in pairs(self.ents) do
+                                if val2.sprite.isHover then
+                                    self.character.abilities[1]:use(val)
+                                end
+                            end
+                        -- otherwise just cast
+                        else
+                            self.character.abilities[1]:use()
+                        end
+                    -- if w is pressed
+                    elseif love.keyboard.isDown('w') then
+                        -- if ability is targetable check for target before casting
+                        if self.character.abilities[2].targetable then
+                            for ind2, val2 in pairs(self.ents) do
+                                if val2.sprite.isHover then
+                                    self.character.abilities[2]:use(val)
+                                end
+                            end
+                        -- otherwise just cast
+                        else
+                            self.character.abilities[2]:use()
+                        end
+                    -- if e is pressed
+                    elseif love.keyboard.isDown('e') then
+                        -- if ability is targetable check for target before casting
+                        if self.character.abilities[3].targetable then
+                            for ind2, val2 in pairs(self.ents) do
+                                if val2.sprite.isHover then
+                                    self.character.abilities[3]:use(val)
+                                end
+                            end
+                        -- otherwise just cast
+                        else
+                            self.character.abilities[3]:use()
+                        end
                     end
                 end
-            -- otherwise just cast
             else
-                self.character.abilities[1]:use()
-            end
-        -- if w is pressed
-        elseif love.keyboard.isDown('w') then
-            -- if ability is targetable check for target before casting
-            if self.character.abilities[2].targetable then
-                for ind, val in pairs(self.ents) do
-                    if val.sprite.isHover then
-                        self.character.abilities[2]:use(val)
-                    end
-                end
-            -- otherwise just cast
-            else
-                self.character.abilities[2]:use()
-            end
-        -- if e is pressed
-        elseif love.keyboard.isDown('e') then
-            -- if ability is targetable check for target before casting
-            if self.character.abilities[3].targetable then
-                for ind, val in pairs(self.ents) do
-                    if val.sprite.isHover then
-                        self.character.abilities[3]:use(val)
-                    end
-                end
-            -- otherwise just cast
-            else
-                self.character.abilities[3]:use()
+                AIController:execute(val)
             end
         end
     end
@@ -253,18 +277,18 @@ function Battle:draw()
         val:draw()
     end
 
-    --draw basic attacks
-    for ind, val in pairs(self.character.basicAttacks) do 
-        val:draw()
-    end
-
     -- draw sprite health bars
     for ind, val in pairs(self.ents) do
         val.sprite:draw()
         love.graphics.print(val.textName, 60 , 20 +15 * ind)
-        healthFactor = self.character.curHealth / self.character.maxHealth
+        healthFactor = val.curHealth / val.maxHealth
         love.graphics.draw(self.spriteHealthBack, val.sprite.x, val.sprite.y + 18)
         love.graphics.draw(self.spriteHealth, val.sprite.x, val.sprite.y + 18, 0, healthFactor, 1)
+
+            --draw basic attacks
+        for ind2, val2 in pairs(val.basicAttacks) do 
+            val2:draw()
+        end
     end
 
     -- draw numbers

@@ -7,7 +7,7 @@ function RhogarNemmonis:new()
     setmetatable(rhogarNemmonis, RhogarNemmonis)
 
     -- icon image
-    rhogarNemmonis.icon = love.graphics.newImage('img/charExample.icon.png')
+    rhogarNemmonis.icon = love.graphics.newImage('img/RhogarNemmonis.icon.png')
 
     -- max and current health
     rhogarNemmonis.maxHealth = 150
@@ -18,15 +18,15 @@ function RhogarNemmonis:new()
 
     -- basic attack stats
     rhogarNemmonis.basicSpeed = 5
-    rhogarNemmonis.basicName = 'charExample.sprite' 
+    rhogarNemmonis.basicName = 'basic.sprite' 
     rhogarNemmonis.basicCooldown = 1
 
     -- basic attack cooldown
-    rhogarNemmonis.attackTimerMax = 1
+    rhogarNemmonis.attackTimerMax = 0.7
     rhogarNemmonis.attackTimer = rhogarNemmonis.attackTimerMax
 
     -- set sprite location, size, and name for image file
-    rhogarNemmonis.sprite:set(500, 250, 16, 16, 'charExample')
+    rhogarNemmonis.sprite:set(500, 250, 16, 16, 'RhogarNemmonis')
 
     -- set name
     rhogarNemmonis.textName = 'Rhogar Nemmonis'
@@ -42,7 +42,7 @@ function RhogarNemmonis:new()
     rhogarNemmonis:addAbility(RhogarRootAttack:new())
     rhogarNemmonis:addAbility(RhogarReflectAttack:new())
     rhogarNemmonis:addAbility(RhogarInvulnerable:new())
-    rhogarNemmonis:addAbility(AbilityExamplePassive:new())
+    -- rhogarNemmonis:addAbility(AbilityExamplePassive:new())
 
     -- finish adding abilities
     rhogarNemmonis:endAbility()
@@ -51,26 +51,7 @@ function RhogarNemmonis:new()
 end
 
 function RhogarNemmonis:update()
-    -- update dots
-    for ind, val in pairs(self.dots) do
-        val:tick()
-    end
-
-    if love.mouse.isDown(1) and self.canAttack then --left click to basic attack
-        local goalX, goalY = love.mouse.getPosition()
-        local angle = math.atan2(self.sprite.y - goalY, self.sprite.x - goalX)
-        self:addBasicAttack(angle)
-        self.canAttack = false
-    end
-
-    --run basic attack cooldown timer
-    if not self.canAttack then 
-        self.attackTimer = self.attackTimer - timer.fps
-        if self.attackTimer < 0 then 
-            self.attackTimer = self.attackTimerMax
-            self.canAttack = true
-        end
-    end
+    Character.update(self)
 
     --run invulnerable ability timer
     if self.isInvulnerable then 
@@ -81,15 +62,42 @@ function RhogarNemmonis:update()
         end
     end
 
-    if love.mouse.isDown(2) then -- right click to move
-        self:setGoal(love.mouse.getPosition())
+    if self.abilities[2].isActive then 
+        self.abilities[2].timer = self.abilities[2].timer - timer.fps
+        if self.abilities[2].timer < 0 then 
+            self.abilities[2].timer = self.abilities[2].timerMax 
+            self.abilities[2].isActive = false
+        end
     end
-    
-    --move if character is not yet at goal
-    if self.sprite.x ~= self.goalX or self.sprite.y ~= self.goalY then
-        --self:move() -- move
-    end
+end
 
-    -- update sprite
-    self.sprite:update()
+function RhogarNemmonis:damage(amt)
+    if self.abilities[2].isActive then 
+        local enemyDistances = {}
+        local enemyList = {}
+        for ind, val in pairs(stateList['battle'].enemies) do 
+            local enemyDistance = math.sqrt((val.sprite.x * val.sprite.x) + (val.sprite.y * val.sprite.y))
+            enemyDistances[#enemyDistances + 1] = enemyDistance
+            enemyList[#enemyList + 1] = val
+        end
+        local key = 1
+        local min = enemyDistances[1]
+        for ind, val in pairs(enemyDistances) do
+            if val < min then
+                key = ind
+                min = val
+            end
+        end
+        local goalX, goalY = enemyList[key].sprite.x, enemyList[key].sprite.y
+        local angle = math.atan2(self.sprite.y - goalY, self.sprite.x - goalX)
+        self:addBasicAttack(amt, angle, nil)
+        self.basicAttacks[#self.basicAttacks].goalX, self.basicAttacks[#self.basicAttacks].goalY = enemyList[key].sprite.x, enemyList[key].sprite.y
+    elseif not self.isInvulnerable then 
+        -- deal damage
+        self.curHealth = math.max(self.curHealth - amt, 0)
+        -- get index for next open spot in numbers
+        local ind = #stateList['battle'].numbers + 1
+        -- add damage number to numbers
+        stateList['battle'].numbers[ind] = Number:new(ind, self, amt, 'DAMAGE')
+    end
 end

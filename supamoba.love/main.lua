@@ -10,7 +10,7 @@ function love.load()
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
     -- create window
-    scale = 1
+    scale = 1.5
     width = 1200
     height = 600
     love.window.setMode(width * scale, height * scale, {vsync = false, fullscreen = false})

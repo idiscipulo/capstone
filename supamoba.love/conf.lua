@@ -2,6 +2,7 @@ function love.conf(t)
     -- utilities
     require('src/font')
     require('src/timer')
+    require('src/AIController')
 
     -- floating numbers
     require('src/number')
@@ -30,6 +31,7 @@ function love.conf(t)
     require('src/abilityExampleDOTEffect')
     require('src/abilityExampleAOEEffect')
     require('src/abilityExampleDirectDamage')
+    require('src/particleAbilityRoot')
     
 
     -- sprite class
@@ -53,6 +55,23 @@ function love.conf(t)
     require('src/RhogarNemmonis/rhogarInvulnerable')
     require('src/RhogarNemmonis/rhogarReflectAttack')
 
+    --Nissa Timbers
+    require('src/NissaTimbers/NissaTimbers')
+    require('src/NissaTimbers/NissaHeal')
+    require('src/NissaTimbers/NissaBlind')
+    require('src/NissaTimbers/NissaSlow')
+
+    --Paelias Amakir
+    require('src/PaeliasAmakir/PaeliasAmakir')
+    require('src/PaeliasAmakir/PaeliasAOERoot')
+    require('src/PaeliasAmakir/PaeliasBuff')
+    --require('src/PaeliasAmakir/')
+
+    --Ander Shemov
+    require('src/AnderShemov/AnderShemov')
+    require('src/AnderShemov/anderDash')
+    require('src/AnderShemov/anderArmorDebuff')
+    require('src/AnderShemov/anderPowerAttack')
 
     -- list states below
     require('src/select')

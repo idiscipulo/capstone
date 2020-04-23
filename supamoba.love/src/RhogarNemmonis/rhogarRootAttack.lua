@@ -5,7 +5,7 @@ setmetatable(RhogarRootAttack, Ability)
 
 function RhogarRootAttack:new(user)
     -- true because targetable
-    local rhogarRootAttack = Ability:new(true)
+    local rhogarRootAttack = Ability:new(false)
     setmetatable(rhogarRootAttack, RhogarRootAttack)
 
     -- set x, y, width, height, cooldown (in seconds), and name
@@ -16,6 +16,8 @@ function RhogarRootAttack:new(user)
 
     rhogarRootAttack.character = user
 
+    rhogarRootAttack.damage = 10
+
     return rhogarRootAttack
 end
 
@@ -25,6 +27,9 @@ end
 
 function RhogarRootAttack:use()
     if Ability.use(self) then
-        
+        local goalX = mouse.x
+        local goalY = mouse.y
+        local angle = math.atan2(self.character.sprite.y - goalY, self.character.sprite.x - goalX)
+        self.character:addBasicAttack(self.damage, angle, 0.4, 0, 'root', 2)
     end
 end
