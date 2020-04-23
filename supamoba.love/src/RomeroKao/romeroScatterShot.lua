@@ -28,9 +28,7 @@ end
 
 function RomeroScatterShot:use()
     if Ability.use(self) then
-        local goalX = mouse.x
-        local goalY = mouse.y
-        local angle1 = math.atan2(self.character.sprite.y - goalY, self.character.sprite.x - goalX)
+        local angle1 = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
         local angle2 = angle1 - math.pi/4
         local angle3 = angle1 - math.pi/8
         local angle4 = angle1 + math.pi/8

@@ -23,7 +23,12 @@ function Battle:new()
     battle.spriteHealthBack = love.graphics.newImage('img/battle.sprite.health.back.png')
 
     -- load character that this client controls
-    battle.character = RomeroKao:new()
+    --battle.character = AnderShemov:new()
+    --battle.character = NissaTimbers:new()
+    --battle.character = PaeliasAmakir:new()
+    --battle.character = RhogarNemmonis:new()
+    --battle.character = RomeroKao:new()
+    battle.character = ZainnaRaunor:new()
 
     -- background for ability info
     battle.abilityInfo = love.graphics.newImage('img/battle.ability.info.png')
@@ -46,8 +51,8 @@ function Battle:new()
 
     -- add client character to allies
     battle.allies[#battle.allies + 1] = battle.character
-    battle.allies[#battle.allies + 1] = RhogarNemmonis:new()
-    battle.allies[2].type = 1
+    --battle.allies[#battle.allies + 1] = RhogarNemmonis:new()
+    --battle.allies[2].type = 1
     battle.character.type = 1
 
     -- initialize table for enemies

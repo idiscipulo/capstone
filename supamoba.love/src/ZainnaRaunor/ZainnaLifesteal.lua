@@ -27,6 +27,7 @@ end
 
 function ZainnaLifesteal:use()
     if Ability.use(self) then
+        local angle = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
         self.character:addBasicAttack(self.damage, angle, 0.4, 0, 'lifesteal', 0)
     end
 end

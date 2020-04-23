@@ -118,7 +118,7 @@ function Character:update()
         self.isSlowedTimer = self.isSlowedTimer - timer.fps 
         if self.isSlowedTimer < 0 then 
             self.isSlowedTimer = nil 
-            self.speed = self.speed * 2
+            self.speed = self.speed * 2.0
             self.isSlowed = false 
         end
     end
@@ -234,7 +234,7 @@ function Character:applyEffect(effect, effectTimer)
     end
     if effect == 'slow' then 
         self.isSlowedTimer = effectTimer
-        self.speed = self.speed / 2
+        self.speed = self.speed / 2.0
         self.isSlowed = true 
     end
     if effect == 'debuff' then 

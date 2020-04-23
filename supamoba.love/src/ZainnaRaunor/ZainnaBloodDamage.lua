@@ -27,7 +27,8 @@ end
 
 function ZainnaBloodDamage:use()
     if Ability.use(self) then
-        self.character:damage(self.damge / 4)
+        local angle = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
+        self.character:damage(self.damage / 4)
         self.character:addBasicAttack(self.damage, angle, 0.4, 0)
     end
 end

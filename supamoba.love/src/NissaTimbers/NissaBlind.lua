@@ -30,9 +30,7 @@ end
 
 function NissaBlind:use()
     if Ability.use(self) then
-        local goalX = mouse.x
-        local goalY = mouse.y
-        local angle = math.atan2(self.character.sprite.y - goalY, self.character.sprite.x - goalX)
+        local angle = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
         self.character:addBasicAttack(self.damage, angle, 0.5, 0, self.effect, self.effectTimer)
     end
 end

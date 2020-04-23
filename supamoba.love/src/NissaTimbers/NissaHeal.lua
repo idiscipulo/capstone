@@ -12,7 +12,7 @@ function NissaHeal:new(user)
     nissaHeal:set(0, 0, 80, 80, 5, 'abilityExampleDirectDamage')
 
     -- create description text
-    nissaHeal.desc = font:printToCanvas('heal for an ally', 189, 38, 'left')
+    nissaHeal.desc = font:printToCanvas('heal an ally', 189, 38, 'left')
 
     nissaHeal.character = user
 
@@ -27,9 +27,7 @@ end
 
 function NissaHeal:use()
     if Ability.use(self) then
-        local goalX = mouse.x
-        local goalY = mouse.y
-        local angle = math.atan2(self.character.sprite.y - goalY, self.character.sprite.x - goalX)
+        local angle = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
         self.character:addBasicAttack(self.damage, angle, 0.5, 0, 'heal', 0)
     end
 end

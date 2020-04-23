@@ -27,9 +27,7 @@ end
 
 function AnderArmorDebuff:use()
     if Ability.use(self) then
-        local goalX = mouse.x
-        local goalY = mouse.y
-        local angle = math.atan2(self.character.sprite.y - goalY, self.character.sprite.x - goalX)
+        local angle = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
 
         local ind = #self.character.basicAttacks + 1
         local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.08, self.character.basicName, self.character.basicSpeed / 2, angle, 0, 'debuff', 2)
