@@ -12,7 +12,7 @@ function RhogarInvulnerable:new(user)
     rhogarInvulnerable:set(0, 0, 80, 80, 6, 'abilityExampleDirectDamage')
 
     -- create description text
-    rhogarInvulnerable.desc = font:printToCanvas('become invulnerable to all damage for a short time', 378, 76, 'left')
+    rhogarInvulnerable.desc = font:printToCanvas('become invulnerable to all damage for a short time', 189, 38, 'left')
 
     rhogarInvulnerable.character = user
 

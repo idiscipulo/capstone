@@ -12,7 +12,7 @@ function RhogarRootAttack:new(user)
     rhogarRootAttack:set(0, 0, 80, 80, 5, 'abilityExampleDirectDamage')
 
     -- create description text
-    rhogarRootAttack.desc = font:printToCanvas('hit an enemy and root them to the ground', 378, 76, 'left')
+    rhogarRootAttack.desc = font:printToCanvas('hit an enemy and root them to the ground', 189, 38, 'left')
 
     rhogarRootAttack.character = user
 

@@ -154,16 +154,18 @@ function Character:move()
         elseif self.sprite.x < gx then
             self.sprite.x = math.min(gx, self.sprite.x + sp)
         end
-        
-        if gy < self.sprite.y then
-            self.sprite.y = math.max(gy, self.sprite.y - sp)
-        elseif self.sprite.y < gy then
-            self.sprite.y = math.min(gy, self.sprite.y + sp)
-        end
-        if self.sprite.x == gx and self.sprite.y == gy then
-            self.goalX = nil
-            self.goalY = nil
-        end
+        --if self.sprite.y < nil and self.sprite.y > nil then 
+
+            if gy < self.sprite.y then
+                self.sprite.y = math.max(gy, self.sprite.y - sp)
+            elseif self.sprite.y < gy then
+                self.sprite.y = math.min(gy, self.sprite.y + sp)
+            end
+            if self.sprite.x == gx and self.sprite.y == gy then
+                self.goalX = nil
+                self.goalY = nil
+            end
+        --end
     end
 end
 

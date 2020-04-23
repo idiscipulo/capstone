@@ -12,7 +12,7 @@ function NissaSlow:new(user)
     nissaSlow:set(0, 0, 80, 80, 10, 'abilityExampleDirectDamage')
 
     -- create description text
-    nissaSlow.desc = font:printToCanvas('shoot a slowing blob and heal for 20% of your missing health', 378, 76, 'left')
+    nissaSlow.desc = font:printToCanvas('shoot a slowing blob and heal for 20% of your missing health', 189, 38, 'left')
 
     nissaSlow.character = user
 

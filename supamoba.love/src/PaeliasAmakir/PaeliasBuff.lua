@@ -12,7 +12,7 @@ function PaeliasBuff:new(user)
     paeliasBuff:set(0, 0, 80, 80, 14, 'abilityExampleDirectDamage')
 
     -- create description text
-    paeliasBuff.desc = font:printToCanvas('take half damage for a short time', 378, 76, 'left')
+    paeliasBuff.desc = font:printToCanvas('take half damage for a short time', 189, 38, 'left')
 
     paeliasBuff.character = user
 

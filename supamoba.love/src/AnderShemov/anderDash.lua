@@ -9,10 +9,10 @@ function AnderDash:new(user)
     setmetatable(anderDash, AnderDash)
 
     -- set x, y, width, height, cooldown (in seconds), and name
-    anderDash:set(0, 0, 80, 80, 14, 'abilityExampleDirectDamage')
+    anderDash:set(0, 0, 80, 80, 1, 'abilityExampleDirectDamage')
 
     -- create description text
-    anderDash.desc = font:printToCanvas('dash quickly to your mouse', 378, 76, 'left')
+    anderDash.desc = font:printToCanvas('dash quickly towards your mouse.', 189, 38, 'left')
 
     anderDash.character = user
 
@@ -26,7 +26,7 @@ end
 function AnderDash:use()
     if Ability.use(self) then
         self.character:setGoal(mouse.x, mouse.y)
-        self.character.speed = self.character.speed * 3
+        self.character.speed = self.character.speed * 12
         self.character.isDashing = true 
     end
 end

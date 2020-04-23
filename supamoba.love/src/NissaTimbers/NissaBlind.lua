@@ -12,7 +12,7 @@ function NissaBlind:new(user)
     nissaBlind:set(0, 0, 80, 80, 5, 'abilityExampleDirectDamage')
 
     -- create description text
-    nissaBlind.desc = font:printToCanvas('blind an enemy so that they cannot use abilites', 378, 76, 'left')
+    nissaBlind.desc = font:printToCanvas('blind an enemy so that they cannot use abilites', 189, 38, 'left')
 
     nissaBlind.character = user
 

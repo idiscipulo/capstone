@@ -13,7 +13,7 @@ function AbilityExampleDOTEffect:new(user)
     abilityExampleDOTEffect:set(0, 0, 80, 80, 5, 'abilityExampleDOTEffect')
 
     -- create description text
-    abilityExampleDOTEffect.desc = font:printToCanvas('poison the target, dealing damage equal to 15% of their maximum health over 3 seconds.', 378, 76, 'left')
+    abilityExampleDOTEffect.desc = font:printToCanvas('poison the target, dealing damage equal to 15% of their maximum health over 3 seconds.', 189, 38, 'left')
 
     return abilityExampleDOTEffect
 end

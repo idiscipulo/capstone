@@ -26,7 +26,7 @@ function AnderShemov:new()
     anderShemov.attackTimer = anderShemov.attackTimerMax
 
     -- dash timer
-    anderShemov.dashTimerMax = 3
+    anderShemov.dashTimerMax = 0.1
     anderShemov.dashTimer = anderShemov.dashTimerMax
     anderShemov.isDashing = false
 
@@ -59,7 +59,7 @@ function AnderShemov:update()
         self.dashTimer = self.dashTimer - timer.fps
         if self.dashTimer < 0 then 
             self.dashTimer = self.dashTimerMax
-            self.speed = self.speed / 3
+            self.speed = self.speed / 12
             self.isDashing = false 
         end
     end

@@ -11,7 +11,7 @@ function PaeliasAOERoot:new()
     paeliasAOERoot:set(0, 0, 80, 80, 10, 'abilityExampleAOEEffect')
 
     -- create description text
-    paeliasAOERoot.desc = font:printToCanvas('lay down a trap that roots enemies in place', 378, 76, 'left')
+    paeliasAOERoot.desc = font:printToCanvas('lay down a trap that roots enemies in place', 189, 38, 'left')
 
     -- for aoe abilities, a matrix of the aoe shape, with 1's for active tiles
     paeliasAOERoot.map = {{1, 0, 1},

@@ -9,10 +9,10 @@ function AnderArmorDebuff:new(user)
     setmetatable(anderArmorDebuff, AnderArmorDebuff)
 
     -- set x, y, width, height, cooldown (in seconds), and name
-    anderArmorDebuff:set(0, 0, 80, 80, 10, 'abilityExampleDirectDamage')
+    anderArmorDebuff:set(0, 0, 80, 80, 1, 'abilityExampleDirectDamage')
 
     -- create description text
-    anderArmorDebuff.desc = font:printToCanvas('enemies take double damage for a short time', 378, 76, 'left')
+    anderArmorDebuff.desc = font:printToCanvas('enemies take double damage for 2 seconds.', 189, 38, 'left')
 
     anderArmorDebuff.character = user
 
@@ -31,8 +31,8 @@ function AnderArmorDebuff:use()
         local goalY = mouse.y
         local angle = math.atan2(self.character.sprite.y - goalY, self.character.sprite.x - goalX)
 
-        local ind = #self.charcter.basicAttacks + 1
-        local basicAttack = BasicAttack:new(self.damage, self, ind, self.character.sprite.x, self.character.sprite.y, 0.2, self.basicName, self.basicSpeed / 2, angle, 0, 'debuff', 2)
+        local ind = #self.character.basicAttacks + 1
+        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.08, self.character.basicName, self.character.basicSpeed / 2, angle, 0, 'debuff', 2)
         self.character.basicAttacks[ind] = basicAttack
     end
 end

@@ -13,7 +13,7 @@ function RomeroRapidAttack:new(user)
     romeroRapidAttack:set(0, 0, 80, 80, 2, 'abilityExampleDirectDamage')
 
     -- create description text
-    romeroRapidAttack.desc = font:printToCanvas('attack in rapid succession.', 378, 76, 'left')
+    romeroRapidAttack.desc = font:printToCanvas('attack in rapid succession', 189, 38, 'left')
 
     romeroRapidAttack.character = user
 

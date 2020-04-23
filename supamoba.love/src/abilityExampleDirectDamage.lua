@@ -13,7 +13,7 @@ function AbilityExampleDirectDamage:new(user)
     abilityExampleDirectDamage:set(0, 0, 80, 80, 2, 'abilityExampleDirectDamage')
 
     -- create description text
-    abilityExampleDirectDamage.desc = font:printToCanvas('deal 30 damage to the target.', 378, 76, 'left')
+    abilityExampleDirectDamage.desc = font:printToCanvas('deal 30 damage to the target.', 189, 38, 'left')
 
     return abilityExampleDirectDamage
 end

@@ -23,7 +23,7 @@ function Battle:new()
     battle.spriteHealthBack = love.graphics.newImage('img/battle.sprite.health.back.png')
 
     -- load character that this client controls
-    battle.character = NissaTimbers:new()
+    battle.character = RomeroKao:new()
 
     -- background for ability info
     battle.abilityInfo = love.graphics.newImage('img/battle.ability.info.png')
@@ -46,6 +46,8 @@ function Battle:new()
 
     -- add client character to allies
     battle.allies[#battle.allies + 1] = battle.character
+    battle.allies[#battle.allies + 1] = RhogarNemmonis:new()
+    battle.allies[2].type = 1
     battle.character.type = 1
 
     -- initialize table for enemies
@@ -138,7 +140,7 @@ function Battle:update()
             val:update()
        
             if val == self.character then
-                    if not val.isBlinded then
+                if not val.isBlinded then
                     if love.mouse.isDown(2) and not self.character.isDashing then -- right click to move
                         val:setGoal(mouse.x, mouse.y)
                     end
@@ -232,15 +234,15 @@ function Battle:draw()
     
     -- draw enemy icons and health bars
     for ind, val in pairs(self.enemies) do
-        love.graphics.draw(val.icon, 975 + ((ind - 1) * 80), 10)
+        love.graphics.draw(val.icon, 980 + ((ind - 1) * 80), 10)
         
         if val.deathTime > 0 then
-            love.graphics.draw(self.iconGrey, 975 + ((ind - 1) * 80), 10)
-            love.graphics.draw(self.iconHealthBack, 975 + ((ind - 1) * 80), 66)
+            love.graphics.draw(self.iconGrey, 980 + ((ind - 1) * 80), 10)
+            love.graphics.draw(self.iconHealthBack, 980 + ((ind - 1) * 80), 66)
         else
             healthFactor = val.curHealth / val.maxHealth
-            love.graphics.draw(self.iconHealthBack, 975 + ((ind - 1) * 80), 66)
-            love.graphics.draw(self.iconHealth, 975 + ((ind - 1) * 80), 66, 0, healthFactor, 1)
+            love.graphics.draw(self.iconHealthBack, 980 + ((ind - 1) * 80), 66)
+            love.graphics.draw(self.iconHealth, 980 + ((ind - 1) * 80), 66, 0, healthFactor, 1)
         end
     end
 
@@ -268,7 +270,7 @@ function Battle:draw()
         -- draw info text if ability icon is hover
         if val.isHover then
             love.graphics.draw(self.abilityInfo, 436, 510)
-            love.graphics.draw(val.desc, 440, 514)
+            love.graphics.draw(val.desc, 442, 516, 0, 2)
         end
     end
 
@@ -280,7 +282,6 @@ function Battle:draw()
     -- draw sprite health bars
     for ind, val in pairs(self.ents) do
         val.sprite:draw()
-        love.graphics.print(val.textName, 60 , 20 +15 * ind)
         healthFactor = val.curHealth / val.maxHealth
         love.graphics.draw(self.spriteHealthBack, val.sprite.x, val.sprite.y + 18)
         love.graphics.draw(self.spriteHealth, val.sprite.x, val.sprite.y + 18, 0, healthFactor, 1)

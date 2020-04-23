@@ -99,6 +99,9 @@ function BasicAttack:detectCollision()
                     if self.effect ~= 'none' then 
                         val:applyEffect(self.effect, self.effectTimer)
                     end
+                    if self.effect == 'lifesteal' then 
+                        self.character:heal(self.damage)
+                    end
 
                     self.hit[ind] = val
                 end

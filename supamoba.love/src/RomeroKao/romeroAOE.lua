@@ -11,7 +11,7 @@ function RomeroAOE:new()
     romeroAOE:set(0, 0, 80, 80, 2, 'abilityExampleAOEEffect')
 
     -- create description text
-    romeroAOE.desc = font:printToCanvas('burn the ground in a cross, dealing 60 damage over 3 seconds.', 378, 76, 'left')
+    romeroAOE.desc = font:printToCanvas('burn the ground in a cross, dealing 60 damage over 3 seconds.', 189, 38, 'left')
 
     -- for aoe abilities, a matrix of the aoe shape, with 1's for active tiles
     romeroAOE.map = {{0, 1, 0},

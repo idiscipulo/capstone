@@ -13,7 +13,7 @@ function AbilityExamplePassive:new(user)
     abilityExamplePassive:set(0, 0, 80, 80, 2, 'abilityExamplePassive')
 
     -- create description text
-    abilityExamplePassive.desc = font:printToCanvas('regain 1 health every 0.5 seconds [passive].', 378, 76, 'left')
+    abilityExamplePassive.desc = font:printToCanvas('regain 1 health every 0.5 seconds [passive].', 189, 38, 'left')
 
     return abilityExamplePassive
 end

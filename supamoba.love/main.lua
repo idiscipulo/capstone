@@ -35,6 +35,8 @@ function love.load()
     mouse.clicked = false
     mouse.x = 0
     mouse.y = 0
+    mouse.img = love.graphics.newImage('img/mouse.png')
+    -- love.mouse.setVisible(false)
 end
 
 function love.update()
@@ -63,6 +65,8 @@ function love.draw()
     
     -- draw game canvas at scale
     love.graphics.draw(canvas, 0, 0, 0, scale, scale)
+
+    -- love.graphics.draw(mouse.img, love.mouse.getX(), love.mouse.getY(), 0, scale)
 end
 
 function love.keypressed(key)

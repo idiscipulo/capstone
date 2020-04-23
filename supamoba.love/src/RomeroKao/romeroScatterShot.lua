@@ -13,7 +13,7 @@ function RomeroScatterShot:new(user)
     romeroScatterShot:set(0, 0, 80, 80, 2, 'abilityExampleDirectDamage')
 
     -- create description text
-    romeroScatterShot.desc = font:printToCanvas('shoot a wide scatter shot.', 378, 76, 'left')
+    romeroScatterShot.desc = font:printToCanvas('spray a deadly arc of projectiles', 189, 38, 'left')
 
     romeroScatterShot.character = user
 

@@ -12,7 +12,7 @@ function AnderPowerAttack:new(user)
     anderPowerAttack:set(0, 0, 80, 80, 5, 'abilityExampleDirectDamage')
 
     -- create description text
-    anderPowerAttack.desc = font:printToCanvas('a really high damage attack', 378, 76, 'left')
+    anderPowerAttack.desc = font:printToCanvas('a really high damage attack', 189, 38, 'left')
 
     anderPowerAttack.character = user
 
@@ -30,6 +30,9 @@ function AnderPowerAttack:use()
         local goalX = mouse.x
         local goalY = mouse.y
         local angle = math.atan2(self.character.sprite.y - goalY, self.character.sprite.x - goalX)
-        self.character:addBasicAttack(self.damage, angle, 0.2, 0)
+        
+        local ind = #self.character.basicAttacks + 1
+        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.08, self.character.basicName, self.character.basicSpeed / 2, angle, 0.2)
+        self.character.basicAttacks[ind] = basicAttack
     end
 end

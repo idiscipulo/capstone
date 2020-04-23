@@ -12,7 +12,7 @@ function RhogarReflectAttack:new(user)
     rhogarReflectAttack:set(0, 0, 80, 80, 10, 'abilityExampleDirectDamage')
 
     -- create description text
-    rhogarReflectAttack.desc = font:printToCanvas('reflect an attack to the nearest enemy', 378, 76, 'left')
+    rhogarReflectAttack.desc = font:printToCanvas('reflect an attack to the nearest enemy', 189, 38, 'left')
 
     rhogarReflectAttack.character = user
 

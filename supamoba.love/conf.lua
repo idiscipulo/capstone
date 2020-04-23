@@ -73,6 +73,12 @@ function love.conf(t)
     require('src/AnderShemov/anderArmorDebuff')
     require('src/AnderShemov/anderPowerAttack')
 
+    --Zainna Raunor
+    require('src/ZainnaRaunor/ZainnaRaunor')
+    require('src/ZainnaRaunor/ZainnaBloodDamage')
+    require('src/ZainnaRaunor/ZainnaBuff')
+    require('src/ZainnaRaunor/ZainnaLifesteal')
+
     -- list states below
     require('src/select')
     require('src/battle')
