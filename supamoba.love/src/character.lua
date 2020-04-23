@@ -46,45 +46,21 @@ function Character:new()
     -- abilities table
     character.abilities = {}
 
+    -- invulnerability
+    character.invulnerableTimerMax = nil
+    character.invulnerableTimer = nil
+    character.isInvulnerable = false
+
+    -- can move
+    character.canMoveTimerMax = nil
+    character.canMoveTimer = nil
+    character.canMove = true
+
     return character
 end
 
-function Character:update()
-    -- update dots
-    for ind, val in pairs(self.dots) do
-        val:tick()
-    end
-
-    if love.mouse.isDown(1) and self.canAttack then --left click to basic attack
-        local goalX, goalY = love.mouse.getPosition()
-        local angle = math.atan2(self.sprite.y - goalY, self.sprite.x - goalX)
-        self:addBasicAttack(angle)
-        self.canAttack = false
-    end
-
-    --run basic attack cooldown timer
-    if not self.canAttack then 
-        self.attackTimer = self.attackTimer - timer.fps
-        if self.attackTimer < 0 then 
-            self.attackTimer = self.attackTimerMax
-            self.canAttack = true
-        end
-    end
-
-    if love.mouse.isDown(2) then -- right click to move
-        self:setGoal(love.mouse.getPosition())
-    end
-    --move if character is not yet at goal
-    if self.sprite.x ~= self.goalX or self.sprite.y ~= self.goalY then
-        self:move() -- move
-    end
-
-    -- update sprite
-    self.sprite:update()
-end
-
 function Character:move()
-    if self.goalX ~= nil and self.goalY ~= nil then
+    if self.goalX ~= nil and self.goalY ~= nil and self.canMove then
         local gx = self.goalX
         local gy = self.goalY
         local sp = self.speed
@@ -135,14 +111,16 @@ function Character:addAbility(ab)
 end
 
 function Character:damage(amt)
-    -- deal damage
-    self.curHealth = math.max(self.curHealth - amt, 0)
+    if not self.isInvulnerable then 
+        -- deal damage
+        self.curHealth = math.max(self.curHealth - amt, 0)
 
-    -- get index for next open spot in numbers
-    local ind = #stateList['battle'].numbers + 1
+        -- get index for next open spot in numbers
+        local ind = #stateList['battle'].numbers + 1
 
-    -- add damage number to numbers
-    stateList['battle'].numbers[ind] = Number:new(ind, self, amt, 'DAMAGE')
+        -- add damage number to numbers
+        stateList['battle'].numbers[ind] = Number:new(ind, self, amt, 'DAMAGE')
+    end
 end
 
 function Character:heal(amt)

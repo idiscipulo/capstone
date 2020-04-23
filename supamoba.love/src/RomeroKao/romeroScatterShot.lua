@@ -24,7 +24,7 @@ function RomeroScatterShot:attach(character)
     Ability.attach(self, character)
 end
 
-function AbilityScatterShot:use()
+function RomeroScatterShot:use()
     if Ability.use(self) then
         local goalX, goalY = love.mouse.getPosition()
         local angle1 = math.atan2(self.character.sprite.y - goalY, self.character.sprite.x - goalX)

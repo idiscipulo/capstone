@@ -49,6 +49,10 @@ function love.conf(t)
 
     --Rhogar Nemmonis
     require('src/RhogarNemmonis/RhogarNemmonis')
+    require('src/RhogarNemmonis/rhogarRootAttack')
+    require('src/RhogarNemmonis/rhogarInvulnerable')
+    require('src/RhogarNemmonis/rhogarReflectAttack')
+
 
     -- list states below
     require('src/select')

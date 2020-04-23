@@ -13,7 +13,7 @@ function RomeroRapidAttack:new(user)
     romeroRapidAttack:set(0, 0, 80, 80, 2, 'abilityExampleDirectDamage')
 
     -- create description text
-    romeroRapidAttack.desc = font:printToCanvas('deal 30 damage to the target.', 378, 76, 'left')
+    romeroRapidAttack.desc = font:printToCanvas('attack in rapid succession.', 378, 76, 'left')
 
     romeroRapidAttack.character = user
 
@@ -26,10 +26,8 @@ end
 
 function RomeroRapidAttack:use(target)
     if Ability.use(self) then
-        local goalX, goalY = love.mouse.getPosition()
+        local goalX, goalY = target.sprite.x, target.sprite.y
         local angle = math.atan2(self.character.sprite.y - goalY, self.character.sprite.x - goalX)
-        self.character:addBasicAttack(angle)
-        self.character:addBasicAttack(angle)
         self.character:addBasicAttack(angle)
         self.character:addBasicAttack(angle)
         self.character:addBasicAttack(angle)

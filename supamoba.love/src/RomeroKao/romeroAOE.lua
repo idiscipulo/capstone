@@ -1,5 +1,3 @@
--- example of an ability with an aoe effect
-
 RomeroAOE = {}
 RomeroAOE.__index = RomeroAOE
 setmetatable(RomeroAOE, Ability)
@@ -10,15 +8,15 @@ function RomeroAOE:new()
     setmetatable(romeroAOE, RomeroAOE)
 
     -- set x, y, width, height, cooldown (in seconds), and name
-    romeroAOE:set(0, 0, 80, 80, 2, 'romeroAOE')
+    romeroAOE:set(0, 0, 80, 80, 2, 'abilityExampleAOEEffect')
 
     -- create description text
     romeroAOE.desc = font:printToCanvas('burn the ground in a cross, dealing 60 damage over 3 seconds.', 378, 76, 'left')
 
     -- for aoe abilities, a matrix of the aoe shape, with 1's for active tiles
     romeroAOE.map = {{0, 1, 0},
-                                    {1, 1, 1},
-                                    {0, 1, 0}}
+                     {1, 1, 1},
+                     {0, 1, 0}}
 
     return romeroAOE
 end

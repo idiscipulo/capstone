@@ -49,7 +49,7 @@ function Battle:new()
 
     -- initialize table for enemies
     battle.enemies = {}
-    battle.enemies[#battle.enemies + 1] = CharExample:new()
+    battle.enemies[#battle.enemies + 1] = RhogarNemmonis:new()
 
     -- character icon health bar and health bar back
     battle.iconHealth = love.graphics.newImage('img/battle.icon.health.png')
@@ -126,11 +126,6 @@ function Battle:update()
         val:update()
     end
 
-    --update enemies
-    for ind, val in pairs(self.enemies) do
-        --val:update()
-    end
-
     if state.child == 'main' then
         -- update characters
         for ind, val in pairs(self.ents) do
@@ -161,7 +156,7 @@ function Battle:update()
                 end
             -- otherwise just cast
             else
-                self.character.abilities[1]:use()
+                self.character.abilities[2]:use()
             end
         -- if e is pressed
         elseif love.keyboard.isDown('e') then
@@ -181,6 +176,7 @@ function Battle:update()
 end
 
 function Battle:draw()
+    
     -- TESTING START
     if temp then
         love.graphics.draw(self.temp, 0, 0)
@@ -265,6 +261,7 @@ function Battle:draw()
     -- draw sprite health bars
     for ind, val in pairs(self.ents) do
         val.sprite:draw()
+        love.graphics.print(val.textName, 60 , 20 +15 * ind)
         healthFactor = self.character.curHealth / self.character.maxHealth
         love.graphics.draw(self.spriteHealthBack, val.sprite.x, val.sprite.y + 18)
         love.graphics.draw(self.spriteHealth, val.sprite.x, val.sprite.y + 18, 0, healthFactor, 1)
@@ -274,4 +271,5 @@ function Battle:draw()
     for ind, val in pairs(self.numbers) do 
         val:draw()
     end
+
 end
