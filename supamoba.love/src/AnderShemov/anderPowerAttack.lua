@@ -16,7 +16,7 @@ function AnderPowerAttack:new(user)
 
     anderPowerAttack.character = user
 
-    anderPowerAttack.damage = 200
+    anderPowerAttack.damage = 20
 
     return anderPowerAttack
 end

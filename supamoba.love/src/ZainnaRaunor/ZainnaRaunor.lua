@@ -7,7 +7,7 @@ function ZainnaRaunor:new()
     setmetatable(zainnaRaunor, ZainnaRaunor)
 
     -- icon image
-    zainnaRaunor.icon = love.graphics.newImage('img/RomeroKao.icon.png')
+    zainnaRaunor.icon = love.graphics.newImage('img/ZainnaRaunor.icon.png')
 
     -- max and current health
     zainnaRaunor.maxHealth = 150
@@ -31,7 +31,7 @@ function ZainnaRaunor:new()
     zainnaRaunor.attackTimer = zainnaRaunor.attackTimerMax
 
     -- set sprite location, size, and name for image file
-    zainnaRaunor.sprite:set(500, 250, 16, 16, 'RomeroKao')
+    zainnaRaunor.sprite:set(500, 250, 16, 16, 'ZainnaRaunor')
 
     -- set name
     zainnaRaunor.textName = 'Zainna Raunor'

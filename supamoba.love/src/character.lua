@@ -13,6 +13,8 @@ function Character:new()
     -- sprite
     character.sprite = Sprite:new()
 
+    character.range = 120
+
     -- max and current health
     character.maxHealth = 0
     character.curHealth = 0
@@ -40,6 +42,7 @@ function Character:new()
     character.speed = 3
 
     -- basic attack stats
+    character.basicDamage = 3
     character.basicSpeed = nil
     character.basicRange = 120
     character.basicName = nil 
@@ -74,6 +77,8 @@ function Character:new()
     -- armor debuff (take more damage)
     character.isDebuffedTimer = nil
     character.isDebuffed = false
+
+    character.isBuffed = false
 
     -- dash
     character.isDashing = false
@@ -198,21 +203,24 @@ function Character:addAbility(ab)
 end
 
 function Character:takeDamage(amt)
-    if self.isDebuffed then amt = amt * 2 end 
+    if self.deathTime == 0 then
+        if self.isBuffed then amt = amt / 2 end 
+        if self.isDebuffed then amt = amt * 2 end 
 
-    if not self.isInvulnerable then 
-        -- deal damage
-        self.curHealth = math.max(self.curHealth - amt, 0)
+        if not self.isInvulnerable then 
+            -- deal damage
+            self.curHealth = math.max(self.curHealth - amt, 0)
 
-        -- get index for next open spot in numbers
-        local ind = #stateList['battle'].numbers + 1
+            -- get index for next open spot in numbers
+            local ind = #stateList['battle'].numbers + 1
 
-        -- add damage number to numbers
-        stateList['battle'].numbers[ind] = Number:new(ind, self, amt, 'DAMAGE')
-    end
+            -- add damage number to numbers
+            stateList['battle'].numbers[ind] = Number:new(ind, self, amt, 'DAMAGE')
+        end
 
-    if self.curHealth == 0 then
-        self.deathTime = 120
+        if self.curHealth == 0 then
+            self.deathTime = 300
+        end
     end
 end
 

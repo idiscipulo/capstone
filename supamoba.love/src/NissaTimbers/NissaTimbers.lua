@@ -7,7 +7,7 @@ function NissaTimbers:new()
     setmetatable(nissaTimbers, NissaTimbers)
 
     -- icon image
-    nissaTimbers.icon = love.graphics.newImage('img/RomeroKao.icon.png')
+    nissaTimbers.icon = love.graphics.newImage('img/NissaTimbers.icon.png')
 
     -- max and current health
     nissaTimbers.maxHealth = 150
@@ -26,7 +26,7 @@ function NissaTimbers:new()
     nissaTimbers.attackTimer = nissaTimbers.attackTimerMax
 
     -- set sprite location, size, and name for image file
-    nissaTimbers.sprite:set(500, 250, 16, 16, 'RomeroKao')
+    nissaTimbers.sprite:set(500, 250, 16, 16, 'NissaTimbers')
 
     -- set name
     nissaTimbers.textName = 'Nissa Timbers'

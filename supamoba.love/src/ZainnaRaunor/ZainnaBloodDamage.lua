@@ -9,7 +9,7 @@ function ZainnaBloodDamage:new(user)
     setmetatable(zainnaBloodDamage, ZainnaBloodDamage)
 
     -- set x, y, width, height, cooldown (in seconds), and name
-    zainnaBloodDamage:set(0, 0, 80, 80, 14, 'abilityExampleDirectDamage')
+    zainnaBloodDamage:set(0, 0, 80, 80, 6, 'abilityExampleDirectDamage')
 
     -- create description text
     zainnaBloodDamage.desc = font:printToCanvas('do incredible damage for a price', 189, 38, 'left')

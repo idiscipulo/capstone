@@ -72,36 +72,38 @@ function RhogarNemmonis:update()
 end
 
 function RhogarNemmonis:takeDamage(amt)
-    if self.abilities[2].isActive then 
-        local enemyDistances = {}
-        local enemyList = {}
-        for ind, val in pairs(stateList['battle'].enemies) do 
-            local enemyDistance = math.sqrt((val.sprite.x * val.sprite.x) + (val.sprite.y * val.sprite.y))
-            enemyDistances[#enemyDistances + 1] = enemyDistance
-            enemyList[#enemyList + 1] = val
-        end
-        local key = 1
-        local min = enemyDistances[1]
-        for ind, val in pairs(enemyDistances) do
-            if val < min then
-                key = ind
-                min = val
+    if self.deathTime == 0 then
+        if self.abilities[2].isActive then 
+            local enemyDistances = {}
+            local enemyList = {}
+            for ind, val in pairs(stateList['battle'].enemies) do 
+                local enemyDistance = math.sqrt((val.sprite.x * val.sprite.x) + (val.sprite.y * val.sprite.y))
+                enemyDistances[#enemyDistances + 1] = enemyDistance
+                enemyList[#enemyList + 1] = val
             end
+            local key = 1
+            local min = enemyDistances[1]
+            for ind, val in pairs(enemyDistances) do
+                if val < min then
+                    key = ind
+                    min = val
+                end
+            end
+            local goalX, goalY = enemyList[key].sprite.x, enemyList[key].sprite.y
+            local angle = math.atan2(self.sprite.y - goalY, self.sprite.x - goalX)
+            self:addBasicAttack(amt, angle, nil)
+            self.basicAttacks[#self.basicAttacks].goalX, self.basicAttacks[#self.basicAttacks].goalY = enemyList[key].sprite.x, enemyList[key].sprite.y
+        elseif not self.isInvulnerable then 
+            -- deal damage
+            self.curHealth = math.max(self.curHealth - amt, 0)
+            -- get index for next open spot in numbers
+            local ind = #stateList['battle'].numbers + 1
+            -- add damage number to numbers
+            stateList['battle'].numbers[ind] = Number:new(ind, self, amt, 'DAMAGE')
         end
-        local goalX, goalY = enemyList[key].sprite.x, enemyList[key].sprite.y
-        local angle = math.atan2(self.sprite.y - goalY, self.sprite.x - goalX)
-        self:addBasicAttack(amt, angle, nil)
-        self.basicAttacks[#self.basicAttacks].goalX, self.basicAttacks[#self.basicAttacks].goalY = enemyList[key].sprite.x, enemyList[key].sprite.y
-    elseif not self.isInvulnerable then 
-        -- deal damage
-        self.curHealth = math.max(self.curHealth - amt, 0)
-        -- get index for next open spot in numbers
-        local ind = #stateList['battle'].numbers + 1
-        -- add damage number to numbers
-        stateList['battle'].numbers[ind] = Number:new(ind, self, amt, 'DAMAGE')
-    end
 
-    if self.curHealth == 0 then
-        self.deathTime = 5
+        if self.curHealth == 0 then
+            self.deathTime = 5
+        end
     end
 end

@@ -21,14 +21,14 @@ function love.load()
     -- create state management variable
     state = {}
     -- class level state, e.g. battle.lua or select.lua
-    state.parent = 'battle'
+    state.parent = 'select'
     -- substates within a class
     state.child = 'main'
 
     -- initialize list of possible states
     stateList = {}
     stateList['select'] = Select:new()
-    stateList['battle'] = Battle:new()
+    -- stateList['battle'] = Battle:new()
 
     -- mouse variable
     mouse = {}

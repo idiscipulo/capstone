@@ -7,7 +7,7 @@ function AnderShemov:new()
     setmetatable(anderShemov, AnderShemov)
 
     -- icon image
-    anderShemov.icon = love.graphics.newImage('img/RomeroKao.icon.png')
+    anderShemov.icon = love.graphics.newImage('img/AnderShemov.icon.png')
 
     -- max and current health
     anderShemov.maxHealth = 150
@@ -31,7 +31,7 @@ function AnderShemov:new()
     anderShemov.isDashing = false
 
     -- set sprite location, size, and name for image file
-    anderShemov.sprite:set(500, 250, 16, 16, 'RomeroKao')
+    anderShemov.sprite:set(500, 250, 16, 16, 'AnderShemov')
 
     -- set name
     anderShemov.textName = 'Ander Shemov'

@@ -2,7 +2,7 @@ AIController = {}
 AIController.__index = AIController
 
 function AIController:execute(char)
-    for ind, val in pairs(stateList['battle'].ents) do
+    --[[for ind, val in pairs(stateList['battle'].ents) do
         if val.team ~= char.team then
             if char.canAttack then
                 local goalX = val.sprite.x
@@ -13,6 +13,19 @@ function AIController:execute(char)
                 local cooldown = (dist / (char.basicSpeed * 60))
 
                 char:addBasicAttack(3, angle, cooldown, 0)
+                char.canAttack = false
+            end
+        end
+    end]]
+    for ind, val in pairs(stateList['battle'].ents) do 
+        if val.team ~= char.team and char.canAttack then 
+            local distance = math.sqrt( (char.sprite.x - val.sprite.x)^2 + (char.sprite.y - val.sprite.y)^2 )
+            if distance < char.range then 
+                local angle = math.atan2(char.sprite.y - val.sprite.y, char.sprite.x - val.sprite.x)
+
+                local cooldown = (distance / (char.basicSpeed * 60))
+
+                char:addBasicAttack(char.basicDamage, angle, cooldown, 0)
                 char.canAttack = false
             end
         end

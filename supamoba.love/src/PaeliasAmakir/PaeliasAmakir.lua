@@ -7,7 +7,7 @@ function PaeliasAmakir:new()
     setmetatable(paeliasAmakir, PaeliasAmakir)
 
     -- icon image
-    paeliasAmakir.icon = love.graphics.newImage('img/RomeroKao.icon.png')
+    paeliasAmakir.icon = love.graphics.newImage('img/PaeliasAmakir.icon.png')
 
     -- max and current health
     paeliasAmakir.maxHealth = 150
@@ -31,7 +31,7 @@ function PaeliasAmakir:new()
     paeliasAmakir.isBuffed = false
 
     -- set sprite location, size, and name for image file
-    paeliasAmakir.sprite:set(500, 250, 16, 16, 'RomeroKao')
+    paeliasAmakir.sprite:set(500, 250, 16, 16, 'PaeliasAmakir')
 
     -- set name
     paeliasAmakir.textName = 'Paelias Amakir'
@@ -62,21 +62,5 @@ function PaeliasAmakir:update()
             self.isBuffedTimer = self.isBuffedTimerMax 
             self.isBuffed = false 
         end
-    end
-end
-
-function PaeliasAmakir:takeDamage(amt)
-
-    if self.isBuffed then amt = amt / 2 end 
-
-    if not self.isInvulnerable then 
-        -- deal damage
-        self.curHealth = math.max(self.curHealth - amt, 0)
-
-        -- get index for next open spot in numbers
-        local ind = #stateList['battle'].numbers + 1
-
-        -- add damage number to numbers
-        stateList['battle'].numbers[ind] = Number:new(ind, self, amt, 'DAMAGE')
     end
 end
