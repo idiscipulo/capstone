@@ -42,6 +42,9 @@ function love.conf(t)
 
     -- list characters below
     require('src/charExample')
+
+    --Tower
+    require('src/tower')
     
     --Romero Kao
     require('src/RomeroKao/RomeroKao')

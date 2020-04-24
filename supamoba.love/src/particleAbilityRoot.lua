@@ -17,7 +17,7 @@ function ParticleAbilityRoot:update()
         for ind, val in pairs(stateList['battle'].enemies) do
             -- if character is overlapping particle, apply 2 damage
             if math.abs(val.sprite.x - self.x) < 16 and math.abs(val.sprite.y - self.y) < 16 then
-                val:damage(0.5)
+                val:takeDamage(0.5)
             end
         end
     end

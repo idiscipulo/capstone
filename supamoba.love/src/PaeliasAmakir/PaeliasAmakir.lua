@@ -65,7 +65,7 @@ function PaeliasAmakir:update()
     end
 end
 
-function PaeliasAmakir:damage(amt)
+function PaeliasAmakir:takeDamage(amt)
 
     if self.isBuffed then amt = amt / 2 end 
 

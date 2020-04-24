@@ -28,7 +28,7 @@ function Battle:new()
     --battle.character = PaeliasAmakir:new()
     --battle.character = RhogarNemmonis:new()
     --battle.character = RomeroKao:new()
-    battle.character = RomeroKao:new()
+    battle.character = ZainnaRaunor:new()
 
     -- background for ability info
     battle.abilityInfo = love.graphics.newImage('img/battle.ability.info.png')
@@ -52,13 +52,15 @@ function Battle:new()
     -- add client character to allies
     battle.allies[#battle.allies + 1] = battle.character
     --battle.allies[#battle.allies + 1] = RhogarNemmonis:new()
-    --battle.allies[2].type = 1
-    battle.character.type = 1
+    --battle.allies[2].team = 1
+    battle.character.team = 1
 
     -- initialize table for enemies
     battle.enemies = {}
     battle.enemies[#battle.enemies + 1] = NissaTimbers:new()
-    battle.enemies[1].type = 2
+    battle.enemies[#battle.enemies + 1] = Tower:new()
+    battle.enemies[1].team = 2
+    battle.enemies[2].team = 2
 
     -- character icon health bar and health bar back
     battle.iconHealth = love.graphics.newImage('img/battle.icon.health.png')
@@ -201,7 +203,7 @@ function Battle:update()
                         end
                     end
                 end
-            else
+            elseif not val.isTower then 
                 AIController:execute(val)
             end
         end

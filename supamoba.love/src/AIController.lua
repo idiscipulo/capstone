@@ -3,7 +3,7 @@ AIController.__index = AIController
 
 function AIController:execute(char)
     for ind, val in pairs(stateList['battle'].ents) do
-        if val.type ~= char.type then
+        if val.team ~= char.team then
             if char.canAttack then
                 local goalX = val.sprite.x
                 local goalY = val.sprite.y

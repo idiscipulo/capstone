@@ -85,7 +85,7 @@ end
 
 function BasicAttack:detectCollision()
     for ind, val in pairs(stateList['battle'].ents) do
-        if val.type ~= self.character.type then
+        if val.team ~= self.character.team then
             if self.hit[ind] ~= nil then
                 -- pass
             else
@@ -94,7 +94,7 @@ function BasicAttack:detectCollision()
                     local ind2 = #stateList['battle'].particles + 1
                     stateList['battle'].particles[ind2] = Particle:new(ind2, (self.x + val.sprite.x) / 2, (self.y + val.sprite.y) / 2, 0.1, 'basic.explosion')
 
-                    val:damage(self.damage)
+                    val:takeDamage(self.damage)
                     
                     if self.effect ~= 'none' then 
                         val:applyEffect(self.effect, self.effectTimer)
@@ -107,7 +107,7 @@ function BasicAttack:detectCollision()
                 end
             end
         elseif self.effect == 'heal' then
-            if val ~= self.character and val.type == self.character.type then 
+            if val ~= self.character and val.team == self.character.team then 
                 if self.hit[ind] ~= nil then
                     -- pass
                 elseif math.abs(self.x - val.sprite.x) < 15 and math.abs(self.y - val.sprite.y) < 15 then 

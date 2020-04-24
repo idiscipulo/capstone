@@ -18,6 +18,6 @@ function DotAbilityExampleDOTEffect:tick()
         local amt = self.character.maxHealth * 0.025
 
         -- deal damage
-        self.character:damage(amt)
+        self.character:takeDamage(amt)
     end
 end

@@ -21,7 +21,7 @@ function Character:new()
     character.isDead = false
     character.deathTime = 0
 
-    character.type = nil
+    character.team = nil
 
     -- goal x and y
     character.goalX = nil 
@@ -197,7 +197,7 @@ function Character:addAbility(ab)
     ab:attach(self)
 end
 
-function Character:damage(amt)
+function Character:takeDamage(amt)
     if self.isDebuffed then amt = amt * 2 end 
 
     if not self.isInvulnerable then 

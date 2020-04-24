@@ -26,6 +26,6 @@ function AbilityExampleDirectDamage:use(target)
     if Ability.use(self) then
         local amt = 30
         -- deal 30 damage to the target
-        target:damage(amt)
+        target:takeDamage(amt)
     end
 end

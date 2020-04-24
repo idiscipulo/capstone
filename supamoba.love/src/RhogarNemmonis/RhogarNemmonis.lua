@@ -71,7 +71,7 @@ function RhogarNemmonis:update()
     end
 end
 
-function RhogarNemmonis:damage(amt)
+function RhogarNemmonis:takeDamage(amt)
     if self.abilities[2].isActive then 
         local enemyDistances = {}
         local enemyList = {}
