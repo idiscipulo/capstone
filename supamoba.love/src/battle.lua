@@ -28,7 +28,7 @@ function Battle:new()
     --battle.character = PaeliasAmakir:new()
     --battle.character = RhogarNemmonis:new()
     --battle.character = RomeroKao:new()
-    battle.character = ZainnaRaunor:new()
+    battle.character = RomeroKao:new()
 
     -- background for ability info
     battle.abilityInfo = love.graphics.newImage('img/battle.ability.info.png')
