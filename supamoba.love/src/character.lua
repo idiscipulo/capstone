@@ -18,6 +18,7 @@ function Character:new()
     character.curHealth = 0
 
     -- death tracker
+    character.isDead = false
     character.deathTime = 0
 
     character.type = nil
@@ -85,6 +86,8 @@ function Character:update()
     for ind, val in pairs(self.dots) do
         val:tick()
     end
+
+    if self.curHealth <= 0 then self.isDead = true end
 
     --run basic attack cooldown timer
     if not self.canAttack then 

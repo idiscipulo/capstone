@@ -115,6 +115,8 @@ function Battle:update()
             val2:update()
         end
 
+        if val.isDead then self.ents[ind] = nil end 
+
         -- update client basic attacks
         for ind2, val2 in pairs(val.basicAttacks) do
             val2:update()
