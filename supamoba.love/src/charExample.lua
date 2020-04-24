@@ -16,7 +16,7 @@ function CharExample:new()
     charExample.curHealth = 150
 
     -- set move speed
-    charExample.speed = 4
+    charExample.speed = 3
 
     -- basic attack stats
     charExample.basicSpeed = 4

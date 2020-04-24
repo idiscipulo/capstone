@@ -220,7 +220,7 @@ function Battle:draw()
     love.graphics.draw(self.back, 0, 0)
     
     -- draw time
-    love.graphics.draw(self.time, 580, 20, 0, 2, 2)
+    love.graphics.draw(self.time, 562, 20, 0, 2, 2)
 
     -- init health factor
     local healthFactor = 0
@@ -276,8 +276,8 @@ function Battle:draw()
 
         -- draw info text if ability icon is hover
         if val.isHover then
-            love.graphics.draw(self.abilityInfo, 436, 510)
-            love.graphics.draw(val.desc, 442, 516, 0, 2)
+            love.graphics.draw(self.abilityInfo, 407, 504)
+            love.graphics.draw(val.desc, 413, 510, 0, 2)
         end
     end
 
