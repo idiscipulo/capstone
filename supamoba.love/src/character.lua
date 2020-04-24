@@ -37,7 +37,7 @@ function Character:new()
     character.basicAttacks = {}
 
     --move speed
-    character.speed = 4
+    character.speed = 3
 
     -- basic attack stats
     character.basicSpeed = nil
@@ -173,8 +173,8 @@ function Character:move()
 end
 
 function Character:setGoal(x, y)
-    self.goalX = x 
-    self.goalY = y
+    self.goalX = math.max(35, math.min(x, 1149))
+    self.goalY = math.max(113, math.min(y, 434))
 end
 
 function Character:addBasicAttack(damage, angle, cooldown, delay, effect, effectTimer)

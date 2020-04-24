@@ -14,7 +14,7 @@ function NissaTimbers:new()
     nissaTimbers.curHealth = 150
 
     -- set move speed
-    nissaTimbers.speed = 4
+    nissaTimbers.speed = 3
 
     -- basic attack stats
     nissaTimbers.basicSpeed = 8
