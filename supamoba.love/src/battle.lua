@@ -51,16 +51,16 @@ function Battle:new()
 
     -- add client character to allies
     battle.allies[#battle.allies + 1] = battle.character
-    --battle.allies[#battle.allies + 1] = RhogarNemmonis:new()
-    --battle.allies[2].team = 1
-    battle.character.team = 1
 
     -- initialize table for enemies
     battle.enemies = {}
     battle.enemies[#battle.enemies + 1] = NissaTimbers:new()
-    battle.enemies[#battle.enemies + 1] = Tower:new()
-    battle.enemies[1].team = 2
-    battle.enemies[2].team = 2
+
+    --initialize towers
+    battle.towers = {}
+    battle.towers[#battle.towers + 1] = Tower:new(100, 175, 1) --x, y, team
+    battle.towers[#battle.towers + 1] = Tower:new(100, 375, 1)
+    battle.towers[#battle.towers + 1] = Tower:new(200, 275, 1)
 
     -- character icon health bar and health bar back
     battle.iconHealth = love.graphics.newImage('img/battle.icon.health.png')
@@ -76,10 +76,16 @@ function Battle:new()
     -- add characters from allies and enemies to ents for update and draw loops
     battle.ents = {}
     for ind, val in pairs(battle.allies) do
+        val.team = 1
         battle.ents[#battle.ents + 1] = val
     end
 
     for ind, val in pairs(battle.enemies) do
+        val.team = 2
+        battle.ents[#battle.ents + 1] = val
+    end
+
+    for ind, val in pairs(battle.towers) do
         battle.ents[#battle.ents + 1] = val
     end
 

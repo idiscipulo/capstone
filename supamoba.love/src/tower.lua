@@ -2,9 +2,12 @@ Tower = {}
 Tower.__index = Tower
 setmetatable(Tower, Character)
 
-function Tower:new()
+function Tower:new(x, y, team)
     local tower = Character:new()
     setmetatable(tower, Tower)
+
+    --set team
+    tower.team = team
 
     -- icon image
     tower.icon = love.graphics.newImage('img/RomeroKao.icon.png')
@@ -33,8 +36,8 @@ function Tower:new()
     tower.attackTimer = tower.attackTimerMax
 
     -- set sprite location, size, and name for image file
-    tower.sprite:set(200, 250, 16, 16, 'RomeroKao')
-
+    tower.sprite:set(x, y, 16, 16, 'RomeroKao')
+    
     -- set name
     tower.textName = 'Tower'
     tower.name = font:printToCanvas('Tower', 160, 10, 'center')
