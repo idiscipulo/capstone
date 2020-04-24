@@ -87,7 +87,7 @@ function Character:update()
         val:tick()
     end
 
-    if self.curHealth <= 0 then self.isDead = true end
+    -- if self.curHealth <= 0 then self.isDead = true end
 
     --run basic attack cooldown timer
     if not self.canAttack then 
@@ -209,6 +209,10 @@ function Character:takeDamage(amt)
 
         -- add damage number to numbers
         stateList['battle'].numbers[ind] = Number:new(ind, self, amt, 'DAMAGE')
+    end
+
+    if self.curHealth == 0 then
+        self.deathTime = 120
     end
 end
 

@@ -100,4 +100,8 @@ function RhogarNemmonis:takeDamage(amt)
         -- add damage number to numbers
         stateList['battle'].numbers[ind] = Number:new(ind, self, amt, 'DAMAGE')
     end
+
+    if self.curHealth == 0 then
+        self.deathTime = 5
+    end
 end
