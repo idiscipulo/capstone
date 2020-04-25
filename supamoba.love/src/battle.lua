@@ -122,6 +122,8 @@ function Battle:update()
         -- update characters
         for ind, val in pairs(self.ents) do
 
+            if val.isDead and val.isTower then self.ents[ind] = nil end
+
                 -- update abilities
             for ind2, val2 in pairs(val.abilities) do
                 val2:update()
@@ -211,7 +213,7 @@ function Battle:update()
                         val.isDebuffed = false 
                         val.isBuffed = false 
                         val.isDashing = false 
-
+                        val.isDead = false
                         if val.team == 1 then
                             val.sprite.x = 48
                             val.sprite.y = 200

@@ -203,6 +203,7 @@ function Character:addAbility(ab)
 end
 
 function Character:takeDamage(amt)
+ 
     if self.deathTime == 0 then
         if self.isBuffed then amt = amt / 2 end 
         if self.isDebuffed then amt = amt * 2 end 
@@ -220,6 +221,7 @@ function Character:takeDamage(amt)
 
         if self.curHealth == 0 then
             self.deathTime = 300
+            self.isDead = true 
         end
     end
 end

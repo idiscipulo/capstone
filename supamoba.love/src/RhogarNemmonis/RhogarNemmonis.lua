@@ -77,7 +77,7 @@ function RhogarNemmonis:takeDamage(amt)
             local enemyDistances = {}
             local enemyList = {}
             for ind, val in pairs(stateList['battle'].ents) do 
-                if val.team ~= self.team then 
+                if val.team ~= self.team and not val.isDead then 
                     local enemyDistance = math.sqrt((self.sprite.x - val.sprite.x)^2 + (self.sprite.y - val.sprite.y)^2)
                     enemyDistances[#enemyDistances + 1] = enemyDistance
                     enemyList[#enemyList + 1] = val
@@ -105,7 +105,8 @@ function RhogarNemmonis:takeDamage(amt)
         end
 
         if self.curHealth == 0 then
-            self.deathTime = 5
+            self.deathTime = 300
+            self.isDead = true
         end
     end
 end
