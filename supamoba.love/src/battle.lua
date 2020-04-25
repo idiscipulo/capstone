@@ -5,6 +5,7 @@ function Battle:new(character, ents)
     local battle = {}
     setmetatable(battle, Battle)
 
+    -- 0 no winner, 1 team1 wins, 2 team2 wins
     battle.winner = 0
 
     -- template image
@@ -24,33 +25,6 @@ function Battle:new(character, ents)
     battle.spriteHealth = love.graphics.newImage('img/battle.sprite.health.png')
     battle.spriteHealthBack = love.graphics.newImage('img/battle.sprite.health.back.png')
 
-    --[[
-    --set the player's character
-    --battle.character = character
-
-    --list of all characters
-    battle.characterList = {}
-    battle.characterList[#battle.characterList + 1] = AnderShemov:new()
-    battle.characterList[#battle.characterList + 1] = NissaTimbers:new()
-    battle.characterList[#battle.characterList + 1] = PaeliasAmakir:new()
-    battle.characterList[#battle.characterList + 1] = RhogarNemmonis:new()
-    battle.characterList[#battle.characterList + 1] = RomeroKao:new()
-    battle.characterList[#battle.characterList + 1] = ZainnaRaunor:new()
-
-    -- populate teams with remaining characters
-    for ind, val in pairs(battle.characterList) do 
-        if battle.characterList[ind] == battle.character then 
-            battle.characterList[ind] = nil 
-        end
-    end
-    ]]--
-
-    -- load character that this client controls
-    --battle.character = AnderShemov:new()
-    --battle.character = NissaTimbers:new()
-    --battle.character = PaeliasAmakir:new()
-    --battle.character = RhogarNemmonis:new()
-    --battle.character = RomeroKao:new()
     battle.character = character
     battle.ents = ents
 
@@ -78,6 +52,11 @@ function Battle:new(character, ents)
     battle.towers[#battle.towers + 1] = Tower:new(1100, 375, 2)
     battle.towers[#battle.towers + 1] = Tower:new(1000, 275, 2)
 
+    --add towers to entity list
+    for ind, val in pairs(battle.towers) do
+        battle.ents[#battle.ents + 1] = val
+    end
+
     -- character icon health bar and health bar back
     battle.iconHealth = love.graphics.newImage('img/battle.icon.health.png')
     battle.iconHealthBack = love.graphics.newImage('img/battle.icon.health.back.png')
@@ -88,35 +67,6 @@ function Battle:new(character, ents)
 
     -- initialize time canvas
     battle.time = font:printToCanvas('', 38, 10, 'left')
-
-    --[[
-    -- temporary hardcoding of characters
-    -- initialize table for allies
-    battle.allies = {}
-
-    -- add client character to allies
-    battle.allies[#battle.allies + 1] = battle.character
-
-    -- initialize table for enemies
-    battle.enemies = {}
-    battle.enemies[#battle.enemies + 1] = NissaTimbers:new()
-
-    -- add characters from allies and enemies to ents for update and draw loops
-    for ind, val in pairs(battle.allies) do
-        val.team = 1
-        -- battle.ents[#battle.ents + 1] = val
-    end
-
-    for ind, val in pairs(battle.enemies) do
-        val.team = 2
-        -- battle.ents[#battle.ents + 1] = val
-    end
-    ]]--
-    
-
-    for ind, val in pairs(battle.towers) do
-        battle.ents[#battle.ents + 1] = val
-    end
 
     return battle
 end
@@ -274,7 +224,9 @@ function Battle:update()
             end
         end
     elseif self.winner == 1 then
+        love.graphics.print('Team 1 Wins!', 500, 250, 0, 2, 2)
     elseif self.winner == 2 then
+        love.graphics.print('Team 2 Wins!', 500, 250, 0, 2, 2)
     end
 end
 
