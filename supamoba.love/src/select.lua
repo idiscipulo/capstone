@@ -41,6 +41,7 @@ function Select:update()
         elseif 429 < mouse.x and mouse.x < 429 + 105 and 263 < mouse.y and mouse.y < 263 + 105 then
             self.character = self.chars[4]
         elseif 549 < mouse.x and mouse.x < 549 + 105 and 263 < mouse.y and mouse.y < 263 + 105 then
+            print('test')
             self.character = self.chars[5]
         elseif 669 < mouse.x and mouse.x < 669 + 105 and 263 < mouse.y and mouse.y < 263 + 105 then 
             self.character = self.chars[6]
@@ -65,7 +66,7 @@ function Select:draw()
     end
 
     for ind, val in pairs(self.chars) do
-        love.graphics.draw(val.icon, 434 + (120 * (ind % 3)), 146 + (122 * math.floor((ind - 1) / 3)), 0, 2)
+        love.graphics.draw(val.icon, 434 + (120 * ((ind - 1) % 3)), 146 + (122 * math.floor((ind - 1) / 3)), 0, 2)
     end
 
     --start button
@@ -96,6 +97,7 @@ function Select:draw()
 end
 
 function Select:startGame()
+    print(self.character.textName)
     self.character.team = 1
 
     local rList = {1, 1, 2, 2, 2}

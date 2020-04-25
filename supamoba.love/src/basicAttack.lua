@@ -61,6 +61,7 @@ function BasicAttack:new(damage, char, ind, x, y, cooldown, name, speed, angle, 
 
     -- set image
     basicAttack.img = love.graphics.newImage('img/'..name..'.png')
+    basicAttack.partName = name..'.explosion'
 
     return basicAttack
 end
@@ -92,7 +93,7 @@ function BasicAttack:detectCollision()
                 if math.abs(self.x - val.sprite.x) < 15 and math.abs(self.y - val.sprite.y) < 15 then 
                     -- explostion effect
                     local ind2 = #stateList['battle'].particles + 1
-                    stateList['battle'].particles[ind2] = Particle:new(ind2, (self.x + val.sprite.x) / 2, (self.y + val.sprite.y) / 2, 0.1, 'basic.explosion')
+                    stateList['battle'].particles[ind2] = Particle:new(ind2, (self.x + val.sprite.x) / 2, (self.y + val.sprite.y) / 2, 0.1, self.partName)
 
                     val:takeDamage(self.damage)
                     

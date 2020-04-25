@@ -28,7 +28,7 @@ function Tower:new(x, y, team)
 
     -- basic attack stats
     tower.basicSpeed = 8
-    tower.basicName = 'basic.sprite' 
+    tower.basicName = 'tower.basic' 
     tower.basicCooldown = 1
 
     -- basic attack cooldown
