@@ -18,7 +18,7 @@ function AIController:execute(char)
         end
     end]]
     for ind, val in pairs(stateList['battle'].ents) do 
-        if val.team ~= char.team and char.canAttack then 
+        if val.team ~= char.team and char.canAttack and not val.isDead then 
             local distance = math.sqrt( (char.sprite.x - val.sprite.x)^2 + (char.sprite.y - val.sprite.y)^2 )
             if distance < char.range then 
                 local angle = math.atan2(char.sprite.y - val.sprite.y, char.sprite.x - val.sprite.x)
