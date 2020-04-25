@@ -233,13 +233,6 @@ function Battle:update()
 end
 
 function Battle:draw()
-
-    if self.winner == 1 then 
-        love.graphics.print('Team 1 Wins!', 500, 250, 0, 2, 2)
-    elseif self.winner == 2 then 
-        love.graphics.print('Team 2 Wins!', 500, 250, 0, 2, 2)
-    end
-    
     -- TESTING START
     if temp then
         love.graphics.draw(self.temp, 0, 0)
@@ -342,6 +335,12 @@ function Battle:draw()
     -- draw numbers
     for ind, val in pairs(self.numbers) do 
         val:draw()
+    end
+
+    if self.winner == 1 then 
+        love.graphics.print('Team 1 Wins!', 500, 250, 0, 2, 2)
+    elseif self.winner == 2 then 
+        love.graphics.print('Team 2 Wins!', 500, 250, 0, 2, 2)
     end
 
 end

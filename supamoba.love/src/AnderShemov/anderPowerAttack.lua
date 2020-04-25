@@ -33,7 +33,7 @@ function AnderPowerAttack:use()
         
         local ind = #self.character.basicAttacks + 1
                                            --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
-        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.1, self.character.basicName, self.character.basicSpeed / 2, angle, 0.1)
+        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.1, 'ander.basic', self.character.basicSpeed / 2, angle, 0.1)
         self.character.basicAttacks[ind] = basicAttack
     end
 end
