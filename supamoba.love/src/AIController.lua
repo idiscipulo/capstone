@@ -2,7 +2,7 @@ AIController = {}
 AIController.__index = AIController
 
 function AIController:execute(char)
-
+    local randNum = 1
     --tower locations and center
     if char.team == 1 then 
         local t1x, t1y = 100, 175
@@ -26,12 +26,22 @@ function AIController:execute(char)
             char.canAttack = false
 
             -- % chance to use a random ability
-            local num = love.math.random(7)
-            if num == 7 then 
-                local num2 = love.math.random(3)
-                char.abilities[num2]:use(angle)
+            randNum = love.math.random(10)
+            if randNum == 1 then 
+                randNum = love.math.random(3)
+                char.abilities[randNum]:use(angle)
             end
         end
     end
-    char:setGoal(char.sprite.x + (20 * (2 - (stateList['battle'].sec % 4))), char.sprite.y + (50 * (1 - (stateList['battle'].sec % 2))))
+
+    randNum = love.math.random(25)
+    if randNum == 1 then 
+        local randX, randY = 0, 0
+        while math.abs(randX) < 50 and math.abs(randY) < 25 do
+            randX, randY = love.math.random(-200, 200), love.math.random(-100, 100)
+        end
+        char:setGoal(char.sprite.x + randX, char.sprite.y + randY)
+        --char:setGoal(char.sprite.x + (20 * (2 - (stateList['battle'].sec % 4))), char.sprite.y + (50 * (1 - (stateList['battle'].sec % 2))))
+    end
 end
+
