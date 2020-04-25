@@ -44,7 +44,7 @@ function Select:update()
             self.character = self.chars[5]
         elseif 669 < mouse.x and mouse.x < 669 + 105 and 263 < mouse.y and mouse.y < 263 + 105 then 
             self.character = self.chars[6]
-        else
+        elseif 500 < mouse.x and mouse.x < 500 + 200 and 420 < mouse.y and mouse.y < 420 + 50 then
             self:startGame()
         end
     end
@@ -67,6 +67,13 @@ function Select:draw()
     for ind, val in pairs(self.chars) do
         love.graphics.draw(val.icon, 434 + (120 * (ind % 3)), 146 + (122 * math.floor((ind - 1) / 3)), 0, 2)
     end
+
+    --start button
+    love.graphics.setColor(0, 255, 0)
+    love.graphics.rectangle('fill', 500, 420, 200, 50)
+    love.graphics.setColor(255, 255, 255)
+    love.graphics.print('Start', 565, 430, 0, 2, 2)
+    
 
     -- draw character name
     love.graphics.draw(self.character.name, 836, 574, 0, 2, 2)
