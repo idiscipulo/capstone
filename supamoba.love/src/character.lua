@@ -184,6 +184,7 @@ end
 
 function Character:addBasicAttack(damage, angle, cooldown, delay, effect, effectTimer)
     local ind = #self.basicAttacks + 1
+                                      --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
     local basicAttack = BasicAttack:new(damage, self, ind, self.sprite.x, self.sprite.y, cooldown, self.basicName, self.basicSpeed, angle, delay, effect, effectTimer)
     self.basicAttacks[ind] = basicAttack
 end

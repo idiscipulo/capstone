@@ -32,6 +32,7 @@ function AnderPowerAttack:use()
         local angle = math.atan2(self.character.sprite.y - goalY, self.character.sprite.x - goalX)
         
         local ind = #self.character.basicAttacks + 1
+                                           --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
         local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.1, self.character.basicName, self.character.basicSpeed / 2, angle, 0.1)
         self.character.basicAttacks[ind] = basicAttack
     end

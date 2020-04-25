@@ -226,13 +226,19 @@ function Battle:update()
             end
         end
     elseif self.winner == 1 then
-        love.graphics.print('Team 1 Wins!', 500, 250, 0, 2, 2)
+       --freeze the game 
     elseif self.winner == 2 then
-        love.graphics.print('Team 2 Wins!', 500, 250, 0, 2, 2)
+        --freeze the game
     end
 end
 
 function Battle:draw()
+
+    if self.winner == 1 then 
+        love.graphics.print('Team 1 Wins!', 500, 250, 0, 2, 2)
+    elseif self.winner == 2 then 
+        love.graphics.print('Team 2 Wins!', 500, 250, 0, 2, 2)
+    end
     
     -- TESTING START
     if temp then
