@@ -77,7 +77,7 @@ function RhogarNemmonis:takeDamage(amt)
             local enemyDistances = {}
             local enemyList = {}
             for ind, val in pairs(stateList['battle'].enemies) do 
-                local enemyDistance = math.sqrt((val.sprite.x * val.sprite.x) + (val.sprite.y * val.sprite.y))
+                local enemyDistance = math.sqrt((self.sprite.x - val.sprite.x)^2 + (self.sprite.y - val.sprite.y)^2)
                 enemyDistances[#enemyDistances + 1] = enemyDistance
                 enemyList[#enemyList + 1] = val
             end
