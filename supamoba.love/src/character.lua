@@ -10,6 +10,8 @@ function Character:new()
     -- icon
     character.icon = nil
 
+    character.isAI = true
+
     -- sprite
     character.sprite = Sprite:new()
 

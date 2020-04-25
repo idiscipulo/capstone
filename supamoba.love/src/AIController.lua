@@ -2,16 +2,34 @@ AIController = {}
 AIController.__index = AIController
 
 function AIController:execute(char)
+
+    --tower locations and center
+    if char.team == 1 then 
+        local t1x, t1y = 100, 175
+        local t2x, t2y = 100, 375
+        local t3x, t3y = 200, 275
+        local centerx, centery = 150, 275
+    else
+        local t1x, t1y = 1100, 175
+        local t2x, t2y = 1100, 375
+        local t3x, t3y = 1000, 275
+        local centerx, centery = 1050, 275
+    end
+
+
     for ind, val in pairs(stateList['battle'].ents) do 
-        if val.team ~= char.team and char.canAttack and not val.isDead then 
-            local distance = math.sqrt( (char.sprite.x - val.sprite.x)^2 + (char.sprite.y - val.sprite.y)^2 )
-            if distance < char.range then 
-                local angle = math.atan2(char.sprite.y - val.sprite.y, char.sprite.x - val.sprite.x)
+        local distance = math.sqrt( (char.sprite.x - val.sprite.x)^2 + (char.sprite.y - val.sprite.y)^2 )
+        if val.team ~= char.team and char.canAttack and not val.isDead and distance < char.range then --attack
+            local angle = math.atan2(char.sprite.y - val.sprite.y, char.sprite.x - val.sprite.x)
+            local cooldown = (distance / (char.basicSpeed * 60))
+            char:addBasicAttack(char.basicDamage, angle, cooldown, 0)
+            char.canAttack = false
 
-                local cooldown = (distance / (char.basicSpeed * 60))
-
-                char:addBasicAttack(char.basicDamage, angle, cooldown, 0)
-                char.canAttack = false
+            -- % chance to use a random ability
+            local num = love.math.random(7)
+            if num == 7 then 
+                local num2 = love.math.random(3)
+                char.abilities[num2]:use(angle)
             end
         end
     end

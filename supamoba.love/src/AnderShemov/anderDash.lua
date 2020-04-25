@@ -23,7 +23,7 @@ function AnderDash:attach(character)
     Ability.attach(self, character)
 end
 
-function AnderDash:use()
+function AnderDash:use(dir)
     if Ability.use(self) then
         self.character:setGoal(mouse.x, mouse.y)
         self.character.speed = self.character.speed * 12

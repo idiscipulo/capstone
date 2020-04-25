@@ -29,6 +29,6 @@ function AbilityExamplePassive:attach(character)
     character.dots[ind] = DotAbilityExamplePassive:new(ind, character)
 end
 
-function AbilityExamplePassive:use()
+function AbilityExamplePassive:use(dir)
     -- pass
 end

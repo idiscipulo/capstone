@@ -99,6 +99,7 @@ end
 function Select:startGame()
     print(self.character.textName)
     self.character.team = 1
+    self.character.isAI = false
 
     local rList = {1, 1, 2, 2, 2}
     --shuffle

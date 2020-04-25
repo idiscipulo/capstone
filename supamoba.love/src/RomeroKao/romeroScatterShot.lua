@@ -26,7 +26,7 @@ function RomeroScatterShot:attach(character)
     Ability.attach(self, character)
 end
 
-function RomeroScatterShot:use()
+function RomeroScatterShot:use(dir)
     if Ability.use(self) then
         local angle1 = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
         local angle2 = angle1 - math.pi/4

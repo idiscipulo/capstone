@@ -26,7 +26,7 @@ function ZainnaBuff:attach(character)
     Ability.attach(self, character)
 end
 
-function ZainnaBuff:use()
+function ZainnaBuff:use(dir)
     if Ability.use(self) then
         self.character.isBuffed = true
         self.character.speed = self.character.speed * self.moveMultiplier

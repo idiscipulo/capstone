@@ -27,7 +27,7 @@ function RhogarReflectAttack:attach(character)
     Ability.attach(self, character)
 end
 
-function RhogarReflectAttack:use()
+function RhogarReflectAttack:use(dir)
     if Ability.use(self) then
         self.isActive = true
     end

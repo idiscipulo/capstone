@@ -27,7 +27,7 @@ function AbilityExampleAOEEffect:attach(character)
     Ability.attach(self, character)
 end
 
-function AbilityExampleAOEEffect:use()
+function AbilityExampleAOEEffect:use(dir)
     if Ability.use(self) then
         -- compute x and y so aoe is centered on mouse
         local x = mouse.x - (#self.map[1] / 2) * 16

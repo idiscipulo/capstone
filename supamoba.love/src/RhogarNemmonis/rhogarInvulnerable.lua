@@ -23,7 +23,7 @@ function RhogarInvulnerable:attach(character)
     Ability.attach(self, character)
 end
 
-function RhogarInvulnerable:use()
+function RhogarInvulnerable:use(dir)
     if Ability.use(self) then
         self.character.isInvulnerable = true
     end

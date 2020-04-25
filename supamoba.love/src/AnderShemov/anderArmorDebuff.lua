@@ -25,9 +25,11 @@ function AnderArmorDebuff:attach(character)
     Ability.attach(self, character)
 end
 
-function AnderArmorDebuff:use()
+function AnderArmorDebuff:use(dir)
     if Ability.use(self) then
-        local angle = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
+        local angle = nil
+        if self.character.isAI then angle = dir 
+        else angle = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x) end 
 
         local ind = #self.character.basicAttacks + 1
                                            --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer

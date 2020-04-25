@@ -25,7 +25,7 @@ function AnderPowerAttack:attach(character)
     Ability.attach(self, character)
 end
 
-function AnderPowerAttack:use()
+function AnderPowerAttack:use(dir)
     if Ability.use(self) then
         local goalX = mouse.x
         local goalY = mouse.y

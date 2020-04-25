@@ -23,7 +23,7 @@ function PaeliasBuff:attach(character)
     Ability.attach(self, character)
 end
 
-function PaeliasBuff:use()
+function PaeliasBuff:use(dir)
     if Ability.use(self) then
         self.character.isBuffed = true
     end

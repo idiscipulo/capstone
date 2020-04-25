@@ -25,7 +25,7 @@ function PaeliasAOERoot:attach(character)
     Ability.attach(self, character)
 end
 
-function PaeliasAOERoot:use()
+function PaeliasAOERoot:use(dir)
     if Ability.use(self) then
         -- compute x and y so aoe is centered on mouse
         local x = mouse.x - (#self.map[1] / 2) * 16
