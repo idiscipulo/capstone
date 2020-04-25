@@ -262,3 +262,24 @@ function Character:applyEffect(effect, effectTimer)
         self.isDebuffed = true 
     end
 end
+
+function Character:getClosestEnemy() --returns x, y of nearest enemy
+    local enemyDistances = {}
+    local enemyList = {}
+    for ind, val in pairs(stateList['battle'].ents) do 
+        if val.team ~= self.team and not val.isDead then 
+            local enemyDistance = math.sqrt((self.sprite.x - val.sprite.x)^2 + (self.sprite.y - val.sprite.y)^2)
+            enemyDistances[#enemyDistances + 1] = enemyDistance
+            enemyList[#enemyList + 1] = val
+        end
+    end
+    local key = 1
+    local min = enemyDistances[1]
+    for ind, val in pairs(enemyDistances) do
+        if val < min then
+            key = ind
+            min = val
+        end
+    end
+    return enemyList[key].sprite.x, enemyList[key].sprite.y
+end

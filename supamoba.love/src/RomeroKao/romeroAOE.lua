@@ -27,10 +27,13 @@ end
 
 function RomeroAOE:use(dir)
     if Ability.use(self) then
-        -- compute x and y so aoe is centered on mouse
-        local x = mouse.x - (#self.map[1] / 2) * 16
-        local y = mouse.y - (#self.map / 2) * 16
-
+        local x, y = nil, nil
+        if self.character.isAI then 
+            x, y = self.character:getClosestEnemy()
+        else
+            x = mouse.x - (#self.map[1] / 2) * 16
+            y = mouse.y - (#self.map / 2) * 16
+        end
         -- get index for next spot in particle list
         local ind = #stateList['battle'].particles + 1
 
