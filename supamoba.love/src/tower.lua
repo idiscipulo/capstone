@@ -50,7 +50,7 @@ function Tower:update()
     --run basic attack cooldown timer
 
     for ind, val in pairs(stateList['battle'].ents) do 
-        if val.team ~= self.team and self.canAttack then 
+        if val.team ~= self.team and self.canAttack and not val.isDead then 
             local distance = math.sqrt( (self.sprite.x - val.sprite.x)^2 + (self.sprite.y - val.sprite.y)^2 )
             if distance < self.range then 
                 local angle = math.atan2(self.sprite.y - val.sprite.y, self.sprite.x - val.sprite.x)
