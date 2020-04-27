@@ -14,7 +14,7 @@ function PaeliasAmakir:new()
     paeliasAmakir.curHealth = 150
 
     -- set move speed
-    paeliasAmakir.speed = 3
+    paeliasAmakir.speed = 2
 
     -- basic attack stats
     paeliasAmakir.basicSpeed = 8

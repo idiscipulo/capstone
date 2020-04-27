@@ -14,7 +14,7 @@ function RomeroKao:new()
     romeroKao.curHealth = 150
 
     -- set move speed
-    romeroKao.speed = 3
+    romeroKao.speed = 2
 
     -- basic attack stats
     romeroKao.basicSpeed = 8

@@ -321,11 +321,15 @@ function Battle:draw()
             val.sprite:draw()
 
             healthFactor = val.curHealth / val.maxHealth
-            love.graphics.draw(self.spriteHealthBack, val.sprite.x, val.sprite.y + 18)
-            love.graphics.draw(self.spriteHealth, val.sprite.x, val.sprite.y + 18, 0, healthFactor, 1)
 
+            if val.team == 1 then
+                love.graphics.draw(self.spriteHealthBack, val.sprite.x, val.sprite.y + 18)
+                love.graphics.draw(self.spriteHealth, val.sprite.x, val.sprite.y + 18, 0, healthFactor, 1)
+            elseif val.team == 2 then
+                love.graphics.draw(self.spriteHealthBack, val.sprite.x, val.sprite.y + 18)
+                love.graphics.draw(self.spriteHealth, val.sprite.x, val.sprite.y + 18, 0, healthFactor, 1)
+            end
         end
-
             --draw basic attacks
         for ind2, val2 in pairs(val.basicAttacks) do 
             val2:draw()

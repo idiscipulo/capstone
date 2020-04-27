@@ -14,7 +14,7 @@ function AnderShemov:new()
     anderShemov.curHealth = 150
 
     -- set move speed
-    anderShemov.speed = 3
+    anderShemov.speed = 2
 
     -- basic attack stats
     anderShemov.basicSpeed = 8

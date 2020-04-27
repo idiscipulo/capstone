@@ -9,7 +9,7 @@ function NissaBlind:new(user)
     setmetatable(nissaBlind, NissaBlind)
 
     -- set x, y, width, height, cooldown (in seconds), and name
-    nissaBlind:set(0, 0, 80, 80, 5, 'abilityExampleDirectDamage')
+    nissaBlind:set(0, 0, 80, 80, 5, 'nissablind')
 
     -- create description text
     nissaBlind.desc = font:printToCanvas('blind an enemy so that they cannot use abilites', 189, 38, 'left')
@@ -31,8 +31,15 @@ end
 function NissaBlind:use(dir)
     if Ability.use(self) then
         local angle = nil
-        if self.character.isAI then angle = dir 
-        else angle = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x) end
-        self.character:addBasicAttack(self.damage, angle, 0.5, 0, self.effect, self.effectTimer)
+        if self.character.isAI then 
+            angle = dir 
+        else 
+            angle = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x) 
+        end
+
+        local ind = #self.character.basicAttacks + 1
+                                            --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
+        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.4, 'nissablind.sprite', self.character.basicSpeed, angle, 0, self.effect, 2)
+        self.character.basicAttacks[ind] = basicAttack
     end
 end

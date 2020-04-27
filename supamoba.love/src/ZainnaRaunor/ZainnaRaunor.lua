@@ -14,7 +14,7 @@ function ZainnaRaunor:new()
     zainnaRaunor.curHealth = 150
 
     -- set move speed
-    zainnaRaunor.speed = 3
+    zainnaRaunor.speed = 2
 
     -- basic attack stats
     zainnaRaunor.basicSpeed = 8

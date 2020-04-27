@@ -41,7 +41,7 @@ function Character:new()
     character.basicAttacks = {}
 
     --move speed
-    character.speed = 3
+    character.speed = 2
 
     -- basic attack stats
     character.basicDamage = 3

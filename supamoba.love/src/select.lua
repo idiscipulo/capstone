@@ -15,6 +15,8 @@ function Select:new()
 
     select.character = select.chars[1]
 
+    select.startText = font:printToCanvas('start', 60, 12, 'center')
+
     -- background image
     select.back = love.graphics.newImage('img/select.back.png')
 
@@ -70,11 +72,7 @@ function Select:draw()
     end
 
     --start button
-    love.graphics.setColor(0, 255, 0)
-    love.graphics.rectangle('fill', 500, 420, 200, 50)
-    love.graphics.setColor(255, 255, 255)
-    love.graphics.print('Start', 565, 430, 0, 2, 2)
-    
+    love.graphics.draw(self.startText, 500, 430, 0, 3.5)
 
     -- draw character name
     love.graphics.draw(self.character.name, 836, 574, 0, 2, 2)

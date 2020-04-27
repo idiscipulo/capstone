@@ -8,7 +8,7 @@ function Character:new(id)
 
     character.id = id -- set id
 
-    character.speed = 3 -- speed for movement
+    character.speed = 2 -- speed for movement
     character.goal_x = 0 -- goal for movement
     character.goal_y = 0 -- goal for movement
 
