@@ -12,7 +12,7 @@ function NissaHeal:new(user)
     nissaHeal:set(0, 0, 80, 80, 5, 'nissaheal')
 
     -- create description text
-    nissaHeal.desc = font:printToCanvas('heal an ally', 189, 38, 'left')
+    nissaHeal.desc = font:printToCanvas('supamoba', 189, 38, 'left')
 
     nissaHeal.character = user
 
