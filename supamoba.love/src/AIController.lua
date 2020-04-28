@@ -38,12 +38,12 @@ function AIController:execute(char)
     if randNum == 1 then 
         local randX, randY = love.math.random(-200, 200), love.math.random(-100, 100)
         if char.team == 1 then 
-            while randX < char.sprite.x - 25 and math.abs(randY) < 25 do 
+            while randX < -50 and math.abs(randY) < 25 do 
                 randX, randY = love.math.random(-200, 200), love.math.random(-100, 100)
             end
         end
         if char.team == 2 then 
-            while randX > char.sprite.x + 25 and math.abs(randY) < 25 do 
+            while randX > 50 and math.abs(randY) < 25 do 
                 randX, randY = love.math.random(-200, 200), love.math.random(-100, 100)
             end
         end

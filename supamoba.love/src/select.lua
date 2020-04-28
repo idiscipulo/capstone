@@ -100,6 +100,12 @@ function Select:startGame()
     self.character.isAI = false
 
     local rList = {1, 1, 2, 2, 2}
+
+    --player starting positions
+    local xList1 = {150, 150, 150}
+    local yList1 = {175, 275, 375}
+    local xList2 = {1050, 1050, 1050}
+    local yList2 = {175, 275, 375}
     --shuffle
     math.randomseed(os.time())
     for i = #rList, 2, -1 do
@@ -108,10 +114,18 @@ function Select:startGame()
     end 
 
     local ind2 = 1
+    local ind3, ind4 = 1, 1
     for ind, val in pairs(self.chars) do 
         if val ~= self.character then 
             val.team = rList[ind2]
             ind2 = ind2 + 1
+        end
+        if val.team == 1 then 
+            val.sprite.x, val.sprite.y = xList1[ind3], yList1[ind3]
+            ind3 = ind3 + 1
+        else
+            val.sprite.x, val.sprite.y = xList2[ind4], yList1[ind4]
+            ind4 = ind4 + 1
         end
     end
     stateList['battle'] = Battle:new(self.character, self.chars)
