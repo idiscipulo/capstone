@@ -288,7 +288,7 @@ function Character:getClosestAlly() --returns x, y of nearest enemy
     local allyDistances = {}
     local allyList = {}
     for ind, val in pairs(stateList['battle'].ents) do 
-        if val.team == self.team and not val.isDead then 
+        if val.team == self.team and not val.isDead and not val.isTower then 
             local allyDistance = math.sqrt((self.sprite.x - val.sprite.x)^2 + (self.sprite.y - val.sprite.y)^2)
             allyDistances[#allyDistances + 1] = allyDistance
             allyList[#allyList + 1] = val

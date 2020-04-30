@@ -33,18 +33,17 @@ function AIController:execute(char)
             end
         end
     end
-    -- random movement, but biased so that teams move towards the opposite towers
+    -- movement
     randNum = love.math.random(25)
     if randNum == 1 then 
         local randX, randY
-        --if stateList['battle'].min == 0 and stateList['battle'].sec < 8 then --when the game is just starting, move more quickly to other side
         if char.team == 1 then 
-            if char.sprite.x < 400 then 
+            if char.sprite.x < 400 then                                                 -- if they're by their towers move quickly towards middle
                 randX, randY = love.math.random(-20, 200), love.math.random(-50, 50)
-            elseif char.sprite.x >= 400 and char.sprite.x < 800 then 
+            elseif char.sprite.x >= 400 and char.sprite.x < 800 then                    -- if they're in the middle, move more randomly with bias towards enemy towers
                 randX, randY = love.math.random(-150, 200), love.math.random(-100, 100)
-            else
-                randX, randY = love.math.random(-200, 150), love.math.random(-100, 100)
+            else                                                                        -- if they're by enemy towers move randomly with bias towards middle
+                randX, randY = love.math.random(-200, 150), love.math.random(-100, 100) 
             end
         elseif char.team == 2 then
             if char.sprite.x > 800 then 
@@ -55,7 +54,7 @@ function AIController:execute(char)
                 randX, randY = love.math.random(-150, 200), love.math.random(-100, 100)
             end 
         end
-        
+
         char:setGoal(char.sprite.x + randX, char.sprite.y + randY)
     end
 end
