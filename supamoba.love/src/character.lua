@@ -283,3 +283,24 @@ function Character:getClosestEnemy() --returns x, y of nearest enemy
     end
     return enemyList[key].sprite.x, enemyList[key].sprite.y
 end
+
+function Character:getClosestAlly() --returns x, y of nearest enemy
+    local allyDistances = {}
+    local allyList = {}
+    for ind, val in pairs(stateList['battle'].ents) do 
+        if val.team == self.team and not val.isDead then 
+            local allyDistance = math.sqrt((self.sprite.x - val.sprite.x)^2 + (self.sprite.y - val.sprite.y)^2)
+            allyDistances[#allyDistances + 1] = allyDistance
+            allyList[#allyList + 1] = val
+        end
+    end
+    local key = 1
+    local min = allyDistances[1]
+    for ind, val in pairs(allyDistances) do
+        if val < min then
+            key = ind
+            min = val
+        end
+    end
+    return allyList[key].sprite.x, allyList[key].sprite.y
+end

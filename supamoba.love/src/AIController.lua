@@ -16,7 +16,7 @@ function AIController:execute(char)
         local centerx, centery = 1050, 275
     end
 
-
+    --attack enemies if they are within range
     for ind, val in pairs(stateList['battle'].ents) do 
         local distance = math.sqrt( (char.sprite.x - val.sprite.x)^2 + (char.sprite.y - val.sprite.y)^2 )
         if val.team ~= char.team and char.canAttack and not val.isDead and distance < char.range then --attack
@@ -26,7 +26,7 @@ function AIController:execute(char)
             char.canAttack = false
 
             -- % chance to use a random ability
-            randNum = love.math.random(10)
+            randNum = love.math.random(5)
             if randNum == 1 then 
                 randNum = love.math.random(3)
                 char.abilities[randNum]:use(angle)
@@ -36,19 +36,27 @@ function AIController:execute(char)
     -- random movement, but biased so that teams move towards the opposite towers
     randNum = love.math.random(25)
     if randNum == 1 then 
-        local randX, randY = love.math.random(-200, 200), love.math.random(-100, 100)
+        local randX, randY
+        --if stateList['battle'].min == 0 and stateList['battle'].sec < 8 then --when the game is just starting, move more quickly to other side
         if char.team == 1 then 
-            while randX < -50 and math.abs(randY) < 25 do 
-                randX, randY = love.math.random(-200, 200), love.math.random(-100, 100)
+            if char.sprite.x < 400 then 
+                randX, randY = love.math.random(-20, 200), love.math.random(-50, 50)
+            elseif char.sprite.x >= 400 and char.sprite.x < 800 then 
+                randX, randY = love.math.random(-150, 200), love.math.random(-100, 100)
+            else
+                randX, randY = love.math.random(-200, 150), love.math.random(-100, 100)
             end
+        elseif char.team == 2 then
+            if char.sprite.x > 800 then 
+                randX, randY = love.math.random(-200, 20), love.math.random(-50, 50)
+            elseif char.sprite.x <= 800 and char.sprite.x > 400 then 
+                randX, randY = love.math.random(-200, 150), love.math.random(-100, 100)
+            else 
+                randX, randY = love.math.random(-150, 200), love.math.random(-100, 100)
+            end 
         end
-        if char.team == 2 then 
-            while randX > 50 and math.abs(randY) < 25 do 
-                randX, randY = love.math.random(-200, 200), love.math.random(-100, 100)
-            end
-        end
+        
         char:setGoal(char.sprite.x + randX, char.sprite.y + randY)
-        --char:setGoal(char.sprite.x + (20 * (2 - (stateList['battle'].sec % 4))), char.sprite.y + (50 * (1 - (stateList['battle'].sec % 2))))
     end
 end
 

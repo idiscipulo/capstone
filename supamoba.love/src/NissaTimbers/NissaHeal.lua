@@ -31,7 +31,8 @@ function NissaHeal:use(dir)
     if Ability.use(self) then
         local angle = nil
         if self.character.isAI then 
-            angle = dir 
+            allyX, allyY = self.character:getClosestAlly()
+            angle = math.atan2(self.character.sprite.y - allyY, self.character.sprite.x - allyX) 
         else 
             angle = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x) 
         end
