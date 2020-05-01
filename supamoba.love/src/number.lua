@@ -19,6 +19,7 @@ function Number:new(ind, character, amt, type)
     number.type = type
 
     -- create canvas
+    number.scale = math.max(1, 3 * (math.ceil(amt) / 20))
     number.text = font:printToCanvas(''..math.ceil(amt), 32, 10, 'center')
 
     return number
@@ -52,7 +53,7 @@ function Number:draw()
     end
 
     -- draw number
-    love.graphics.draw(self.text, x, y)
+    love.graphics.draw(self.text, x - ((self.text:getWidth() * self.scale) / 2), y, 0, self.scale)
 
     -- set color mask to normal
     love.graphics.setColor(1, 1, 1, 1)
