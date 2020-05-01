@@ -9,6 +9,15 @@ function Battle:new(character, ents)
 
     -- 0 no winner, 1 team1 wins, 2 team2 wins
     battle.winner = 0
+    if debug == 1 then 
+        battle.winner = 1
+    end
+
+    battle.playAgainText = font:printToCanvas('press enter to play again', 200, 12, 'center')
+    battle.quitText = font:printToCanvas('press esc to quit', 200, 12, 'center')
+
+    battle.winner1Text = font:printToCanvas('you win', 100, 12, 'center')
+    battle.winner2Text = font:printToCanvas('You Lose.', 100, 12, 'center')
 
     -- template image
     battle.temp = love.graphics.newImage('img/temp.battle.main.png')
@@ -229,6 +238,8 @@ function Battle:update()
         end
     elseif self.winner == 1 then
        --freeze the game 
+       --start button
+    
     elseif self.winner == 2 then
         --freeze the game
     end
@@ -350,9 +361,13 @@ function Battle:draw()
     end
 
     if self.winner == 1 then 
-        love.graphics.print('Team 1 Wins!', 500, 250, 0, 2, 2)
+        love.graphics.draw(self.winner1Text, 500, 250, 0, 2, 2)
+        love.graphics.draw(self.playAgainText, 500, 400, 0, 1)
+        love.graphics.draw(self.quitText, 500, 420, 0, 1)
     elseif self.winner == 2 then 
-        love.graphics.print('Team 2 Wins!', 500, 250, 0, 2, 2)
+        love.graphics.draw(self.winner2Text, 500, 250, 0, 2, 2)
+        love.graphics.draw(self.playAgainText, 500, 400, 0, 1)
+        love.graphics.draw(self.quitText, 500, 420, 0, 1)
     end
 
 end
