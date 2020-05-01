@@ -31,8 +31,10 @@ function PaeliasAOEHeal:use(dir)
         if self.character.isAI then 
             x, y = self.character:getClosestEnemy()
         else
-            x = mouse.x - (#self.map[1] / 2) * 16
-            y = mouse.y - (#self.map / 2) * 16
+            local dist = math.min(120, math.sqrt((self.character.sprite.x - mouse.x) ^ 2 + (self.character.sprite.y - mouse.y) ^ 2))
+            local angle = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
+            x = (self.character.sprite.x - math.cos(angle) * dist) - ((#self.map[1] / 2) * 16)
+            y = (self.character.sprite.y - math.sin(angle) * dist) - ((#self.map / 2) * 16)
         end
 
         -- get index for next spot in particle list
