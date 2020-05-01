@@ -8,7 +8,7 @@ function RomeroAOE:new()
     setmetatable(romeroAOE, RomeroAOE)
 
     -- set x, y, width, height, cooldown (in seconds), and name
-    romeroAOE:set(0, 0, 80, 80, 2, 'abilityExampleAOEEffect')
+    romeroAOE:set(0, 0, 80, 80, 4, 'abilityExampleAOEEffect')
 
     -- create description text
     romeroAOE.desc = font:printToCanvas('burn the ground in a cross, dealing 60 damage over 3 seconds.', 189, 38, 'left')

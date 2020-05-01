@@ -82,6 +82,8 @@ function Battle:new(character, ents)
     -- initialize time canvas
     battle.time = font:printToCanvas('', 38, 10, 'left')
 
+    battle.respawnCooldowns = {}
+
     return battle
 end
 
@@ -133,8 +135,12 @@ function Battle:update()
             val:update()
         end
 
+        self.respawnCooldowns = {}
+
         -- update characters
         for ind, val in pairs(self.ents) do
+
+            self.respawnCooldowns[#self.respawnCooldowns + 1] = font:printToCanvas(''..1 + math.floor(val.deathTime / 60), 40, 10, 'center')
 
             if val.isDead and val.isTower then self.ents[ind] = nil end
 
@@ -273,6 +279,7 @@ function Battle:draw()
             if val.deathTime > 0 then
                 love.graphics.draw(self.iconGrey, 12 + ((indAlly - 1) * 80), 10)
                 love.graphics.draw(self.iconHealthBack, 12 + ((indAlly - 1) * 80), 66)
+                love.graphics.draw(self.respawnCooldowns[ind], -4 + ((indAlly - 1) * 80), 26, 0, 2)
             else
                 healthFactor = val.curHealth / val.maxHealth
                 love.graphics.draw(self.iconHealthBack, 12 + ((indAlly - 1) * 80), 66)
@@ -287,6 +294,7 @@ function Battle:draw()
             if val.deathTime > 0 then
                 love.graphics.draw(self.iconGrey, 980 + ((indEnemy - 1) * 80), 10)
                 love.graphics.draw(self.iconHealthBack, 980 + ((indEnemy - 1) * 80), 66)
+                love.graphics.draw(self.respawnCooldowns[ind], 964 + ((indEnemy - 1) * 80), 26, 0, 2)
             else
                 healthFactor = val.curHealth / val.maxHealth
                 love.graphics.draw(self.iconHealthBack, 980 + ((indEnemy - 1) * 80), 66)
