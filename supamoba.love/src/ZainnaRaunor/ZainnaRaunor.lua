@@ -16,6 +16,8 @@ function ZainnaRaunor:new()
     -- set move speed
     zainnaRaunor.speed = 2
 
+    zainnaRaunor.backstory = font:printToCanvas('dark priestess powered by hate and blood magic', 189, 38, 'left')
+
     -- basic attack stats
     zainnaRaunor.basicSpeed = 8
     zainnaRaunor.basicName = 'basic.sprite' 

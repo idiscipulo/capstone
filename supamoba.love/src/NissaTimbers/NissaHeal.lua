@@ -29,23 +29,29 @@ end
 
 function NissaHeal:use(dir)
     if Ability.use(self) then
-        local angle = nil
+       --local angle = nil
+        local angle1, angle2, angle3, angle4, angle5
         if self.character.isAI then 
             allyX, allyY = self.character:getClosestAlly()
-            angle = math.atan2(self.character.sprite.y - allyY, self.character.sprite.x - allyX) 
+            --angle = math.atan2(self.character.sprite.y - allyY, self.character.sprite.x - allyX) 
+            angle1 = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
+            angle2 = angle1 - math.pi/4
+            angle3 = angle1 - math.pi/8
+            angle4 = angle1 + math.pi/8
+            angle5 = angle1 + math.pi/4
         else 
-            angle = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x) 
+            local angle1 = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
+            local angle2 = angle1 - math.pi/4
+            local angle3 = angle1 - math.pi/8
+            local angle4 = angle1 + math.pi/8
+            local angle5 = angle1 + math.pi/4
         end
 
         --local ind = #self.character.basicAttacks + 1
                                             --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
         --local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.4, 'nissaheal.sprite', self.character.basicSpeed, angle, 0, self.effect, 2)
         --self.character.basicAttacks[ind] = basicAttack
-        local angle1 = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
-        local angle2 = angle1 - math.pi/4
-        local angle3 = angle1 - math.pi/8
-        local angle4 = angle1 + math.pi/8
-        local angle5 = angle1 + math.pi/4
+        
 
         local ind = #self.character.basicAttacks + 1
                                            --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer

@@ -13,6 +13,8 @@ function RomeroKao:new()
     romeroKao.maxHealth = 150
     romeroKao.curHealth = 150
 
+    romeroKao.backstory = font:printToCanvas('powerful warrior who believes in damage above all else', 189, 38, 'left')
+
     -- set move speed
     romeroKao.speed = 2
 
