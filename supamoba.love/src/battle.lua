@@ -6,6 +6,8 @@ function Battle:new(character, ents)
     setmetatable(battle, Battle)
 
     battle.paeliasBuff = love.graphics.newImage('img/paeliasbuff.sprite.png')
+    battle.rhogarBuff = love.graphics.newImage('img/rhogarnemmonisbuff.sprite.png')
+    battle.rhogarReflect = love.graphics.newImage('img/rhogarnemmonisreflect.sprite.png')
 
     -- 0 no winner, 1 team1 wins, 2 team2 wins
     battle.winner = 0
@@ -337,6 +339,16 @@ function Battle:draw()
                     love.graphics.draw(self.paeliasBuff, val.sprite.x, val.sprite.y)
                 end
             end
+
+            if val.textName == 'Rhogar Nemmonis' then 
+                if val.isInvulnerable then 
+                    love.graphics.draw(self.rhogarBuff, val.sprite.x, val.sprite.y)
+                end
+                if val.abilities[2].isActive then 
+                    love.graphics.draw(self.rhogarReflect, val.sprite.x, val.sprite.y)
+                end
+            end
+
 
             healthFactor = val.curHealth / val.maxHealth
 

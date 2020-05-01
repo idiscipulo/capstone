@@ -91,7 +91,7 @@ function love.conf(t)
     -- set true for templating information to be shown
     temp = false
 
-    debug = 1
+    debug = 0
 
     -- set true for console output to be shown
     t.console = true

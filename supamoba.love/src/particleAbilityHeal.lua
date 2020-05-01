@@ -6,7 +6,7 @@ setmetatable(ParticleAbilityHeal, Particle)
 
 function ParticleAbilityHeal:new(ind, x, y)
     -- initialize particle with duration of 3
-    local particleAbilityHeal = Particle.new(self, ind, x, y, 5, 'paeliasHealparticle')
+    local particleAbilityHeal = Particle.new(self, ind, x, y, 5, 'paeliashealparticle')
     setmetatable(particleAbilityHeal, ParticleAbilityHeal)
 
     return particleAbilityHeal
