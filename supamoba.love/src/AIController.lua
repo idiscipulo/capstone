@@ -55,6 +55,13 @@ function AIController:execute(char)
             end 
         end
 
+        -- bias towards middle
+        if char.sprite.y < 275 then 
+            randY = love.math.random(-75, 100)
+        elseif char.sprite.y > 275 then 
+            randY = love.math.random(-100, 75)
+        end
+
         char:setGoal(char.sprite.x + randX, char.sprite.y + randY)
     end
 end
