@@ -29,6 +29,8 @@ function AnderDash:use(dir)
         local angle = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
         local x = self.character.sprite.x - math.cos(angle) * dist
         local y = self.character.sprite.y - math.sin(angle) * dist
+        x = math.max(35, math.min(x, 1149))
+        y = math.max(113, math.min(y, 434))
         self.character.sprite.x = x
         self.character.sprite.y = y
     end
