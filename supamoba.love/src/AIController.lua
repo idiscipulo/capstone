@@ -19,7 +19,19 @@ function AIController:execute(char)
     --attack enemies if they are within range
     for ind, val in pairs(stateList['battle'].ents) do 
         local distance = math.sqrt( (char.sprite.x - val.sprite.x)^2 + (char.sprite.y - val.sprite.y)^2 )
-        if val.team ~= char.team and char.canAttack and not val.isDead and distance < char.range then --attack
+        if val.team ~= char.team and char.canAttack and not val.isDead and distance < char.range and val.isTower then --attack
+            local angle = math.atan2(char.sprite.y - val.sprite.y, char.sprite.x - val.sprite.x)
+            local cooldown = (distance / (char.basicSpeed * 60))
+            char:addBasicAttack(char.basicDamage, angle, cooldown, 0)
+            char.canAttack = false
+
+            -- % chance to use a random ability
+            randNum = love.math.random(5)
+            if randNum == 1 then 
+                randNum = love.math.random(3)
+                char.abilities[randNum]:use(angle)
+            end
+        elseif val.team ~= char.team and char.canAttack and not val.isDead and distance < char.range then --attack
             local angle = math.atan2(char.sprite.y - val.sprite.y, char.sprite.x - val.sprite.x)
             local cooldown = (distance / (char.basicSpeed * 60))
             char:addBasicAttack(char.basicDamage, angle, cooldown, 0)
