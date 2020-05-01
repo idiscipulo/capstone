@@ -10,14 +10,14 @@ function RomeroScatterShot:new(user)
     setmetatable(romeroScatterShot, RomeroScatterShot)
 
     -- set x, y, width, height, cooldown (in seconds), and name
-    romeroScatterShot:set(0, 0, 80, 80, 2, 'abilityExampleDirectDamage')
+    romeroScatterShot:set(0, 0, 80, 80, 2, 'romeroscattershot')
 
     -- create description text
     romeroScatterShot.desc = font:printToCanvas('spray a deadly arc of projectiles', 189, 38, 'left')
 
     romeroScatterShot.character = user
 
-    romeroScatterShot.damage = 3
+    romeroScatterShot.damage = 12
 
     return romeroScatterShot
 end
@@ -33,10 +33,30 @@ function RomeroScatterShot:use(dir)
         local angle3 = angle1 - math.pi/8
         local angle4 = angle1 + math.pi/8
         local angle5 = angle1 + math.pi/4
-        self.character:addBasicAttack(self.damage, angle1, 0.5, 0.06)
-        self.character:addBasicAttack(self.damage, angle2, 0.5, 0.12)
-        self.character:addBasicAttack(self.damage, angle3, 0.5, 0.09)
-        self.character:addBasicAttack(self.damage, angle4, 0.5, 0.03)
-        self.character:addBasicAttack(self.damage, angle5, 0.5, 0.0)
+
+        local ind = #self.character.basicAttacks + 1
+                                           --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
+        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'romeroscattershot.sprite', self.character.basicSpeed, angle1, 0.06)
+        self.character.basicAttacks[ind] = basicAttack
+
+        ind = #self.character.basicAttacks + 1
+                                           --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
+        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'romeroscattershot.sprite', self.character.basicSpeed, angle2, 0.12)
+        self.character.basicAttacks[ind] = basicAttack
+
+        ind = #self.character.basicAttacks + 1
+                                           --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
+        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'romeroscattershot.sprite', self.character.basicSpeed, angle3, 0.09)
+        self.character.basicAttacks[ind] = basicAttack
+
+        ind = #self.character.basicAttacks + 1
+                                           --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
+        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'romeroscattershot.sprite', self.character.basicSpeed, angle4, 0.03)
+        self.character.basicAttacks[ind] = basicAttack
+
+        ind = #self.character.basicAttacks + 1
+                                           --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
+        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'romeroscattershot.sprite', self.character.basicSpeed, angle5, 0.0)
+        self.character.basicAttacks[ind] = basicAttack        
     end
 end
