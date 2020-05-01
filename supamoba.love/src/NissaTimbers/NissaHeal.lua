@@ -29,6 +29,8 @@ end
 
 function NissaHeal:use(dir)
     if Ability.use(self) then
+
+        self.character:heal(14)
        --local angle = nil
         local angle1, angle2, angle3, angle4, angle5
         if self.character.isAI then 
