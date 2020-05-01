@@ -6,7 +6,7 @@ setmetatable(ParticleAbilityRoot, Particle)
 
 function ParticleAbilityRoot:new(ind, x, y)
     -- initialize particle with duration of 3
-    local particleAbilityRoot = Particle.new(self, ind, x, y, 5, 'particleAbilityExampleAOEEffect')
+    local particleAbilityRoot = Particle.new(self, ind, x, y, 5, 'paeliasrootparticle')
     setmetatable(particleAbilityRoot, ParticleAbilityRoot)
 
     return particleAbilityRoot

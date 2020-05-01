@@ -8,7 +8,7 @@ function PaeliasAOERoot:new()
     setmetatable(paeliasAOERoot, PaeliasAOERoot)
 
     -- set x, y, width, height, cooldown (in seconds), and name
-    paeliasAOERoot:set(0, 0, 80, 80, 10, 'abilityExampleAOEEffect')
+    paeliasAOERoot:set(0, 0, 80, 80, 10, 'paeliasroot')
 
     -- create description text
     paeliasAOERoot.desc = font:printToCanvas('lay down a trap that roots enemies in place', 189, 38, 'left')

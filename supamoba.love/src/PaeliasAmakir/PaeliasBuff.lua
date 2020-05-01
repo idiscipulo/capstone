@@ -9,7 +9,7 @@ function PaeliasBuff:new(user)
     setmetatable(paeliasBuff, PaeliasBuff)
 
     -- set x, y, width, height, cooldown (in seconds), and name
-    paeliasBuff:set(0, 0, 80, 80, 14, 'abilityExampleDirectDamage')
+    paeliasBuff:set(0, 0, 80, 80, 14, 'paeliasbuff')
 
     -- create description text
     paeliasBuff.desc = font:printToCanvas('take half damage for a short time', 189, 38, 'left')

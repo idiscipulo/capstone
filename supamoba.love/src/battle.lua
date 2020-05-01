@@ -5,6 +5,8 @@ function Battle:new(character, ents)
     local battle = {}
     setmetatable(battle, Battle)
 
+    battle.paeliasBuff = love.graphics.newImage('img/paeliasbuff.sprite.png')
+
     -- 0 no winner, 1 team1 wins, 2 team2 wins
     battle.winner = 0
 
@@ -319,6 +321,12 @@ function Battle:draw()
     for ind, val in pairs(self.ents) do
         if val.deathTime == 0 then
             val.sprite:draw()
+
+            if val.textName == 'Paelias Amakir' then
+                if val.isBuffed then
+                    love.graphics.draw(self.paeliasBuff, val.sprite.x, val.sprite.y)
+                end
+            end
 
             healthFactor = val.curHealth / val.maxHealth
 
