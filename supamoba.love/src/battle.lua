@@ -236,12 +236,11 @@ function Battle:update()
                 end
             end
         end
-    elseif self.winner == 1 then
-       --freeze the game 
-       --start button
-    
-    elseif self.winner == 2 then
-        --freeze the game
+    else --if the game is over
+        if love.keyboard.isDown('return') then 
+            stateList['select'] = Select:new()
+            state.parent = 'select'
+        end
     end
 end
 
