@@ -12,7 +12,7 @@ function AnderDash:new(user)
     anderDash:set(0, 0, 80, 80, 1, 'anderdash')
 
     -- create description text
-    anderDash.desc = font:printToCanvas('dash quickly towards your mouse.', 189, 38, 'left')
+    anderDash.desc = font:printToCanvas('teleport a short distance towards your mouse', 189, 38, 'left')
 
     anderDash.character = user
 
@@ -25,8 +25,11 @@ end
 
 function AnderDash:use(dir)
     if Ability.use(self) then
-        self.character:setGoal(mouse.x, mouse.y)
-        self.character.speed = self.character.speed * 12
-        self.character.isDashing = true 
+        local dist = math.min(120, math.sqrt((self.character.sprite.x - mouse.x) ^ 2 + (self.character.sprite.y - mouse.y) ^ 2))
+        local angle = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
+        local x = self.character.sprite.x - math.cos(angle) * dist
+        local y = self.character.sprite.y - math.sin(angle) * dist
+        self.character.sprite.x = x
+        self.character.sprite.y = y
     end
 end
