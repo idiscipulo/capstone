@@ -30,7 +30,7 @@ function ZainnaBloodDamage:use(dir)
         local angle = nil
         if self.character.isAI then angle = dir 
         else angle = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x) end
-        self.character:takeDamage(10)
+        self.character:takeDamage(15)
 
         --self.character:addBasicAttack(self.damage, angle, 0.4, 0, 'root', 2)
         local ind = #self.character.basicAttacks + 1

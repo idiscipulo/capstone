@@ -10,8 +10,8 @@ function PaeliasAmakir:new()
     paeliasAmakir.icon = love.graphics.newImage('img/PaeliasAmakir.icon.png')
 
     -- max and current health
-    paeliasAmakir.maxHealth = 150
-    paeliasAmakir.curHealth = 150
+    paeliasAmakir.maxHealth = 100
+    paeliasAmakir.curHealth = 100
 
     -- set move speed
     paeliasAmakir.speed = 2
@@ -37,7 +37,7 @@ function PaeliasAmakir:new()
     paeliasAmakir.textName = 'Paelias Amakir'
     paeliasAmakir.name = font:printToCanvas('Paelias Amakir', 160, 10, 'center')
 
-    paeliasAmakir.backstory = font:printToCanvas('A squirly creature of chaotic magic, he rides the edge of reality.', 189, 38, 'left')
+    paeliasAmakir.backstory = font:printToCanvas('a squirly creature of chaotic magic, he rides the edge of reality.', 189, 38, 'left')
 
     -- initialize ability table
     paeliasAmakir.abilities = {}

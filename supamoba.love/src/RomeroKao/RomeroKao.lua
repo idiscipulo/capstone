@@ -10,10 +10,10 @@ function RomeroKao:new()
     romeroKao.icon = love.graphics.newImage('img/RomeroKao.icon.png')
 
     -- max and current health
-    romeroKao.maxHealth = 150
-    romeroKao.curHealth = 150
+    romeroKao.maxHealth = 100
+    romeroKao.curHealth = 100
 
-    romeroKao.backstory = font:printToCanvas('powerful warrior who believes in damage above all else', 189, 38, 'left')
+    romeroKao.backstory = font:printToCanvas('a powerful warrior who deals blistering damage.', 189, 38, 'left')
 
     -- set move speed
     romeroKao.speed = 2

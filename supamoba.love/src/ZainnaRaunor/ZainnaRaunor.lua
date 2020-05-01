@@ -10,13 +10,13 @@ function ZainnaRaunor:new()
     zainnaRaunor.icon = love.graphics.newImage('img/ZainnaRaunor.icon.png')
 
     -- max and current health
-    zainnaRaunor.maxHealth = 150
-    zainnaRaunor.curHealth = 150
+    zainnaRaunor.maxHealth = 100
+    zainnaRaunor.curHealth = 100
 
     -- set move speed
     zainnaRaunor.speed = 2
 
-    zainnaRaunor.backstory = font:printToCanvas('dark priestess powered by hate and blood magic', 189, 38, 'left')
+    zainnaRaunor.backstory = font:printToCanvas('a dark priestess powered by hate and blood magic.', 189, 38, 'left')
 
     -- basic attack stats
     zainnaRaunor.basicSpeed = 8

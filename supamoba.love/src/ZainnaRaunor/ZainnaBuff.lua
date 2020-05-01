@@ -12,7 +12,7 @@ function ZainnaBuff:new(user)
     zainnaBuff:set(0, 0, 80, 80, 14, 'zainnabuff')
 
     -- create description text
-    zainnaBuff.desc = font:printToCanvas('increase movement and attack speed', 189, 38, 'left')
+    zainnaBuff.desc = font:printToCanvas('sacrfice for otherworldly power', 189, 38, 'left')
 
     zainnaBuff.character = user
 
@@ -29,6 +29,7 @@ end
 function ZainnaBuff:use(dir)
     if Ability.use(self) then
         self.character.isBuffed = true
+        self.character:takeDamage(20)
         self.character.speed = self.character.speed * self.moveMultiplier
         self.character.attackTimerMax = self.character.attackTimerMax / self.attackMultiplier
     end

@@ -10,8 +10,8 @@ function AnderShemov:new()
     anderShemov.icon = love.graphics.newImage('img/AnderShemov.icon.png')
 
     -- max and current health
-    anderShemov.maxHealth = 150
-    anderShemov.curHealth = 150
+    anderShemov.maxHealth = 100
+    anderShemov.curHealth = 100
 
     -- set move speed
     anderShemov.speed = 2
@@ -21,7 +21,7 @@ function AnderShemov:new()
     anderShemov.basicName = 'basic.sprite' 
     anderShemov.basicCooldown = 1
 
-    anderShemov.backstory = font:printToCanvas('Fueled by magical rage, he rushes down foes with a vengance.', 189, 38, 'left')
+    anderShemov.backstory = font:printToCanvas('fueled by magical rage, he rushes down foes with a vengance.', 189, 38, 'left')
 
     -- basic attack cooldown
     anderShemov.attackTimerMax = 1

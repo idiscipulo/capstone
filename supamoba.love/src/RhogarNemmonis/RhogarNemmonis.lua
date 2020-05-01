@@ -10,8 +10,8 @@ function RhogarNemmonis:new()
     rhogarNemmonis.icon = love.graphics.newImage('img/RhogarNemmonis.icon.png')
 
     -- max and current health
-    rhogarNemmonis.maxHealth = 150
-    rhogarNemmonis.curHealth = 150
+    rhogarNemmonis.maxHealth = 100
+    rhogarNemmonis.curHealth = 100
 
     -- set move speed
     rhogarNemmonis.speed = 2.8
@@ -32,7 +32,7 @@ function RhogarNemmonis:new()
     rhogarNemmonis.textName = 'Rhogar Nemmonis'
     rhogarNemmonis.name = font:printToCanvas('Rhogar Nemmonis', 160, 10, 'center')
 
-    rhogarNemmonis.backstory = font:printToCanvas('an unbreakable champion who brushes off attacks', 189, 38, 'left')
+    rhogarNemmonis.backstory = font:printToCanvas('an unbreakable champion who fears neither man nor tower.', 189, 38, 'left')
 
     -- initialize ability table
     rhogarNemmonis.abilities = {}

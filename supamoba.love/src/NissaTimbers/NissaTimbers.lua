@@ -10,10 +10,10 @@ function NissaTimbers:new()
     nissaTimbers.icon = love.graphics.newImage('img/NissaTimbers.icon.png')
 
     -- max and current health
-    nissaTimbers.maxHealth = 150
-    nissaTimbers.curHealth = 150
+    nissaTimbers.maxHealth = 100
+    nissaTimbers.curHealth = 100
 
-    nissaTimbers.backstory = font:printToCanvas('A healing druid with a fey touched soul, she never wavers.', 189, 38, 'left')
+    nissaTimbers.backstory = font:printToCanvas('a healing druid with a fey touched soul, she never wavers.', 189, 38, 'left')
 
     -- set move speed
     nissaTimbers.speed = 2
