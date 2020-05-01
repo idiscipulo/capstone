@@ -65,6 +65,11 @@ function Character:new()
     character.invulnerableTimer = nil
     character.isInvulnerable = false
 
+    --damage cooldown
+    character.damageCooldownTimerMax = 0.03
+    character.damageCooldownTimer = character.damageCooldownTimerMax
+    character.canTakeDamage = true
+
     -- root a character in place
     character.isRootedTimer = nil
     character.isRootedTimerMax = nil
@@ -143,6 +148,14 @@ function Character:update()
             self.isDebuffed = false 
         end
     end
+
+    if not self.canTakeDamage then 
+        self.damageCooldownTimer = self.damageCooldownTimer - timer.fps
+        if self.damageCooldownTimer < 0 then 
+            self.canTakeDamage = true 
+            self.damageCooldownTimer = self.damageCooldownTimerMax
+        end
+    end
     
     --move if character is not yet at goal
     if self.sprite.x ~= self.goalX or self.sprite.y ~= self.goalY then
@@ -213,7 +226,8 @@ function Character:takeDamage(amt)
         if self.isBuffed then amt = amt / 2 end 
         if self.isDebuffed then amt = amt * 2 end 
 
-        if not self.isInvulnerable then 
+        if not self.isInvulnerable and self.canTakeDamage then 
+            self.canTakeDamage = false
             -- deal damage
             self.curHealth = math.max(self.curHealth - amt, 0)
 
