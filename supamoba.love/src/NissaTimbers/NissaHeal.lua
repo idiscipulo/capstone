@@ -40,11 +40,11 @@ function NissaHeal:use(dir)
             angle4 = angle1 + math.pi/8
             angle5 = angle1 + math.pi/4
         else 
-            local angle1 = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
-            local angle2 = angle1 - math.pi/4
-            local angle3 = angle1 - math.pi/8
-            local angle4 = angle1 + math.pi/8
-            local angle5 = angle1 + math.pi/4
+            angle1 = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
+            angle2 = angle1 - math.pi/4
+            angle3 = angle1 - math.pi/8
+            angle4 = angle1 + math.pi/8
+            angle5 = angle1 + math.pi/4
         end
 
         --local ind = #self.character.basicAttacks + 1

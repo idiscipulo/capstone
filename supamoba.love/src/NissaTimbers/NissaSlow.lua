@@ -42,8 +42,6 @@ function NissaSlow:use(dir)
         local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.4, 'nissaslow.sprite', self.character.basicSpeed, angle, 0, self.effect, 2)
         self.character.basicAttacks[ind] = basicAttack
 
-        self.character:heal((self.character.maxHealth - self.character.curHealth) * 0.2)
-
-        
+        self.character:heal((self.character.maxHealth - self.character.curHealth) * 0.2)  
     end
 end

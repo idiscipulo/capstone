@@ -256,7 +256,7 @@ function Character:applyEffect(effect, effectTimer)
     end
     if effect == 'slow' then 
         self.isSlowedTimer = effectTimer
-        self.speed = self.speed / 2.0
+        self.speed = self.speed / 4.0
         self.isSlowed = true 
     end
     if effect == 'debuff' then 
