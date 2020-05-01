@@ -21,13 +21,4 @@ function ParticleAbilityRoot:update()
             end
         end
     end
-
-    for ind, val in pairs(stateList['battle'].ents) do
-        -- if character is overlapping particle, apply 2 damage
-        if val.team == 2 and math.abs(val.sprite.x - self.x) < 16 and math.abs(val.sprite.y - self.y) < 16 then
-            if not val.isRooted then
-                val:applyEffect('root', 5)
-            end
-        end
-    end
 end
