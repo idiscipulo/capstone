@@ -12,8 +12,8 @@ function CharExample:new()
     charExample.icon = love.graphics.newImage('img/charExample.icon.png')
 
     -- max and current health
-    charExample.maxHealth = 150
-    charExample.curHealth = 150
+    charExample.maxHealth = 100
+    charExample.curHealth = 100
 
     -- set move speed
     charExample.speed = 2

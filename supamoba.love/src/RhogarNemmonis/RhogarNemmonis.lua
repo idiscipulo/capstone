@@ -10,8 +10,8 @@ function RhogarNemmonis:new()
     rhogarNemmonis.icon = love.graphics.newImage('img/RhogarNemmonis.icon.png')
 
     -- max and current health
-    rhogarNemmonis.maxHealth = 150
-    rhogarNemmonis.curHealth = 150
+    rhogarNemmonis.maxHealth = 100
+    rhogarNemmonis.curHealth = 100
 
     -- set move speed
     rhogarNemmonis.speed = 2.8

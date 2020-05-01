@@ -9,7 +9,7 @@ function ZainnaLifesteal:new(user)
     setmetatable(zainnaLifesteal, ZainnaLifesteal)
 
     -- set x, y, width, height, cooldown (in seconds), and name
-    zainnaLifesteal:set(0, 0, 80, 80, 2, 'zainnaheal')
+    zainnaLifesteal:set(0, 0, 80, 80, 4, 'zainnaheal')
 
     -- create description text
     zainnaLifesteal.desc = font:printToCanvas('regain damage dealt as health', 189, 38, 'left')

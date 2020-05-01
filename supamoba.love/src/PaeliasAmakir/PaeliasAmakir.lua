@@ -10,8 +10,8 @@ function PaeliasAmakir:new()
     paeliasAmakir.icon = love.graphics.newImage('img/PaeliasAmakir.icon.png')
 
     -- max and current health
-    paeliasAmakir.maxHealth = 150
-    paeliasAmakir.curHealth = 150
+    paeliasAmakir.maxHealth = 100
+    paeliasAmakir.curHealth = 100
 
     -- set move speed
     paeliasAmakir.speed = 2

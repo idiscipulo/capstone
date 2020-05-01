@@ -10,8 +10,8 @@ function AnderShemov:new()
     anderShemov.icon = love.graphics.newImage('img/AnderShemov.icon.png')
 
     -- max and current health
-    anderShemov.maxHealth = 150
-    anderShemov.curHealth = 150
+    anderShemov.maxHealth = 100
+    anderShemov.curHealth = 100
 
     -- set move speed
     anderShemov.speed = 2

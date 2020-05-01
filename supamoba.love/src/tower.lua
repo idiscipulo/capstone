@@ -13,8 +13,8 @@ function Tower:new(x, y, team)
     tower.icon = love.graphics.newImage('img/tower.icon.png')
 
     -- max and current health
-    tower.maxHealth = 150
-    tower.curHealth = 150
+    tower.maxHealth = 200
+    tower.curHealth = 200
 
     -- set move speed
     tower.speed = 0
