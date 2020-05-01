@@ -68,6 +68,8 @@ function love.conf(t)
     require('src/PaeliasAmakir/PaeliasAmakir')
     require('src/PaeliasAmakir/PaeliasAOERoot')
     require('src/PaeliasAmakir/PaeliasBuff')
+    require('src/PaeliasAmakir/PaeliasAOEHeal')
+    require('src/particleAbilityHeal')
     --require('src/PaeliasAmakir/')
 
     --Ander Shemov

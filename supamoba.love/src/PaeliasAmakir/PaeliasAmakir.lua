@@ -43,7 +43,7 @@ function PaeliasAmakir:new()
     -- add ability
     paeliasAmakir:addAbility(PaeliasAOERoot:new())
     paeliasAmakir:addAbility(PaeliasBuff:new())
-    paeliasAmakir:addAbility(NissaSlow:new())
+    paeliasAmakir:addAbility(PaeliasAOEHeal:new())
     -- paeliasAmakir:addAbility(AbilityExamplePassive:new())
 
     -- finish adding abilities
