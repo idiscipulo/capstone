@@ -29,6 +29,7 @@ end
 function ZainnaBuff:use(dir)
     if Ability.use(self) then
         self.character.isBuffed = true
+        self.character:takeDamage(15)
         self.character.speed = self.character.speed * self.moveMultiplier
         self.character.attackTimerMax = self.character.attackTimerMax / self.attackMultiplier
     end

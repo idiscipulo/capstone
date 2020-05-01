@@ -32,7 +32,7 @@ function RhogarNemmonis:new()
     rhogarNemmonis.textName = 'Rhogar Nemmonis'
     rhogarNemmonis.name = font:printToCanvas('Rhogar Nemmonis', 160, 10, 'center')
 
-    rhogarNemmonis.backstory = font:printToCanvas('an unbreakable champion who brushes off attacks', 189, 38, 'left')
+    rhogarNemmonis.backstory = font:printToCanvas('an unbreakable champion who fears neither man nor tower.', 189, 38, 'left')
 
     -- initialize ability table
     rhogarNemmonis.abilities = {}

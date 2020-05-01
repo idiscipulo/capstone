@@ -9,7 +9,7 @@ function AnderDash:new(user)
     setmetatable(anderDash, AnderDash)
 
     -- set x, y, width, height, cooldown (in seconds), and name
-    anderDash:set(0, 0, 80, 80, 1, 'anderdash')
+    anderDash:set(0, 0, 80, 80, 5, 'anderdash')
 
     -- create description text
     anderDash.desc = font:printToCanvas('teleport a short distance towards your mouse', 189, 38, 'left')

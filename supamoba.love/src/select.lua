@@ -43,7 +43,6 @@ function Select:update()
         elseif 429 < mouse.x and mouse.x < 429 + 105 and 263 < mouse.y and mouse.y < 263 + 105 then
             self.character = self.chars[4]
         elseif 549 < mouse.x and mouse.x < 549 + 105 and 263 < mouse.y and mouse.y < 263 + 105 then
-            print('test')
             self.character = self.chars[5]
         elseif 669 < mouse.x and mouse.x < 669 + 105 and 263 < mouse.y and mouse.y < 263 + 105 then 
             self.character = self.chars[6]

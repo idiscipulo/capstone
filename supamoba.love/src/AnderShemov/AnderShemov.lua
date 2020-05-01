@@ -21,7 +21,7 @@ function AnderShemov:new()
     anderShemov.basicName = 'basic.sprite' 
     anderShemov.basicCooldown = 1
 
-    anderShemov.backstory = font:printToCanvas('Fueled by magical rage, he rushes down foes with a vengance.', 189, 38, 'left')
+    anderShemov.backstory = font:printToCanvas('fueled by magical rage, he rushes down foes with a vengance.', 189, 38, 'left')
 
     -- basic attack cooldown
     anderShemov.attackTimerMax = 1
