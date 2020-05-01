@@ -15,6 +15,8 @@ function Character:new()
     -- sprite
     character.sprite = Sprite:new()
 
+    character.backstory = font:printToCanvas('Backstory: my family was killed', 189, 38, 'left')
+
     character.range = 120
 
     -- max and current health

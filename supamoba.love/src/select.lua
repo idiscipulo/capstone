@@ -77,6 +77,7 @@ function Select:draw()
     -- draw character name
     love.graphics.draw(self.character.name, 836, 574, 0, 2, 2)
 
+    local drawDesc = true
     for ind, val in pairs(self.character.abilities) do
         val:draw()
 
@@ -90,7 +91,12 @@ function Select:draw()
         if val.isHover then
             love.graphics.draw(self.abilityInfo, 407, 504)
             love.graphics.draw(val.desc, 413, 510, 0, 2)
+            drawDesc = false
         end
+    end
+
+    if drawDesc then
+        love.graphics.draw(self.character.backstory, 413, 510, 0, 2)
     end
 end
 
