@@ -17,7 +17,7 @@ function ParticleAbilityHeal:update()
         for ind, val in pairs(stateList['battle'].ents) do
             -- if character is overlapping particle, apply 2 damage
             if val.team == 1 and math.abs(val.sprite.x - self.x) < 16 and math.abs(val.sprite.y - self.y) < 16 then
-                val:heal(2)
+                val:heal(4)
             end
         end
     end
