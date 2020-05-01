@@ -9,7 +9,7 @@ function RhogarInvulnerable:new(user)
     setmetatable(rhogarInvulnerable, RhogarInvulnerable)
 
     -- set x, y, width, height, cooldown (in seconds), and name
-    rhogarInvulnerable:set(0, 0, 80, 80, 6, 'rhogarinvulnerable')
+    rhogarInvulnerable:set(0, 0, 80, 80, 13, 'rhogarinvulnerable')
 
     -- create description text
     rhogarInvulnerable.desc = font:printToCanvas('become invulnerable to all damage for a short time', 189, 38, 'left')
