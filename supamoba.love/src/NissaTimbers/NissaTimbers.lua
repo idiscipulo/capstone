@@ -13,6 +13,8 @@ function NissaTimbers:new()
     nissaTimbers.maxHealth = 150
     nissaTimbers.curHealth = 150
 
+    nissaTimbers.backstory = font:printToCanvas('A healing druid with a fey touched soul, she never wavers.', 189, 38, 'left')
+
     -- set move speed
     nissaTimbers.speed = 2
 

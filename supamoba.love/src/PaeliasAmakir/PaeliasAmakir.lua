@@ -37,6 +37,8 @@ function PaeliasAmakir:new()
     paeliasAmakir.textName = 'Paelias Amakir'
     paeliasAmakir.name = font:printToCanvas('Paelias Amakir', 160, 10, 'center')
 
+    paeliasAmakir.backstory = font:printToCanvas('A squirly creature of chaotic magic, he rides the edge of reality.', 189, 38, 'left')
+
     -- initialize ability table
     paeliasAmakir.abilities = {}
     

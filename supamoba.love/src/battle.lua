@@ -10,6 +10,8 @@ function Battle:new(character, ents)
     battle.rhogarReflect = love.graphics.newImage('img/rhogarnemmonisreflect.sprite.png')
     battle.zainnaBuff = love.graphics.newImage('img/zainnabuff.sprite.png')
 
+    battle.help = font:printToCanvas('L click to shoot, R click to move. Q, W, E for special powers', 189, 38, 'center')
+
     -- 0 no winner, 1 team1 wins, 2 team2 wins
     battle.winner = 0
     if debug == 1 then 
@@ -316,7 +318,8 @@ function Battle:draw()
 
     -- draw character name
     love.graphics.draw(self.character.name, 836, 574, 0, 2, 2)
-
+    
+    local drawHelp = true
     for ind, val in pairs(self.character.abilities) do
         val:draw()
 
@@ -330,6 +333,11 @@ function Battle:draw()
         if val.isHover then
             love.graphics.draw(self.abilityInfo, 407, 504)
             love.graphics.draw(val.desc, 413, 510, 0, 2)
+            drawHelp = false
+        end
+
+        if drawHelp then
+            love.graphics.draw(self.help, 413, 510, 0, 2)
         end
     end
 
