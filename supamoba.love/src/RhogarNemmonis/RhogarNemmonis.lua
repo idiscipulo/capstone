@@ -78,8 +78,10 @@ function RhogarNemmonis:takeDamage(amt)
         if self.abilities[2].isActive then 
             local goalX, goalY = self:getClosestEnemy()
             local angle = math.atan2(self.sprite.y - goalY, self.sprite.x - goalX)
-            self:addBasicAttack(amt, angle, nil)
-            self.basicAttacks[#self.basicAttacks].goalX, self.basicAttacks[#self.basicAttacks].goalY = goalX, goalY
+            if goalX ~= nil and goalY ~= nil and angle ~= nil and amt ~= nil then 
+                self:addBasicAttack(amt, angle, nil)
+                self.basicAttacks[#self.basicAttacks].goalX, self.basicAttacks[#self.basicAttacks].goalY = goalX, goalY
+            end
         elseif not self.isInvulnerable then 
             -- deal damage
             self.curHealth = math.max(self.curHealth - amt, 0)

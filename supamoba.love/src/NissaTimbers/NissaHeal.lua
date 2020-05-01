@@ -9,14 +9,14 @@ function NissaHeal:new(user)
     setmetatable(nissaHeal, NissaHeal)
 
     -- set x, y, width, height, cooldown (in seconds), and name
-    nissaHeal:set(0, 0, 80, 80, 5, 'nissaheal')
+    nissaHeal:set(0, 0, 80, 80, 7, 'nissaheal')
 
     -- create description text
     nissaHeal.desc = font:printToCanvas('shoot an volley of healing energy', 189, 38, 'left')
 
     nissaHeal.character = user
 
-    nissaHeal.damage = 15 --(heal)
+    nissaHeal.damage = 7 --(heal)
 
     nissaHeal.effect = 'heal'
 
@@ -34,17 +34,23 @@ function NissaHeal:use(dir)
         if self.character.isAI then 
             allyX, allyY = self.character:getClosestAlly()
             --angle = math.atan2(self.character.sprite.y - allyY, self.character.sprite.x - allyX) 
-            angle1 = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
-            angle2 = angle1 - math.pi/4
+            angle1 = math.atan2(self.character.sprite.y - allyY, self.character.sprite.x - allyX)
+            angle2 = angle1 - math.pi/10
             angle3 = angle1 - math.pi/8
             angle4 = angle1 + math.pi/8
-            angle5 = angle1 + math.pi/4
+            angle5 = angle1 + math.pi/12
+            angle6 = angle1 - math.pi/6
+            angle7 = angle1 + math.pi/6
+            angle8 = angle1 + math.pi/10
         else 
             angle1 = math.atan2(self.character.sprite.y - mouse.y, self.character.sprite.x - mouse.x)
-            angle2 = angle1 - math.pi/4
+            angle2 = angle1 - math.pi/10
             angle3 = angle1 - math.pi/8
             angle4 = angle1 + math.pi/8
-            angle5 = angle1 + math.pi/4
+            angle5 = angle1 + math.pi/12
+            angle6 = angle1 - math.pi/6
+            angle7 = angle1 + math.pi/6
+            angle8 = angle1 + math.pi/10
         end
 
         --local ind = #self.character.basicAttacks + 1
@@ -66,37 +72,37 @@ function NissaHeal:use(dir)
 
         ind = #self.character.basicAttacks + 1
                                            --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
-        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'nissaheal.sprite', self.character.basicSpeed, angle3, delayList[2], self.effect, 2)
+        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'nissaheal.sprite', self.character.basicSpeed, angle2, delayList[2], self.effect, 2)
         self.character.basicAttacks[ind] = basicAttack
 
         ind = #self.character.basicAttacks + 1
                                            --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
-        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'nissaheal.sprite', self.character.basicSpeed, angle4, delayList[3], self.effect, 2)
+        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'nissaheal.sprite', self.character.basicSpeed, angle3, delayList[3], self.effect, 2)
         self.character.basicAttacks[ind] = basicAttack
 
         ind = #self.character.basicAttacks + 1
                                            --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
-        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'nissaheal.sprite', self.character.basicSpeed, angle1, delayList[4], self.effect, 2)
+        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'nissaheal.sprite', self.character.basicSpeed, angle4, delayList[4], self.effect, 2)
         self.character.basicAttacks[ind] = basicAttack
 
         ind = #self.character.basicAttacks + 1
                                            --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
-        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'nissaheal.sprite', self.character.basicSpeed, angle3, delayList[5], self.effect, 2)
+        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'nissaheal.sprite', self.character.basicSpeed, angle5, delayList[5], self.effect, 2)
         self.character.basicAttacks[ind] = basicAttack    
 
         ind = #self.character.basicAttacks + 1
                                            --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
-        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'nissaheal.sprite', self.character.basicSpeed, angle4, delayList[6], self.effect, 2)
+        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'nissaheal.sprite', self.character.basicSpeed, angle6, delayList[6], self.effect, 2)
         self.character.basicAttacks[ind] = basicAttack
 
         ind = #self.character.basicAttacks + 1
                                            --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
-        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'nissaheal.sprite', self.character.basicSpeed, angle1, delayList[7], self.effect, 2)
+        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'nissaheal.sprite', self.character.basicSpeed, angle7, delayList[7], self.effect, 2)
         self.character.basicAttacks[ind] = basicAttack   
 
         ind = #self.character.basicAttacks + 1
                                            --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
-        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'nissaheal.sprite', self.character.basicSpeed, angle1, delayList[8], self.effect, 2)
+        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.5, 'nissaheal.sprite', self.character.basicSpeed, angle8, delayList[8], self.effect, 2)
         self.character.basicAttacks[ind] = basicAttack  
     end
 end
