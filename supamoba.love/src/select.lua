@@ -25,6 +25,8 @@ function Select:new()
 
     select.abilityInfo = love.graphics.newImage('img/battle.ability.info.png')
 
+    select.startSound = love.audio.newSource('sound/start.wav', 'stream')
+
     return select
 end
 
@@ -47,6 +49,7 @@ function Select:update()
         elseif 669 < mouse.x and mouse.x < 669 + 105 and 263 < mouse.y and mouse.y < 263 + 105 then 
             self.character = self.chars[6]
         elseif 500 < mouse.x and mouse.x < 500 + 200 and 420 < mouse.y and mouse.y < 420 + 50 then
+            love.audio.play(self.startSound)
             self:startGame()
         end
     end
