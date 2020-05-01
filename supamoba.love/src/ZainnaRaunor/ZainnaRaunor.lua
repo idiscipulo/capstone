@@ -62,7 +62,7 @@ function ZainnaRaunor:update()
         self.isBuffedTimer = self.isBuffedTimer - timer.fps 
         if self.isBuffedTimer < 0 then 
             self.speed = self.speed / self.abilities[2].moveMultiplier
-            self.basicSpeed = self.basicSpeed / self.abilities[2].attackMultiplier
+            self.attackTimerMax = self.attackTimerMax * self.abilities[2].attackMultiplier
             self.isBuffedTimer = self.isBuffedTimerMax 
             self.isBuffed = false 
         end

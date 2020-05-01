@@ -16,8 +16,8 @@ function ZainnaBuff:new(user)
 
     zainnaBuff.character = user
 
-    zainnaBuff.moveMultiplier = 1.75
-    zainnaBuff.attackMultiplier = 2
+    zainnaBuff.moveMultiplier = 2
+    zainnaBuff.attackMultiplier = 5
 
     return zainnaBuff
 end
@@ -30,6 +30,6 @@ function ZainnaBuff:use(dir)
     if Ability.use(self) then
         self.character.isBuffed = true
         self.character.speed = self.character.speed * self.moveMultiplier
-        self.character.basicSpeed = self.character.basicSpeed * self.attackMultiplier
+        self.character.attackTimerMax = self.character.attackTimerMax / self.attackMultiplier
     end
 end
