@@ -9,7 +9,7 @@ function ZainnaBuff:new(user)
     setmetatable(zainnaBuff, ZainnaBuff)
 
     -- set x, y, width, height, cooldown (in seconds), and name
-    zainnaBuff:set(0, 0, 80, 80, 14, 'abilityExampleDirectDamage')
+    zainnaBuff:set(0, 0, 80, 80, 14, 'zainnabuff')
 
     -- create description text
     zainnaBuff.desc = font:printToCanvas('increase movement and attack speed', 189, 38, 'left')

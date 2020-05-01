@@ -8,6 +8,7 @@ function Battle:new(character, ents)
     battle.paeliasBuff = love.graphics.newImage('img/paeliasbuff.sprite.png')
     battle.rhogarBuff = love.graphics.newImage('img/rhogarnemmonisbuff.sprite.png')
     battle.rhogarReflect = love.graphics.newImage('img/rhogarnemmonisreflect.sprite.png')
+    battle.zainnaBuff = love.graphics.newImage('img/zainnabuff.sprite.png')
 
     -- 0 no winner, 1 team1 wins, 2 team2 wins
     battle.winner = 0
@@ -337,6 +338,12 @@ function Battle:draw()
             if val.textName == 'Paelias Amakir' then
                 if val.isBuffed then
                     love.graphics.draw(self.paeliasBuff, val.sprite.x, val.sprite.y)
+                end
+            end
+
+            if val.textName == 'Zainna Raunor' then
+                if val.isBuffed then
+                    love.graphics.draw(self.zainnaBuff, val.sprite.x, val.sprite.y)
                 end
             end
 
