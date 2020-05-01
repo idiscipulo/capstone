@@ -33,27 +33,27 @@ function AnderPowerAttack:use(dir)
         
         local ind = #self.character.basicAttacks + 1
                                            --damage, char, ind, x, y, cooldown, name, speed, angle, delay, effect, effectTimer
-        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.1, 'anderpowerattack.sprite', self.character.basicSpeed / 2, math.pi, 0, 'debuff', 2)
+        local basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.2, 'anderpowerattack.sprite', self.character.basicSpeed / 2, math.pi, 0, 'debuff', 2)
         self.character.basicAttacks[ind] = basicAttack
 
         ind = #self.character.basicAttacks + 1
-        basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.1, 'anderpowerattack.sprite', self.character.basicSpeed / 2, math.pi / 3, 0, 'debuff', 2)
+        basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.2, 'anderpowerattack.sprite', self.character.basicSpeed / 2, math.pi / 3, 0, 'debuff', 2)
         self.character.basicAttacks[ind] = basicAttack
 
         ind = #self.character.basicAttacks + 1
-        basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.1, 'anderpowerattack.sprite', self.character.basicSpeed / 2, 2 * math.pi / 3, 0, 'debuff', 2)
+        basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.2, 'anderpowerattack.sprite', self.character.basicSpeed / 2, 2 * math.pi / 3, 0, 'debuff', 2)
         self.character.basicAttacks[ind] = basicAttack
 
         ind = #self.character.basicAttacks + 1
-        basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.1, 'anderpowerattack.sprite', self.character.basicSpeed / 2, 2 * math.pi, 0, 'debuff', 2)
+        basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.2, 'anderpowerattack.sprite', self.character.basicSpeed / 2, 2 * math.pi, 0, 'debuff', 2)
         self.character.basicAttacks[ind] = basicAttack
 
         ind = #self.character.basicAttacks + 1
-        basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.1, 'anderpowerattack.sprite', self.character.basicSpeed / 2, 4 * math.pi / 3, 0, 'debuff', 2)
+        basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.2, 'anderpowerattack.sprite', self.character.basicSpeed / 2, 4 * math.pi / 3, 0, 'debuff', 2)
         self.character.basicAttacks[ind] = basicAttack
 
         ind = #self.character.basicAttacks + 1
-        basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.1, 'anderpowerattack.sprite', self.character.basicSpeed / 2, 5 * math.pi / 3, 0, 'debuff', 2)
+        basicAttack = BasicAttack:new(self.damage, self.character, ind, self.character.sprite.x, self.character.sprite.y, 0.2, 'anderpowerattack.sprite', self.character.basicSpeed / 2, 5 * math.pi / 3, 0, 'debuff', 2)
         self.character.basicAttacks[ind] = basicAttack
     end
 end

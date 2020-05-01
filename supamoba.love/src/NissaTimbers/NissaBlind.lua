@@ -16,7 +16,7 @@ function NissaBlind:new(user)
 
     nissaBlind.character = user
 
-    nissaBlind.damage = 4
+    nissaBlind.damage = 15
 
     nissaBlind.effect = 'blind'
     nissaBlind.effectTimer = 5

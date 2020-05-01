@@ -17,7 +17,7 @@ function RomeroRapidAttack:new(user)
 
     romeroRapidAttack.character = user
 
-    romeroRapidAttack.damage = 4
+    romeroRapidAttack.damage = 5
 
     return romeroRapidAttack
 end
