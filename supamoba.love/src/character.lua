@@ -268,7 +268,7 @@ function Character:applyEffect(effect, effectTimer)
         self.isBlindedTimer = effectTimer
         self.isBlinded = true
     end
-    if effect == 'slow' then 
+    if effect == 'slow' and not self.isSlowed then 
         self.isSlowedTimer = effectTimer
         self.speed = self.speed / 4.0
         self.isSlowed = true 
