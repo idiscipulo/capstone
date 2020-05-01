@@ -46,7 +46,7 @@ function PaeliasAOEHeal:use(dir)
                 if val2 == 1 then
                     -- if value in aoe matrix is 1, spawn a unique particle at that spot
                     -- pass index in particle list (for later deleting), x coord, and y coord
-                    stateList['battle'].particles[ind] = ParticleAbilityHeal:new(ind, x + ((indx - 1) * 16), y + ((indy - 1) * 16))
+                    stateList['battle'].particles[ind] = ParticleAbilityHeal:new(ind, x + ((indx - 1) * 16), y + ((indy - 1) * 16), self.character)
                     
                     -- increment index in particle list
                     ind = #stateList['battle'].particles + 1
